@@ -58,13 +58,7 @@ class ModuleController(object):
         runcycle = self.rawConfig.get(self.SECTIONNAME, 'runcycle').replace(' ', '')
         exitkey = self.rawConfig.get(self.SECTIONNAME, 'exitkey').replace(' ', '')
 
-        # todo: remove me, quick testing!!! 1-line
-        aritime = list()
-
         while True:
-            # todo: remove me, quick testing!!! 1-line
-            stime = time.time()
-
             for k, module in enumerate(self.activeModules):
                 if not module.activeModule:
                     self.log.debug('Skipping inactive Module <%s> for logical Section <%s>', module.__class__.__name__, module.logicSectionName)
@@ -78,15 +72,6 @@ class ModuleController(object):
 
             if (cv2.waitKey(5) & 255) == ord(exitkey):
                 break
-
-            # todo: remove me, quick testing!!! 7 lines
-            etime = time.time()
-            dtime = etime - stime
-            aritime.append(dtime)
-            if len(aritime) >= 20:
-                aritime.pop(0)
-            aridtime = float(sum(aritime)) / len(aritime)
-            print int(1.0 / aridtime), 'Hz'
 
         for k, module in enumerate(self.activeModules):
             if not module.activeModule:
