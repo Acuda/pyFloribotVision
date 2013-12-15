@@ -61,10 +61,12 @@ class ModuleController(object):
         while True:
             for k, module in enumerate(self.activeModules):
                 if not module.activeModule:
-                    self.log.debug('Skipping inactive Module <%s> for logical Section <%s>', module.__class__.__name__, module.logicSectionName)
+                    self.log.debug('Skipping inactive Module <%s> for logical Section <%s>',
+                                   module.__class__.__name__, module.logicSectionName)
                     continue
 
-                self.log.debug('Calling Module <%s> for logical Section <%s>', module.__class__.__name__, module.logicSectionName)
+                self.log.debug('Calling Module <%s> for logical Section <%s>',
+                               module.__class__.__name__, module.logicSectionName)
                 module.externalCall()
 
             if runcycle == 'oneShoot':
@@ -75,10 +77,12 @@ class ModuleController(object):
 
         for k, module in enumerate(self.activeModules):
             if not module.activeModule:
-                self.log.debug('Skipping inactive Module <%s> for logical Section <%s>', module.__class__.__name__, module.logicSectionName)
+                self.log.debug('Skipping inactive Module <%s> for logical Section <%s>',
+                               module.__class__.__name__, module.logicSectionName)
                 continue
 
-            self.log.debug('Calling Module <%s> for logical Section <%s>', module.__class__.__name__, module.logicSectionName)
+            self.log.debug('Calling Module <%s> for logical Section <%s>',
+                           module.__class__.__name__, module.logicSectionName)
             module.preOptActions()
 
 if __name__ == "__main__":
