@@ -39,5 +39,8 @@ class CVDrawContours(BaseModule):
             contidx = range(len(cont))
 
         image = self.ioContainer[self.inputImageName]
+
+        imagecpy = image.copy()
         for cidx in contidx:
-            cv2.drawContours(image, cont, cidx, color=self.contourColor)
+            cv2.drawContours(imagecpy, cont, cidx, color=self.contourColor)
+        self.ioContainer[self.outputImageName] = imagecpy

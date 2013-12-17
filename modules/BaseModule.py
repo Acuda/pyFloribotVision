@@ -9,6 +9,7 @@
 
 import logging
 
+
 class BaseModule(object):
 
     # must have options in the config file
@@ -28,7 +29,8 @@ class BaseModule(object):
 
         self.activeModule = True
 
-        self.log.debug('invoked by subclass <%s> for logicSectionName <%s> ', type(self).__name__, self.logicSectionName)
+        self.log.debug('invoked by subclass <%s> for logicSectionName <%s> ',
+                       type(self).__name__, self.logicSectionName)
 
         self.loadOptions()
         self.postOptActions()
@@ -43,6 +45,9 @@ class BaseModule(object):
         # eg. value = 1,2,3 -> 1,2,3 is not a key so 1,2,3 must be values (hard map to int possible?)
         # furthermore a list should handled the same
         #
+        # note: loadOptions is triggered only once... so there shoud be a nice way do bypass this...
+        # decorators? if source is ioContainer -> decorator for reallogation at access once per cycle
+        #
         # TestFile is ConfInputParseSample
 
         self.log.debug('loadOptions invoked')
@@ -56,6 +61,9 @@ class BaseModule(object):
             self.__dict__[key] = self.rawConfig.get(self.logicSectionName, key)
             self.log.debug('dynamic attribute <%s> with value <%s> created', key, self.__dict__[key])
 
+    def timeBypassActions(self):
+        self.log.debug('function timeBypassActions() is not overloaded in subclass <%s>', type(self).__name__)
+
     def postOptActions(self):
         self.log.debug('function externalCall() is not overloaded in subclass <%s>', type(self).__name__)
 
@@ -64,4 +72,3 @@ class BaseModule(object):
 
     def preOptActions(self):
         self.log.debug('function preOptActions() is not overloaded in subclass <%s>', type(self).__name__)
-

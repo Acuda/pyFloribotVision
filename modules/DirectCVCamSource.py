@@ -25,6 +25,9 @@ class DirectCVCamSource(BaseModule):
     def initCam(self):
         self.cam = cv2.VideoCapture(self.camId)
 
+    def timeBypassActions(self):
+        self.cam.read()
+
     def postOptActions(self):
         self.camId = int(self.camId.replace(' ', ''))
 

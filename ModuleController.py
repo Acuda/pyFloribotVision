@@ -16,7 +16,6 @@ import time
 
 class ModuleController(object):
 
-
     SECTIONNAME = 'GENERAL'
 
     def __init__(self, configController):
@@ -36,7 +35,6 @@ class ModuleController(object):
 
     def prepareGeneral(self):
         self.moduleList = self.rawConfig.get(self.SECTIONNAME, 'modules').replace(' ', '').replace('\n', '').split(',')
-        print self.moduleList
 
     def loadModules(self):
         self.log.debug('=' * 30 + ' LOAD MODULES ' + '=' * 30)
@@ -55,27 +53,34 @@ class ModuleController(object):
 
     def runActiveModules(self):
         self.log.debug('=' * 30 + ' RUN ACTIVE MODULES ' + '=' * 30)
-        runcycle = self.rawConfig.get(self.SECTIONNAME, 'runcycle').replace(' ', '')
-        exitkey = self.rawConfig.get(self.SECTIONNAME, 'exitkey').replace(' ', '')
+        runcycle = self.rawConfig.get(self.SECTIONNAME, 'runCycle').replace(' ', '')
+        exitkey = self.rawConfig.get(self.SECTIONNAME, 'exitKey').replace(' ', '')
+        grabFrameTime = int(self.rawConfig.get(self.SECTIONNAME, 'grabFrameTime').replace(' ', ''))/1000.0
 
+        cycleTimeLast = time.time()
+        print cycleTimeLast
         while True:
-            for k, module in enumerate(self.activeModules):
-                if not module.activeModule:
-                    self.log.debug('Skipping inactive Module <%s> for logical Section <%s>',
-                                   module.__class__.__name__, module.logicSectionName)
-                    continue
+            if (time.time() - cycleTimeLast) > grabFrameTime:
+                self.triggerObjectMethods('externalCall')
+                cycleTimeLast = time.time()
 
-                self.log.debug('Calling Module <%s> for logical Section <%s>',
-                               module.__class__.__name__, module.logicSectionName)
-                module.externalCall()
+            self.triggerObjectMethods('timeBypassActions')
 
             if runcycle == 'oneShoot':
                 break
 
-            if (cv2.waitKey(5) & 255) == ord(exitkey):
+            if (cv2.waitKey(1) & 255) == ord(exitkey):
                 break
 
-        for k, module in enumerate(self.activeModules):
+        self.triggerObjectMethods('preOptActions')
+
+    def triggerObjectMethods(self, functionName):
+        """
+        Trigger (invoke) medthod for active modules in moduleList
+        functionname: name of the method
+        """
+
+        for module in self.activeModules:
             if not module.activeModule:
                 self.log.debug('Skipping inactive Module <%s> for logical Section <%s>',
                                module.__class__.__name__, module.logicSectionName)
@@ -83,13 +88,15 @@ class ModuleController(object):
 
             self.log.debug('Calling Module <%s> for logical Section <%s>',
                            module.__class__.__name__, module.logicSectionName)
-            module.preOptActions()
+
+            moduleFunction = getattr(module, functionName)
+            moduleFunction()
+
 
 if __name__ == "__main__":
 
     cc = ConfigController('default.conf')
     #cc.saveFile()
-
 
     ml = ModuleController(cc)
     ml.runActiveModules()
