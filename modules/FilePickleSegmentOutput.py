@@ -13,6 +13,7 @@ import cv2
 import logging
 import pickle
 import numpy as np
+import time
 
 
 class FilePickleSegmentOutput(BaseModule):
@@ -24,6 +25,7 @@ class FilePickleSegmentOutput(BaseModule):
         super(type(self), self).__init__(**kwargs)
         self.log = logging.getLogger(__name__)
         self.log.debug('logging started')
+        self.timelist = list()
 
     def postOptActions(self):
         self.pickleCycleCntr = 0
@@ -41,6 +43,9 @@ class FilePickleSegmentOutput(BaseModule):
             self.writeCacheToFile()
             self.pickleCycleCntr = -1
         self.pickleCycleCntr += 1
+
+        if len(self.timelist) > 0:
+            print sum(self.timelist) / float(len(self.timelist))
 
     def preOptActions(self):
         self.writeCacheToFile()
@@ -72,20 +77,26 @@ class FilePickleSegmentOutput(BaseModule):
         #each found segment in image
         for segmentid, segmentcnt in enumerate(ccimage):
 
-            shapePointList = list()
-            for shapepoint in cont[contidx[segmentid]]:
-                x = shapepoint[0][0]
-                y = shapepoint[0][1]
-                shapePointList.append([x, y])
-
             segmentObjPoints = list()
             pixlist = np.nonzero(segmentcnt)
-            for xk, y in enumerate(pixlist[0]):
-                x = pixlist[1][xk]
-                #segmentObjPoints.append([x, y])
-                segmentObjPoints.append([x, y, image[y][x][2], image[y][x][1], image[y][x][0]])
 
-            singleImageDump.append([shapePointList, segmentObjPoints])
+
+            #for xk, y in enumerate(pixlist[0]):
+            #    x = pixlist[1][xk]
+
+                #segmentObjPoints.append([x, y])
+                #segmentObjPoints.append([x, y, image[y][x][2], image[y][x][1], image[y][x][0]])
+
+                # little speedup (~0.8ns each access),
+                # for accessing 750.000 values (500 x 500 pixels each with BGR-values)
+                # the improvement is round about 0.6s per frame!
+
+                #segmentObjPoints.append([np.array([x, y], np.uint16),
+                #                         np.array([image.item(y, x, 2), image.item(y, x, 1), image.item(y, x, 0)],
+                #                                  np.uint8)])
+
+            #singleImageDump.append([cont[contidx[segmentid]], segmentObjPoints])
+            singleImageDump.append([cont[contidx[segmentid]], pixlist])
 
         #if len(singleImageDump) > 0:
         self.pickleCache.append(image)
@@ -110,9 +121,10 @@ class FilePickleSegmentOutput(BaseModule):
         objectDumpNames = ['raw-image', 'segments']
         self.log.debug('dump %d frames to file <%s>', cntmax, self.outputFile)
         for data in self.pickleCache:
-
+            stime = time.time()
             self.log.debug('Frame %d of %d (%s)', cnt / 2, cntmax / 2, objectDumpNames[cnt % 2])
-            pickle.dump(data, self.dataFile)
+            pickle.dump(data, self.dataFile, -1)
+            self.log.debug('Time to save file: %f3', (time.time() - stime)*1000)
             cnt += 1
         print
         self.pickleCache = list()

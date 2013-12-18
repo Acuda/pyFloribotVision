@@ -11,47 +11,23 @@ import pickle
 import cv2
 import numpy as np
 import random
+import time
 
 
-def viewPoints(singleImageDump):
-    #find max coord...
-    maxpoints = list()
-    for k, segment in enumerate(singleImageDump):
-        maxpoints.append([0, 0])
-        for point in segment[0]:  # segment[0] -> shapePointList
-            #print point
-            #print point[0][0],
-            if point[0] > maxpoints[k][0]:
-                maxpoints[k][0] = point[0]
-            if point[1] > maxpoints[k][1]:
-                maxpoints[k][1] = point[1]
+def viewPoints(singleImageDump, image):
 
-    #just showing its the same...
-    maxvalues = list()
-    for k, segment in enumerate(singleImageDump):
-        maxvalues.append([0, 0])
-        for value in segment[1]:  # segment[1] -> segmentObjPoints
-            if value[0] > maxvalues[k][0]:
-                maxvalues[k][0] = value[0]
-            if value[1] > maxvalues[k][1]:
-                maxvalues[k][1] = value[1]
-
-    print 'max point coords', maxpoints
-    print 'max value coords', maxvalues
-
-    #overall max incl. offset
-    xmax = max([x[0] for x in maxpoints]) + 20 if len(maxpoints) else 20
-    ymax = max([x[1] for x in maxpoints]) + 20 if len(maxpoints) else 20
+    shape = image.shape
 
     #build image...
-    sample = np.zeros((ymax, xmax, 3), np.uint8)
+    sample = np.zeros(shape, np.uint8)
     sample += 127  # adding 50% grey for better control that shows RGB(0,0,0) is not RGB(0,0,1)
-    for k, segment in enumerate(singleImageDump):
-        maxvalues.append([0, 0])
-        for value in segment[1]:  # segment[1] -> segmentObjPoints
-            sample[value[1]][value[0]] = value[4], value[3], value[2]
 
 
+    for segment in singleImageDump:
+        for i in xrange(len(segment[1][0])):
+            sample.itemset((segment[1][0][i], segment[1][1][i], 0), image.item(segment[1][0][i], segment[1][1][i], 0))
+            sample.itemset((segment[1][0][i], segment[1][1][i], 1), image.item(segment[1][0][i], segment[1][1][i], 1))
+            sample.itemset((segment[1][0][i], segment[1][1][i], 2), image.item(segment[1][0][i], segment[1][1][i], 2))
 
     rnd = random.Random()
     sampleCont = sample.copy()
@@ -64,6 +40,7 @@ def viewPoints(singleImageDump):
         cv2.drawContours(sampleCont, [segm], -1, color)
 
     #show image
+
     return sample, sampleCont
 
 
@@ -83,7 +60,7 @@ if __name__ == "__main__":
             cnt += 1
             image = pickle.load(f)
             singleImageDump = pickle.load(f)
-            sample, samplecont = viewPoints(singleImageDump)
+            sample, samplecont = viewPoints(singleImageDump, image)
 
             framelist.append({
                               'original image': image,
@@ -92,8 +69,12 @@ if __name__ == "__main__":
                               })
     except:
         pass
+    finally:
+        pass
 
     print
+
+
 
     dorun = True
     while dorun:
@@ -101,7 +82,7 @@ if __name__ == "__main__":
             for k, v in frame.items():
                 cv2.imshow(k, v)
 
-            if (cv2.waitKey(100) & 255) == ord('q'):
+            if (cv2.waitKey(150) & 255) == ord('q'):
                 dorun = False
                 break
 
