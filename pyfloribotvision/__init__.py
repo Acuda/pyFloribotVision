@@ -9,6 +9,4 @@
 # USE AT YOUR OWN RISK.
 
 
-
-if __name__ == "__main__":
-    pass
+import controller

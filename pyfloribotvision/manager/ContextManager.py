@@ -11,9 +11,11 @@
 from __future__ import print_function
 import logging
 import logging.config
-from controller.PluginControlller import PluginController
+from controller.PluginController import PluginController
 from controller.ConfigController import ConfigController
 from controller.DataLinkController import DataLinkController
+from GnuPGInterface import Process
+from pyfloribotvision.manager.ProcessManager import ProcessManager
 
 
 class ContextManager(object):
@@ -50,3 +52,7 @@ class ContextManager(object):
 
         if not self.dataLinkController:
             self.dataLinkController = DataLinkController()
+
+        if not self.processManager:
+            self.processManager = ProcessManager(self.pluginController, self.configController,
+                                                 self.dataLinkController)
