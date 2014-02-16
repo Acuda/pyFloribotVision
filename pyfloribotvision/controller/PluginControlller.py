@@ -11,7 +11,6 @@
 
 from __future__ import print_function
 import logging
-import logging.config
 
 
 class PluginController(object):
@@ -19,7 +18,6 @@ class PluginController(object):
     _PLUGINDIR = 'plugins'
 
     def __init__(self):
-        logging.config.fileConfig('logging.conf')
         self.log = logging.getLogger(__name__)
         self.log.debug('logging started')
 

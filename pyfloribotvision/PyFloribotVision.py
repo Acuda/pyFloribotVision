@@ -11,12 +11,39 @@
 from __future__ import print_function
 import getopt
 import sys
+from manager.ContextManager import ContextManager
 
 class PyFloribotVision(object):
 
-    def __init__(self, configFile, loggingConfig):
+    RELATIVE_PREFIX = '../'
+
+    def __init__(self, configFile, loggingConfig, relativePath=True):
+        if relativePath:
+            configFile = PyFloribotVision.RELATIVE_PREFIX + configFile
+            loggingConfig = PyFloribotVision.RELATIVE_PREFIX + loggingConfig
+
         self.configFile = configFile
         self.loggingConfig = loggingConfig
+        self._context = None
+
+        self.checkConfigExist()
+
+        self.initApplicationContext()
+
+    def checkConfigExist(self):
+        with open(self.configFile) as fc, open(self.loggingConfig) as fl:
+            fc.readline()
+            fl.readline()
+
+    def initApplicationContext(self):
+        self._context = ContextManager()
+        self._context.initContext(self.configFile, self.loggingConfig)
+
+
+
+
+
+
 
 
 
@@ -24,7 +51,9 @@ def main(name, argv):
 
     defaultConfigFile = 'config/default.conf'
     defaultLoggingConfig = 'config/logging.conf'
+    relativePath = True
 
+    # ToDo: real helptext..
     helptext = """%s
     FOO
     Bar
@@ -46,8 +75,14 @@ def main(name, argv):
             defaultConfigFile = arg
         elif opt in ("-l", "--loggingfile"):
             defaultLoggingConfig = arg
+        elif opt in ("-r", "--relativepath"):
+            relativePath = bool(arg)
 
-    print(defaultConfigFile, defaultLoggingConfig)
+    # Todo: check for a better way or abstraction
+    try:
+        PyFloribotVision(defaultConfigFile, defaultLoggingConfig, relativePath)
+    except IOError as e:
+        print(e)
 
 
 
