@@ -13,6 +13,7 @@ import utils
 from controller.PluginController import PluginController
 from controller.ConfigController import ConfigController
 from controller.DataLinkController import DataLinkController
+from ..dto.PluginDTO import PluginDTO
 
 
 
@@ -36,23 +37,50 @@ class ProcessManager(object):
 
         self.ownConfig = self.configController.getSection(self._SECTIONNAME)
 
-        self.pluginSequence = self.acquireLogicSections()
-        self.pluginPath = self.acquirePluginPath()
+        self.pluginDtoList = self.aquirePlugins()
+        self.instantiatePlugins()
 
         # ToDo: Instantiate Plugins, Run-Stuff, etc.
 
-    def acquireLogicSections(self):
-        return [x for x in utils.configStrToList(self.ownConfig['pluginSequence']) if
-                not x.startswith('!')]
+    def aquirePlugins(self, generalConfigSection=None):
+        self.log.debug('enter aquirePlugins')
+        if generalConfigSection is None:
+            generalConfigSection = self.ownConfig['pluginSequence']
+        if generalConfigSection is None:
+            return None
 
-    def acquirePluginPath(self, pluginSequence=None):
-        if not pluginSequence:
-            pluginSequence = self.pluginSequence
+        pluginDtoList = list()
+        for section in utils.configStrToList(generalConfigSection):
+            if not section.startswith('!'):
+                pdto = PluginDTO()
+                pdto.sectionName = section
+                pdto.modulePath = self.configController.getOption(section, 'pluginPath')
+                pdto.classObject = self.pluginController.findPlugin(pdto.modulePath)
+                if pdto.classObject is None:
+                    continue
+                pluginDtoList.append(pdto)
+        return pluginDtoList
 
-        pluginPathList = list()
-        for section in pluginSequence:
-            pluginPathList.append(self.configController.getOption(section, 'pluginPath'))
+    def instantiatePlugins(self, pluginDtoList=None):
+        self.log.debug('enter instantiatePlugins')
+        self.log.debug('check pluginDtoList')
+        if pluginDtoList is None:
+            self.log.debug('load private data')
+            pluginDtoList = self.pluginDtoList
+        if pluginDtoList is None:
+            return None
 
-        return pluginPathList
+        self.log.debug('instantiate Plugins')
+        for pdto in pluginDtoList:
+            assert isinstance(pdto, PluginDTO)
+            self.log.debug('instantiate Plugin <%s> for Section <%s>', pdto.modulePath, pdto.sectionName)
+            sectionConfig = self.configController.getSection(pdto.sectionName)
+            pdto.instanceObject = pdto.classObject(sectionConfig=sectionConfig,
+                                                   logicSectionName=pdto.sectionName,
+                                                   ioContainer=self.dataLinkController)
+
+
+
+
 
 

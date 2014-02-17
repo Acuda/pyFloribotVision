@@ -24,6 +24,8 @@ class DirectCVCamSource(BaseModule):
 
     def initCam(self):
         self.cam = cv2.VideoCapture(self.camId)
+        self.cam.set(3, 1280)
+        self.cam.set(4, 1024)
 
     def timeBypassActions(self):
         self.cam.read()

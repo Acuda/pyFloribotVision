@@ -22,10 +22,9 @@ class BaseModule(object):
         self.log = logging.getLogger(__name__)
         self.log.debug('logging started')
 
-        self.rawConfig = kwargs['rawConfig']
+        self.sectionConfig = kwargs['sectionConfig']
         self.ioContainer = kwargs['ioContainer']
         self.logicSectionName = kwargs['logicSectionName']
-        #self.moduleControllerInstance = kwargs['moduleControllerInstance']
 
         self.activeModule = True
 
@@ -52,13 +51,13 @@ class BaseModule(object):
 
         self.log.debug('loadOptions invoked')
         for key, value in self.obligatoryConfigOptions.items():
-            confValue = self.rawConfig.get(self.logicSectionName, key)
+            confValue = self.sectionConfig[key]
 
             if value is not None and confValue not in value:
                 self.log.error('constrained option <%s> with invalid value <%s> found! valid values are <%s>',
                                key, confValue, value)
 
-            self.__dict__[key] = self.rawConfig.get(self.logicSectionName, key)
+            self.__dict__[key] = self.sectionConfig[key]
             self.log.debug('dynamic attribute <%s> with value <%s> created', key, self.__dict__[key])
 
     def timeBypassActions(self):
