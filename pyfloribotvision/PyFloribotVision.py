@@ -11,7 +11,8 @@
 from __future__ import print_function
 import getopt
 import sys
-from manager.ContextManager import ContextManager
+from pyfloribotvision.manager.ContextManager import ContextManager
+import cProfile
 
 class PyFloribotVision(object):
 
@@ -39,19 +40,28 @@ class PyFloribotVision(object):
         self._context = ContextManager()
         self._context.initContext(self.configFile, self.loggingConfig)
 
+    def executeApplicationContext(self):
+        self._context.executeContext()
 
 
 
 
-
-
+def profileExecStuff():
+    pfv = PyFloribotVision(defaultConfigFile, defaultLoggingConfig, relativePath)
+    pfv.executeApplicationContext()
 
 
 def main(name, argv):
 
+    global defaultConfigFile
     defaultConfigFile = 'config/default.conf'
+
+    global defaultLoggingConfig
     defaultLoggingConfig = 'config/logging.conf'
+
+    global relativePath
     relativePath = True
+    profileExec = False
 
     # ToDo: real helptext..
     helptext = """%s
@@ -62,7 +72,7 @@ def main(name, argv):
     helptext = '\n'.join([x.strip() for x in helptext.splitlines()])
 
     try:
-        opts, args = getopt.getopt(argv, 'hc:l:', ['configfile=', 'loggingfile='])
+        opts, args = getopt.getopt(argv, 'hpr:c:l:', ['configfile=', 'loggingfile='])
     except getopt.GetoptError:
         print(helptext)
         sys.exit(2)
@@ -71,6 +81,8 @@ def main(name, argv):
         if opt == '-h':
             print(helptext)
             sys.exit(2)
+        elif opt == '-p':
+            profileExec = True
         elif opt in ("-c", "--configfile"):
             defaultConfigFile = arg
         elif opt in ("-l", "--loggingfile"):
@@ -78,9 +90,14 @@ def main(name, argv):
         elif opt in ("-r", "--relativepath"):
             relativePath = bool(arg)
 
+
     # Todo: check for a better way or abstraction
     try:
-        PyFloribotVision(defaultConfigFile, defaultLoggingConfig, relativePath)
+        if not profileExec:
+            pfv = PyFloribotVision(defaultConfigFile, defaultLoggingConfig, relativePath)
+            pfv.executeApplicationContext()
+        else:
+            cProfile.run('profileExecStuff()')
     except IOError as e:
         print(e)
 

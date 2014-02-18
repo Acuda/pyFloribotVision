@@ -58,7 +58,7 @@ class ModuleController(object):
         grabFrameTime = int(self.rawConfig.get(self.SECTIONNAME, 'grabFrameTime').replace(' ', ''))/1000.0
 
         cycleTimeLast = time.time()
-        print cycleTimeLast
+
         while True:
             if (time.time() - cycleTimeLast) > grabFrameTime:
                 self.triggerObjectMethods('externalCall')
@@ -97,6 +97,7 @@ if __name__ == "__main__":
 
     cc = ConfigController('default.conf')
     #cc.saveFile()
-
+    import cProfile
     ml = ModuleController(cc)
-    ml.runActiveModules()
+    #ml.runActiveModules()
+    cProfile.run('ml.runActiveModules()')

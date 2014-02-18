@@ -16,6 +16,9 @@ class DataLinkController(object):
     def getValue(self, item):
         return self[item]
 
+    def __contains__(self, item):
+        return item in self._data
+
     def __getitem__(self, item):
         return self._data[item]
 
