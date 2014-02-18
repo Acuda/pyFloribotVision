@@ -8,6 +8,7 @@
 # EVENT WILL THE AUTHOR BE HELD LIABLE FOR ANY DAMAGES ARISING FROM THE USE OF THIS SOURCE-CODE. 
 # USE AT YOUR OWN RISK.
 
+
 from __future__ import print_function
 import getopt
 import sys
@@ -16,12 +17,20 @@ import cProfile
 
 class PyFloribotVision(object):
 
-    RELATIVE_PREFIX = '../'
+
 
     def __init__(self, configFile, loggingConfig, relativePath=True):
+
+        self.relativePathPrefix = ''
+        pluginprefix = '.'.join(__name__.split('.')[:-1])
+        print('NAME',__name__)
+        if __name__ == '__main__':
+            self.relativePathPrefix = '../'
+            pluginprefix = ''
+
         if relativePath:
-            configFile = PyFloribotVision.RELATIVE_PREFIX + configFile
-            loggingConfig = PyFloribotVision.RELATIVE_PREFIX + loggingConfig
+            configFile = self.relativePathPrefix + configFile
+            loggingConfig = self.relativePathPrefix + loggingConfig
 
         self.configFile = configFile
         self.loggingConfig = loggingConfig
@@ -29,16 +38,16 @@ class PyFloribotVision(object):
 
         self.checkConfigExist()
 
-        self.initApplicationContext()
+        self.initApplicationContext(pluginprefix)
 
     def checkConfigExist(self):
         with open(self.configFile) as fc, open(self.loggingConfig) as fl:
             fc.readline()
             fl.readline()
 
-    def initApplicationContext(self):
+    def initApplicationContext(self, pluginprefix):
         self._context = ContextManager()
-        self._context.initContext(self.configFile, self.loggingConfig)
+        self._context.initContext(self.configFile, self.loggingConfig, pluginprefix)
 
     def executeApplicationContext(self):
         self._context.executeContext()
@@ -52,7 +61,7 @@ def profileExecStuff():
 
 
 def main(name, argv):
-
+    print('enter main')
     global defaultConfigFile
     defaultConfigFile = 'config/default.conf'
 
@@ -90,10 +99,12 @@ def main(name, argv):
         elif opt in ("-r", "--relativepath"):
             relativePath = bool(arg)
 
+    print('sysops ok')
 
     # Todo: check for a better way or abstraction
     try:
         if not profileExec:
+            print('propfile exec')
             pfv = PyFloribotVision(defaultConfigFile, defaultLoggingConfig, relativePath)
             pfv.executeApplicationContext()
         else:

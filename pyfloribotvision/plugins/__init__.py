@@ -9,3 +9,5 @@
 # USE AT YOUR OWN RISK.
 
 import opencv
+import ros
+import floribot

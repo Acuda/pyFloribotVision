@@ -15,11 +15,16 @@ import logging
 
 class PluginController(object):
 
-    _PLUGINDIR = 'plugins'
+    #_PLUGINDIR = 'pyfloribotvision.plugins'
 
-    def __init__(self):
+
+    def __init__(self, pluginprefix):
         self.log = logging.getLogger(__name__)
         self.log.debug('logging started')
+
+        self._plugindir = 'plugins'
+        if pluginprefix != '':
+            self._plugindir = pluginprefix + '.' + self._plugindir
 
         self._pluginList = None
         self._pluginListFlat = dict()
@@ -36,14 +41,26 @@ class PluginController(object):
         self.log.debug('loadPlugins invoked for module: <%s>' % module)
 
         if self._pluginList is not None:
+            self.log.debug('existing pluginList, abort!')
             return self._pluginList
 
 
         if module is None:
             try:
-                module = __import__(self._PLUGINDIR)
-            except ImportError:
+                self.log.debug('try import plugindir: <%s>' % self._plugindir)
+                if '.' in self._plugindir:
+                    plist = self._plugindir.split('.', 2)
+                    module = __import__(plist[0])
+                    for m in plist[1:]:
+                        module = getattr(module, m)
+                else:
+                    module = __import__(self._plugindir)
+            except ImportError as ex:
+                print('IMP ERR'+'#'*50)
+                self.log.error('fail to import PLUGINDIR %s',ex.message)
                 return dict()
+
+        self.log.debug(module.__name__  + str(dir(module)))
 
         pluginNameList = [x for x in dir(module) if not x.startswith('_')]
         pluginList = dict()
@@ -62,7 +79,6 @@ class PluginController(object):
                 self.log.debug('MODULE <%s> found' % anonobj.__name__)
                 pluginList[pluginName] = self.loadPlugins(anonobj)
 
-        self._pluginList = pluginList
         return pluginList
 
     def findPlugin(self, item, _itemList=None):
@@ -82,7 +98,8 @@ class PluginController(object):
         if _itemList is None:
             _itemList = self._pluginList
         if _itemList is None:
-            _itemList = self.loadPlugins()
+            self._pluginList = self.loadPlugins()
+            _itemList = self._pluginList
 
         if isinstance(item, str):
             itemListKeys = _itemList.keys()

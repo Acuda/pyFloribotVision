@@ -38,13 +38,13 @@ class ContextManager(object):
         self.dataLinkController = None
         self.processManager = None
 
-    def initContext(self, configFileName, loggingConfigFileName):
+    def initContext(self, configFileName, loggingConfigFileName, pluginprefix):
         logging.config.fileConfig(loggingConfigFileName)
         self.log = logging.getLogger(__name__)
         self.log.debug('logging started')
 
         if self.pluginController is None:
-            self.pluginController = PluginController()
+            self.pluginController = PluginController(pluginprefix)
 
 
         if self.configController is None:

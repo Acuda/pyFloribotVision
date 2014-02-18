@@ -8,7 +8,9 @@
 # EVENT WILL THE AUTHOR BE HELD LIABLE FOR ANY DAMAGES ARISING FROM THE USE OF THIS SOURCE-CODE. 
 # USE AT YOUR OWN RISK.
 
-
+import sys
+from pyfloribotvision import PyFloribotVision
 
 if __name__ == "__main__":
-    pass
+    print 'starting'
+    PyFloribotVision.main(sys.argv[0], sys.argv[1:])

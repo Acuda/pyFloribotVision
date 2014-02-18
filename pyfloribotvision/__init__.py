@@ -9,4 +9,4 @@
 # USE AT YOUR OWN RISK.
 
 
-import controller
+import plugins
