@@ -99,7 +99,7 @@ class ProcessManager(object):
             pluginDtoList = self.pluginDtoList
         assert isinstance(pluginDtoList, list)
 
-        grabFrameTime = int(self.ownConfig['grabFrameTime'])
+        grabFrameTime = int(self.ownConfig['grabFrameTime']) / 1000.0
         runCycle = self.ownConfig['runCycle']
         exitKey = self.ownConfig['exitKey']
 

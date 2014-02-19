@@ -108,7 +108,7 @@ def main(name, argv):
             pfv = PyFloribotVision(defaultConfigFile, defaultLoggingConfig, relativePath)
             pfv.executeApplicationContext()
         else:
-            cProfile.run('profileExecStuff()')
+            cProfile.run('PyFloribotVision.profileExecStuff()')
     except IOError as e:
         print(e)
 
