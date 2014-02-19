@@ -18,6 +18,8 @@ from pyfloribotvision.manager.ProcessManager import ProcessManager
 
 
 class ContextManager(object):
+    """Prepare Application-Context and give the ability to access the Context trough normal
+    Initialisation for a given Pseudo-Namespace"""
 
     _instance = dict()
 
@@ -33,6 +35,7 @@ class ContextManager(object):
         return cls._instance[ctxName]
 
     def __init__(self, contextName=None):
+        """"""
         self.pluginController = None
         self.configController = None
         self.dataLinkController = None

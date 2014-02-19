@@ -16,10 +16,16 @@ from pyfloribotvision.manager.ContextManager import ContextManager
 import cProfile
 
 class PyFloribotVision(object):
-
-
+    """Application-Startup handling Startup-Parameters"""
 
     def __init__(self, configFile, loggingConfig, relativePath=True):
+        """Object initialization
+
+        Arguments:
+        configFile -- path to the plugin config
+        loggingConfig -- path to the logging config
+        relativePath -- if given paths not relative this should be set to False (default True)
+        """
 
         self.relativePathPrefix = ''
         pluginprefix = '.'.join(__name__.split('.')[:-1])
@@ -41,26 +47,30 @@ class PyFloribotVision(object):
         self.initApplicationContext(pluginprefix)
 
     def checkConfigExist(self):
+        """checks if config files are exists and readable"""
         with open(self.configFile) as fc, open(self.loggingConfig) as fl:
             fc.readline()
             fl.readline()
 
     def initApplicationContext(self, pluginprefix):
+        """initializes the application context
+
+        Arguments:
+        pluginprefix -- plugins should be relative under ./plugins if class invoked trough a
+            startup-script or another application, the prefix have to point into the package where
+            the plugin-package could be find.
+        """
         self._context = ContextManager()
         self._context.initContext(self.configFile, self.loggingConfig, pluginprefix)
 
     def executeApplicationContext(self):
+        """execute configured behavior (invoke plugin methods)"""
         self._context.executeContext()
 
 
 
-
-def profileExecStuff():
-    pfv = PyFloribotVision(defaultConfigFile, defaultLoggingConfig, relativePath)
-    pfv.executeApplicationContext()
-
-
 def main(name, argv):
+    """Startup-Entrypoint, parsing commandline parameter"""
     print('enter main')
     global defaultConfigFile
     defaultConfigFile = 'config/default.conf'
@@ -81,7 +91,7 @@ def main(name, argv):
     helptext = '\n'.join([x.strip() for x in helptext.splitlines()])
 
     try:
-        opts, args = getopt.getopt(argv, 'hpr:c:l:', ['configfile=', 'loggingfile='])
+        opts, args = getopt.getopt(argv, 'hr:c:l:', ['configfile=', 'loggingfile='])
     except getopt.GetoptError:
         print(helptext)
         sys.exit(2)
@@ -90,8 +100,6 @@ def main(name, argv):
         if opt == '-h':
             print(helptext)
             sys.exit(2)
-        elif opt == '-p':
-            profileExec = True
         elif opt in ("-c", "--configfile"):
             defaultConfigFile = arg
         elif opt in ("-l", "--loggingfile"):
@@ -99,20 +107,12 @@ def main(name, argv):
         elif opt in ("-r", "--relativepath"):
             relativePath = bool(arg)
 
-    print('sysops ok')
-
-    # Todo: check for a better way or abstraction
     try:
-        if not profileExec:
-            print('propfile exec')
-            pfv = PyFloribotVision(defaultConfigFile, defaultLoggingConfig, relativePath)
-            pfv.executeApplicationContext()
-        else:
-            cProfile.run('PyFloribotVision.profileExecStuff()')
+        pfv = PyFloribotVision(defaultConfigFile, defaultLoggingConfig, relativePath)
+        pfv.executeApplicationContext()
     except IOError as e:
         print(e)
 
-
-
 if __name__ == "__main__":
+    """Passtrougth if File was directly executed"""
     main(sys.argv[0], sys.argv[1:])
