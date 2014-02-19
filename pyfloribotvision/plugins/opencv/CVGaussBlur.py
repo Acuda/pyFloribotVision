@@ -13,13 +13,18 @@ import cv2
 
 class CVGaussBlur(BaseModule):
 
-    obligatoryConfigOptions = {'inputImageName': None, 'outputImageName': None}
+    obligatoryConfigOptions = {'inputImageName': None, 'outputImageName': None,
+                               'sigmaX': None, 'sigmaY': None, 'kSize': None}
 
     def __init__(self, **kwargs):
         super(type(self), self).__init__(**kwargs)
 
+    def postOptActions(self):
+        self.sigmaX = float(self.sigmaX.replace(' ', ''))
+        self.sigmaY = float(self.sigmaY.replace(' ', ''))
+        self.kSize = int(self.kSize.replace(' ', ''))
+
     def externalCall(self):
         image = self.ioContainer[self.inputImageName]
-        image = cv2.GaussianBlur(image, (3, 3), sigmaX=0, sigmaY=0.5)
-        image = cv2.GaussianBlur(image, (3, 3), sigmaX=0, sigmaY=0.5)
+        image = cv2.GaussianBlur(image, (self.kSize, self.kSize), sigmaX=self.sigmaX, sigmaY=self.sigmaY)
         self.ioContainer[self.outputImageName] = image

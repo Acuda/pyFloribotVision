@@ -11,10 +11,12 @@
 from .. BaseModule import BaseModule
 import cv2
 import logging
+from cv2 import cv
 
 class DirectCVCamSource(BaseModule):
 
-    obligatoryConfigOptions = {'camId': None, 'outputImageName': None}
+    obligatoryConfigOptions = {'camId': None, 'outputImageName': None, 'frameWidth': None,
+                               'frameHeight': None}
 
     def __init__(self, **kwargs):
         super(type(self), self).__init__(**kwargs)
@@ -23,8 +25,20 @@ class DirectCVCamSource(BaseModule):
 
         self.initCam()
 
+    def postOptActions(self):
+        pass
+
     def initCam(self):
+        self.frameWidth = float(self.frameWidth.replace(' ', ''))
+        self.frameHeight = float(self.frameHeight.replace(' ', ''))
+
         self.cam = cv2.VideoCapture(self.camId)
+        if self.frameWidth > 0:
+            self.cam.set(cv.CV_CAP_PROP_FRAME_WIDTH, self.frameWidth)
+        if self.frameHeight > 0:
+            self.cam.set(cv.CV_CAP_PROP_FRAME_HEIGHT, self.frameHeight)
+
+
 
     def timeBypassActions(self):
         self.cam.read()

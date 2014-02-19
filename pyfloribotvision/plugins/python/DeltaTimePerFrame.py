@@ -25,11 +25,12 @@ class DeltaTimePerFrame(BaseModule):
 
 
     def postOptActions(self):
-        self.lastTime = time.time()
-
+        curtime = time.time()
+        self.lastCallTime = curtime
+        self.lastBypassTime = curtime
 
     def externalCall(self):
         curtime = time.time()
-        self.difftime = curtime - self.lastTime
-        self.lastTime = curtime
-        print '%.2f'%(self.difftime*1.e3),'ms'
+        difftime = curtime - self.lastCallTime
+        self.lastCallTime = curtime
+        print '%.2f' % (difftime*1.e3),'ms', 1/difftime, 'Hz'

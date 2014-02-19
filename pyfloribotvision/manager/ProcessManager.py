@@ -53,7 +53,15 @@ class ProcessManager(object):
         # Cycle-Specific (execute Plugins / handle runtime characteristics)
         ####################################################################
 
-        self.cycleTimeLast = 0
+        #self.cycleTimeLast = 0
+        curTime = time.time()
+        self.lastExecTime = curTime
+        self.lastBypassTime = curTime
+        self.lastCycleTime = curTime
+
+
+        self.deltaExecTime = 0
+        self.deltaBypassTime = 0
 
         # ToDo: Instantiate Plugins, Run-Stuff, etc.
 
@@ -99,24 +107,42 @@ class ProcessManager(object):
             pluginDtoList = self.pluginDtoList
         assert isinstance(pluginDtoList, list)
 
-        grabFrameTime = int(self.ownConfig['grabFrameTime']) / 1000.0
-        runCycle = self.ownConfig['runCycle']
+        leadTime = int(self.ownConfig['leadTime']) / 1000.0
+        waitLeadTime = self.ownConfig['waitLeadTime'] == str(True)
+        runOnce = self.ownConfig['runOnce'] == str(True)
         exitKey = self.ownConfig['exitKey']
 
         self.log.debug('=' * 30 + ' RUN ACTIVE MODULES ' + '=' * 30)
 
+        isFirstRun = True
         while True:
-            if (time.time() - self.cycleTimeLast) > grabFrameTime:
-                self.triggerPluginMethods('externalCall')
-                self.cycleTimeLast = time.time()
-            else:
-                self.triggerPluginMethods('timeBypassActions')
+            curTime = time.time()
+            deltaExec = curTime - self.lastExecTime
 
-            if runCycle == 'oneShoot':
+            if isFirstRun or (deltaExec + self.deltaBypassTime) > leadTime:
+                waitTime = leadTime - deltaExec
+
+                if waitLeadTime and not isFirstRun and waitTime > 0:
+                    time.sleep(waitTime)
+                if leadTime != 0 and waitTime < 0:
+                    self.log.warn('LeadTime <%d> unreachable!')
+
+                self.lastExecTime = time.time()
+                self.triggerPluginMethods('externalCall')
+                self.deltaExecTime = time.time() - self.lastExecTime
+            else:
+                self.lastBypassTime = time.time()
+                self.triggerPluginMethods('timeBypassActions')
+                self.deltaBypassTime = time.time() - self.lastBypassTime
+
+            isFirstRun = False
+
+            if runOnce:
                 break
 
             if (cv2.waitKey(1) & 255) == ord(exitKey):
                 break
+
 
         self.triggerPluginMethods('preOptActions')
 
