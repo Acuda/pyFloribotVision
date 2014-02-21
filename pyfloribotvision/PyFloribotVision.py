@@ -70,7 +70,7 @@ class PyFloribotVision(object):
 
 
 def main(name, argv):
-    """Startup-Entrypoint, parsing commandline parameter"""
+    """Startup entry point, parsing commandline parameter"""
     print('enter main')
     global defaultConfigFile
     defaultConfigFile = 'config/default.conf'
@@ -84,9 +84,7 @@ def main(name, argv):
 
     # ToDo: real helptext..
     helptext = """%s
-    FOO
-    Bar
-    """ % (name)
+    """ % name
 
     helptext = '\n'.join([x.strip() for x in helptext.splitlines()])
 

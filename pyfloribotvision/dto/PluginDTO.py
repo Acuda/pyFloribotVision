@@ -10,6 +10,7 @@
 
 
 class PluginDTO(object):
+    """Plugin-Data-Object for compact access to all Plugin - no logic"""
     def __init__(self):
         self.sectionName = None
         self.modulePath = None

@@ -19,10 +19,18 @@ import cv2
 
 
 class ProcessManager(object):
+    """Manages the Process and is responsibly for the runtime behavior"""
 
     _SECTIONNAME = 'GENERAL'
 
     def __init__(self, pluginController, configController, dataLinkController):
+        """Gets the 'GENERAL' section from the ConfigController and acquires and instantiate the
+        Plugins specified by the 'pluginSequence' Option in the Configuration
+
+        arguments:
+        pluginController -- Instance of the PluginController
+        configController -- Instance of the ConfigController
+        dataLinkController -- Instance of the DataLinkController"""
 
         # Logging
         ##########
@@ -47,7 +55,7 @@ class ProcessManager(object):
 
         self.ownConfig = self.configController.getSection(self._SECTIONNAME)
 
-        self.pluginDtoList = self.aquirePlugins()
+        self.pluginDtoList = self.acquirePlugins()
         self.instantiatePlugins()
 
         # Cycle-Specific (execute Plugins / handle runtime characteristics)
@@ -59,14 +67,19 @@ class ProcessManager(object):
         self.lastBypassTime = curTime
         self.lastCycleTime = curTime
 
-
         self.deltaExecTime = 0
         self.deltaBypassTime = 0
 
-        # ToDo: Instantiate Plugins, Run-Stuff, etc.
+    def acquirePlugins(self, generalConfigSection=None):
+        """Acquire the Plugins specified by the 'pluginSequence' Option in the Configuration given
+        by the dict generalConfigSection or internal config if generalConfigSection is None.
+        Furthermore returns a list of PluginDto for each loaded Plugin whose Name in the
+        pluginSequence Option don't start with an exclamation mark
 
-    def aquirePlugins(self, generalConfigSection=None):
-        self.log.debug('enter aquirePlugins')
+        arguments:
+        generalConfigSection -- Config for 'GENERAL' section (default None)"""
+
+        self.log.debug('enter acquirePlugins')
         if generalConfigSection is None:
             generalConfigSection = self.ownConfig['pluginSequence']
         if generalConfigSection is None:
@@ -85,6 +98,11 @@ class ProcessManager(object):
         return pluginDtoList
 
     def instantiatePlugins(self, pluginDtoList=None):
+        """Instantiate the Plugins in the list of PluginDto's and return the List
+
+        arguments:
+        pluginDtoList -- List of PluginDto's (default None)"""
+
         self.log.debug('enter instantiatePlugins')
         self.log.debug('check pluginDtoList')
         if pluginDtoList is None:
@@ -146,7 +164,9 @@ class ProcessManager(object):
 
         self.triggerPluginMethods('preOptActions')
 
-    def triggerPluginMethods(self, functionName, pluginDtoList=None):
+    def triggerPluginMethods(self, methodName, pluginDtoList=None):
+        """Triggers the corresponding methods of the active Plugins in the pluginDtoList"""
+
         if pluginDtoList is None:
             pluginDtoList = self.pluginDtoList
         assert isinstance(pluginDtoList, list)
@@ -162,5 +182,5 @@ class ProcessManager(object):
             self.log.debug('Calling Module <%s> for logical Section <%s>',
                            pdtoObj.__class__.__name__, pdtoObj.logicSectionName)
 
-            moduleFunction = getattr(pdtoObj, functionName)
+            moduleFunction = getattr(pdtoObj, methodName)
             moduleFunction()

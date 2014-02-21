@@ -19,7 +19,8 @@ from pyfloribotvision.manager.ProcessManager import ProcessManager
 
 class ContextManager(object):
     """Prepare Application-Context and give the ability to access the Context trough normal
-    Initialisation for a given Pseudo-Namespace"""
+    initialisation for a given Pseudo-Namespace. The ContextManager provides the Plugins-,
+    Configuration- and DataLink-Controller as well as the ProcessManager. """
 
     _instance = dict()
 
@@ -35,13 +36,25 @@ class ContextManager(object):
         return cls._instance[ctxName]
 
     def __init__(self, contextName=None):
-        """"""
+        """Initialize a new instance per given contextName. Every new init for a known contextName
+        returns previously initialized instance for corresponding context.
+
+        Arguments:
+        contextName -- specifies the context (default None)
+        """
         self.pluginController = None
         self.configController = None
         self.dataLinkController = None
         self.processManager = None
 
     def initContext(self, configFileName, loggingConfigFileName, pluginprefix):
+        """Initializes the Controller, Manager and Logger for given configuration data.
+
+        Arguments:
+        configFileName -- Configuration-File for the ConfigController
+        loggingConfigFileName -- Configuration-File for the Logger
+        pluginprefix -- Prefix where the Plugin-Package can be found
+        """
         logging.config.fileConfig(loggingConfigFileName)
         self.log = logging.getLogger(__name__)
         self.log.debug('logging started')
@@ -61,4 +74,5 @@ class ContextManager(object):
                                                  self.dataLinkController)
 
     def executeContext(self):
+        """Triggers the executePlugins Method from the ProcessManager"""
         self.processManager.executePlugins()

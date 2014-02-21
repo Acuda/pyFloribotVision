@@ -13,18 +13,34 @@ from ConfigParser import ConfigParser
 
 
 class ConfigController(object):
+    """Simple Wrapper for the ConfigParser. Loads the Configuration-File and Convert its Data into
+    a Dictionary Structure. Each Section becomes a Key for the tob-level dict and serves the Option
+    Values in an dict again"""
+
     def __init__(self, configFileName):
+        """Load the rawConfig from Config-File with the ConfigParser and convert the rawConfig
+        into a dict structure
+
+        Arguments:
+        configFileName -- Path to the Configuration-File"""
         self.configFileName = configFileName
         self.rawConfig = self._loadFile()
         self.dictConfig = self.convertRawConfigToDict()
 
     def _loadFile(self):
+        """Loads the rawConfig with the ConfigParser"""
         config = ConfigParser(allow_no_value=True)
         config.optionxform = str  # Preserve case in ConfigParser
         config.read(self.configFileName)
         return config
 
     def convertRawConfigToDict(self, rawConfig=None):
+        """Converts the rawConfig into a dict structure and returns them
+
+        arguments:
+        rawConfig -- rawConfig from ConfigParser (default None)
+        """
+
         if not rawConfig:
             rawConfig = self.rawConfig
 
@@ -41,18 +57,32 @@ class ConfigController(object):
         return configDict
 
     def getConfig(self):
+        """Returns the config as dict"""
         return self.dictConfig
 
     def getSection(self, sectionname):
+        """Returns the whole section from the dict-config
+
+        arguments:
+        sectionname -- name of the section which will be returned
+        """
         return self.dictConfig[sectionname] if sectionname in self.dictConfig else None
 
     def getOption(self, sectionname, optionname):
+        """Returns the value from the option which belongs to the given sectionname
+
+        arguments:
+        sectionname -- name of the section
+        optionname -- name of the option which value will be returned
+        """
+
         # ToDo: Thinkover if its usefull...
         section = self.getSection(sectionname)
         assert isinstance(section, dict)
         return section[optionname] if section and optionname in section else None
 
-    def _saveFile(self):
-        with open(self.configFileName, 'w') as f:
-            self.rawConfig.write(f)
+    #
+    #def _saveFile(self):
+    #    with open(self.configFileName, 'w') as f:
+    #        self.rawConfig.write(f)
 

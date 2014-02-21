@@ -9,4 +9,4 @@ whose sections are mapped to modules/plugins where the functionality is implied.
 ## advance notice ##
 
 This project is in an early state. It's not recommended to use it due to the possibility of drastic changes. Furthermore
-there is no documentation of the project or sourcecode until now.
+there is no documentation of the project ~~or sourcecode~~ until now.

@@ -12,5 +12,5 @@ import sys
 from pyfloribotvision import PyFloribotVision
 
 if __name__ == "__main__":
-    print 'starting'
+    """Simple Startup-File"""
     PyFloribotVision.main(sys.argv[0], sys.argv[1:])

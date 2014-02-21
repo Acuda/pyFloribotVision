@@ -14,11 +14,12 @@ import logging
 
 
 class PluginController(object):
-
-    #_PLUGINDIR = 'pyfloribotvision.plugins'
+    """The PluginController handles loading and finding of the Plugins"""
 
 
     def __init__(self, pluginprefix):
+        """Initializes the PluginController and load its Plugins"""
+
         self.log = logging.getLogger(__name__)
         self.log.debug('logging started')
 
@@ -29,21 +30,20 @@ class PluginController(object):
         self._pluginList = None
         self._pluginListFlat = dict()
 
-    def loadPlugins(self, module=None, reload=False):
+    def loadPlugins(self, module=None, forceReload=False):
         """
         Load Plugins from 'plugin' package and returns them as dict
 
         Keyword arguments:
         module -- Python-Module to search in (default: None)
-        reload -- True forces reload of cached PluginList (default: False)
+        forceReload -- True forces reload of cached PluginList (default: False)
         """
 
         self.log.debug('loadPlugins invoked for module: <%s>' % module)
 
-        if self._pluginList is not None:
-            self.log.debug('existing pluginList, abort!')
+        if self._pluginList is not None or not forceReload:
+            self.log.debug('existing pluginList or reload forced, returning previously loaded list')
             return self._pluginList
-
 
         if module is None:
             try:
@@ -56,11 +56,10 @@ class PluginController(object):
                 else:
                     module = __import__(self._plugindir)
             except ImportError as ex:
-                print('IMP ERR'+'#'*50)
                 self.log.error('fail to import PLUGINDIR %s',ex.message)
                 return dict()
 
-        self.log.debug(module.__name__  + str(dir(module)))
+        self.log.debug(module.__name__ + str(dir(module)))
 
         pluginNameList = [x for x in dir(module) if not x.startswith('_')]
         pluginList = dict()
@@ -116,7 +115,8 @@ class PluginController(object):
         return None
 
     def __contains__(self, item):
-        return self.findPlugin(item) is not None
+        """magic member for use with "in" keyword
 
-if __name__ == "__main__":
-    pc = PluginController()
+        arguments:
+        item  -- key object on the left side of in keyword"""
+        return self.findPlugin(item) is not None
