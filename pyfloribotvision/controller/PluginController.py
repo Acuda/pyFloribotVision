@@ -41,7 +41,7 @@ class PluginController(object):
 
         self.log.debug('loadPlugins invoked for module: <%s>' % module)
 
-        if self._pluginList is not None or not forceReload:
+        if self._pluginList is not None:# or not forceReload:
             self.log.debug('existing pluginList or reload forced, returning previously loaded list')
             return self._pluginList
 
