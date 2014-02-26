@@ -5,8 +5,6 @@
 SPHINXOPTS    =
 SPHINXBUILD   = sphinx-build2
 PAPER         =
-BUILDDIR      = build
-
 BUILDDIR      = ../../pyFloribotVision-docs
 PDFBUILDDIR   = /tmp
 PDF           = ../manual.pdf
@@ -44,6 +42,16 @@ help:
 
 clean:
 	-rm -rf $(BUILDDIR)/*
+
+apidoc:
+	sphinx-apidoc2 -o source .. -f
+	rm source/testings*
+	@echo "Build finished."
+	
+#buildandcommithtml: apidoc html latexpdf
+all: apidoc html latexpdf
+#	cd $(BUILDDIR)/html; git add . ; git commit -m "rebuilt docs"; git push origin gh-pages
+	#cd $(BUILDDIR)/html
 
 html:
 	$(SPHINXBUILD) -b html $(ALLSPHINXOPTS) $(BUILDDIR)/html
