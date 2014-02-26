@@ -1,0 +1,181 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>pyfloribotvision.controller.ConfigController &mdash; pyFloribotVision 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="top" title="pyFloribotVision 0.1 documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">pyFloribotVision 0.1 documentation</a> &raquo;</li>
+          <li><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for pyfloribotvision.controller.ConfigController</h1><div class="highlight"><pre>
+<span class="c">#!/usr/bin/env python2</span>
+<span class="c">#-*- coding: utf-8 -*-</span>
+<span class="c">#</span>
+<span class="c">#Author: Björn Eistel</span>
+<span class="c">#Contact: &lt;eistel@gmail.com&gt;</span>
+<span class="c">#</span>
+<span class="c"># THIS SOURCE-CODE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED. IN NO </span>
+<span class="c"># EVENT WILL THE AUTHOR BE HELD LIABLE FOR ANY DAMAGES ARISING FROM THE USE OF THIS SOURCE-CODE. </span>
+<span class="c"># USE AT YOUR OWN RISK.</span>
+
+
+<span class="kn">from</span> <span class="nn">ConfigParser</span> <span class="kn">import</span> <span class="n">ConfigParser</span>
+
+
+<div class="viewcode-block" id="ConfigController"><a class="viewcode-back" href="../../../pyfloribotvision.controller.html#pyfloribotvision.controller.ConfigController.ConfigController">[docs]</a><span class="k">class</span> <span class="nc">ConfigController</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Simple Wrapper for the ConfigParser. Loads the Configuration-File and Convert its Data into</span>
+<span class="sd">    a Dictionary Structure. Each Section becomes a Key for the tob-level dict and serves the Option</span>
+<span class="sd">    Values in an dict again&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">configFileName</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Load the rawConfig from Config-File with the ConfigParser and convert the rawConfig</span>
+<span class="sd">        into a dict structure</span>
+
+<span class="sd">        Arguments:</span>
+<span class="sd">        configFileName -- Path to the Configuration-File&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">configFileName</span> <span class="o">=</span> <span class="n">configFileName</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rawConfig</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_loadFile</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dictConfig</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">convertRawConfigToDict</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_loadFile</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Loads the rawConfig with the ConfigParser&quot;&quot;&quot;</span>
+        <span class="n">config</span> <span class="o">=</span> <span class="n">ConfigParser</span><span class="p">(</span><span class="n">allow_no_value</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+        <span class="n">config</span><span class="o">.</span><span class="n">optionxform</span> <span class="o">=</span> <span class="nb">str</span>  <span class="c"># Preserve case in ConfigParser</span>
+        <span class="n">config</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">configFileName</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">config</span>
+
+<div class="viewcode-block" id="ConfigController.convertRawConfigToDict"><a class="viewcode-back" href="../../../pyfloribotvision.controller.html#pyfloribotvision.controller.ConfigController.ConfigController.convertRawConfigToDict">[docs]</a>    <span class="k">def</span> <span class="nf">convertRawConfigToDict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rawConfig</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Converts the rawConfig into a dict structure and returns them</span>
+
+<span class="sd">        arguments:</span>
+<span class="sd">        rawConfig -- rawConfig from ConfigParser (default None)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">rawConfig</span><span class="p">:</span>
+            <span class="n">rawConfig</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rawConfig</span>
+
+        <span class="n">configDict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+        <span class="n">sectionList</span> <span class="o">=</span> <span class="n">rawConfig</span><span class="o">.</span><span class="n">sections</span><span class="p">()</span>
+
+        <span class="k">for</span> <span class="n">section</span> <span class="ow">in</span> <span class="n">sectionList</span><span class="p">:</span>
+            <span class="n">sectionDict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+            <span class="n">optionList</span> <span class="o">=</span> <span class="n">rawConfig</span><span class="o">.</span><span class="n">options</span><span class="p">(</span><span class="n">section</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">option</span> <span class="ow">in</span> <span class="n">optionList</span><span class="p">:</span>
+                <span class="n">sectionDict</span><span class="p">[</span><span class="n">option</span><span class="p">]</span> <span class="o">=</span> <span class="n">rawConfig</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">section</span><span class="p">,</span> <span class="n">option</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
+            <span class="n">configDict</span><span class="p">[</span><span class="n">section</span><span class="p">]</span> <span class="o">=</span> <span class="n">sectionDict</span>
+
+        <span class="k">return</span> <span class="n">configDict</span>
+</div>
+<div class="viewcode-block" id="ConfigController.getConfig"><a class="viewcode-back" href="../../../pyfloribotvision.controller.html#pyfloribotvision.controller.ConfigController.ConfigController.getConfig">[docs]</a>    <span class="k">def</span> <span class="nf">getConfig</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the config as dict&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">dictConfig</span>
+</div>
+<div class="viewcode-block" id="ConfigController.getSection"><a class="viewcode-back" href="../../../pyfloribotvision.controller.html#pyfloribotvision.controller.ConfigController.ConfigController.getSection">[docs]</a>    <span class="k">def</span> <span class="nf">getSection</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sectionname</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the whole section from the dict-config</span>
+
+<span class="sd">        arguments:</span>
+<span class="sd">        sectionname -- name of the section which will be returned</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">dictConfig</span><span class="p">[</span><span class="n">sectionname</span><span class="p">]</span> <span class="k">if</span> <span class="n">sectionname</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">dictConfig</span> <span class="k">else</span> <span class="bp">None</span>
+</div>
+<div class="viewcode-block" id="ConfigController.getOption"><a class="viewcode-back" href="../../../pyfloribotvision.controller.html#pyfloribotvision.controller.ConfigController.ConfigController.getOption">[docs]</a>    <span class="k">def</span> <span class="nf">getOption</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sectionname</span><span class="p">,</span> <span class="n">optionname</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the value from the option which belongs to the given sectionname</span>
+
+<span class="sd">        arguments:</span>
+<span class="sd">        sectionname -- name of the section</span>
+<span class="sd">        optionname -- name of the option which value will be returned</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c"># ToDo: Thinkover if its usefull...</span>
+        <span class="n">section</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getSection</span><span class="p">(</span><span class="n">sectionname</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">section</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">section</span><span class="p">[</span><span class="n">optionname</span><span class="p">]</span> <span class="k">if</span> <span class="n">section</span> <span class="ow">and</span> <span class="n">optionname</span> <span class="ow">in</span> <span class="n">section</span> <span class="k">else</span> <span class="bp">None</span>
+
+    <span class="c">#</span>
+    <span class="c">#def _saveFile(self):</span>
+    <span class="c">#    with open(self.configFileName, &#39;w&#39;) as f:</span>
+    <span class="c">#        self.rawConfig.write(f)</span>
+</pre></div></div></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">pyFloribotVision 0.1 documentation</a> &raquo;</li>
+          <li><a href="../../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Björn Eistel.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,216 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>pyfloribotvision.controller.PluginController &mdash; pyFloribotVision 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="top" title="pyFloribotVision 0.1 documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">pyFloribotVision 0.1 documentation</a> &raquo;</li>
+          <li><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for pyfloribotvision.controller.PluginController</h1><div class="highlight"><pre>
+<span class="c">#!/usr/bin/env python2</span>
+<span class="c">#-*- coding: utf-8 -*-</span>
+<span class="c">#</span>
+<span class="c">#Author: Björn Eistel</span>
+<span class="c">#Contact: &lt;eistel@gmail.com&gt;</span>
+<span class="c">#</span>
+<span class="c"># THIS SOURCE-CODE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED. IN NO </span>
+<span class="c"># EVENT WILL THE AUTHOR BE HELD LIABLE FOR ANY DAMAGES ARISING FROM THE USE OF THIS SOURCE-CODE. </span>
+<span class="c"># USE AT YOUR OWN RISK.</span>
+
+
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+
+
+<div class="viewcode-block" id="PluginController"><a class="viewcode-back" href="../../../pyfloribotvision.controller.html#pyfloribotvision.controller.PluginController.PluginController">[docs]</a><span class="k">class</span> <span class="nc">PluginController</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;The PluginController handles loading and finding of the Plugins&quot;&quot;&quot;</span>
+
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pluginprefix</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Initializes the PluginController and load its Plugins&quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">log</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&#39;logging started&#39;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_plugindir</span> <span class="o">=</span> <span class="s">&#39;plugins&#39;</span>
+        <span class="k">if</span> <span class="n">pluginprefix</span> <span class="o">!=</span> <span class="s">&#39;&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_plugindir</span> <span class="o">=</span> <span class="n">pluginprefix</span> <span class="o">+</span> <span class="s">&#39;.&#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_plugindir</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_pluginList</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_pluginListFlat</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+
+<div class="viewcode-block" id="PluginController.loadPlugins"><a class="viewcode-back" href="../../../pyfloribotvision.controller.html#pyfloribotvision.controller.PluginController.PluginController.loadPlugins">[docs]</a>    <span class="k">def</span> <span class="nf">loadPlugins</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">module</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">forceReload</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Load Plugins from &#39;plugin&#39; package and returns them as dict</span>
+
+<span class="sd">        Keyword arguments:</span>
+<span class="sd">        module -- Python-Module to search in (default: None)</span>
+<span class="sd">        forceReload -- True forces reload of cached PluginList (default: False)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&#39;loadPlugins invoked for module: &lt;</span><span class="si">%s</span><span class="s">&gt;&#39;</span> <span class="o">%</span> <span class="n">module</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pluginList</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">forceReload</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&#39;existing pluginList or reload forced, returning previously loaded list&#39;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pluginList</span>
+
+        <span class="k">if</span> <span class="n">module</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&#39;try import plugindir: &lt;</span><span class="si">%s</span><span class="s">&gt;&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">_plugindir</span><span class="p">)</span>
+                <span class="k">if</span> <span class="s">&#39;.&#39;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_plugindir</span><span class="p">:</span>
+                    <span class="n">plist</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_plugindir</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;.&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+                    <span class="n">module</span> <span class="o">=</span> <span class="nb">__import__</span><span class="p">(</span><span class="n">plist</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+                    <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">plist</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
+                        <span class="n">module</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">module</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">module</span> <span class="o">=</span> <span class="nb">__import__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_plugindir</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">ImportError</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s">&#39;fail to import PLUGINDIR </span><span class="si">%s</span><span class="s">&#39;</span><span class="p">,</span><span class="n">ex</span><span class="o">.</span><span class="n">message</span><span class="p">)</span>
+                <span class="k">return</span> <span class="nb">dict</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">module</span><span class="o">.</span><span class="n">__name__</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">dir</span><span class="p">(</span><span class="n">module</span><span class="p">)))</span>
+
+        <span class="n">pluginNameList</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">module</span><span class="p">)</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">x</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;_&#39;</span><span class="p">)]</span>
+        <span class="n">pluginList</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+
+        <span class="k">for</span> <span class="n">pluginName</span> <span class="ow">in</span> <span class="n">pluginNameList</span><span class="p">:</span>
+            <span class="c">#first level, get submodule or class</span>
+            <span class="n">anonobj</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">module</span><span class="p">,</span> <span class="n">pluginName</span><span class="p">)</span>
+
+            <span class="c">#python-way: instead of checking treat as class and handle error...</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">objclass</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">anonobj</span><span class="p">,</span> <span class="n">pluginName</span><span class="p">)</span>
+                <span class="n">pluginList</span><span class="p">[</span><span class="n">pluginName</span><span class="p">]</span> <span class="o">=</span> <span class="n">objclass</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&#39;CLASS &lt;</span><span class="si">%s</span><span class="s">&gt; found in &lt;</span><span class="si">%s</span><span class="s">&gt;&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">objclass</span><span class="o">.</span><span class="n">__name__</span><span class="p">,</span> <span class="n">module</span><span class="o">.</span><span class="n">__name__</span><span class="p">))</span>
+            <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+                <span class="c">#not a class - assuming a submodule</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&#39;MODULE &lt;</span><span class="si">%s</span><span class="s">&gt; found&#39;</span> <span class="o">%</span> <span class="n">anonobj</span><span class="o">.</span><span class="n">__name__</span><span class="p">)</span>
+                <span class="n">pluginList</span><span class="p">[</span><span class="n">pluginName</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">loadPlugins</span><span class="p">(</span><span class="n">anonobj</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">pluginList</span>
+</div>
+<div class="viewcode-block" id="PluginController.findPlugin"><a class="viewcode-back" href="../../../pyfloribotvision.controller.html#pyfloribotvision.controller.PluginController.PluginController.findPlugin">[docs]</a>    <span class="k">def</span> <span class="nf">findPlugin</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">,</span> <span class="n">_itemList</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Find a Plugin and returns it if found, otherwise None</span>
+
+<span class="sd">        item -- the Plugin to search for</span>
+<span class="sd">            if item is an instance of str the format is according to a relative import</span>
+<span class="sd">            in the plugin package. e.g.: &#39;opencv.cvDrawContours&#39;</span>
+<span class="sd">        _itemList -- only for recursion purpose, should not be used due to cache mechanisms</span>
+<span class="sd">            (default: None)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">item</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pluginListFlat</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pluginListFlat</span><span class="p">[</span><span class="n">item</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="n">_itemList</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">_itemList</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pluginList</span>
+        <span class="k">if</span> <span class="n">_itemList</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_pluginList</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">loadPlugins</span><span class="p">()</span>
+            <span class="n">_itemList</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pluginList</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="n">itemListKeys</span> <span class="o">=</span> <span class="n">_itemList</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+
+            <span class="k">if</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">itemListKeys</span> <span class="ow">and</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">_itemList</span><span class="p">[</span><span class="n">item</span><span class="p">],</span> <span class="nb">dict</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_pluginListFlat</span><span class="p">[</span><span class="n">_itemList</span><span class="p">[</span><span class="n">item</span><span class="p">]</span><span class="o">.</span><span class="n">__module__</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;.&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)[</span><span class="mi">1</span><span class="p">]]</span> <span class="o">=</span> <span class="n">_itemList</span><span class="p">[</span><span class="n">item</span><span class="p">]</span>
+                <span class="k">return</span> <span class="n">_itemList</span><span class="p">[</span><span class="n">item</span><span class="p">]</span>
+
+            <span class="k">if</span> <span class="s">&#39;.&#39;</span> <span class="ow">in</span> <span class="n">item</span><span class="p">:</span>
+                <span class="n">prefix</span><span class="p">,</span> <span class="n">suffix</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;.&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">prefix</span> <span class="ow">in</span> <span class="n">itemListKeys</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">_itemList</span><span class="p">[</span><span class="n">prefix</span><span class="p">],</span> <span class="nb">dict</span><span class="p">):</span>
+                    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">findPlugin</span><span class="p">(</span><span class="n">suffix</span><span class="p">,</span> <span class="n">_itemList</span><span class="p">[</span><span class="n">prefix</span><span class="p">])</span>
+
+        <span class="k">return</span> <span class="bp">None</span>
+</div>
+    <span class="k">def</span> <span class="nf">__contains__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;magic member for use with &quot;in&quot; keyword</span>
+
+<span class="sd">        arguments:</span>
+<span class="sd">        item  -- key object on the left side of in keyword&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">findPlugin</span><span class="p">(</span><span class="n">item</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">pyFloribotVision 0.1 documentation</a> &raquo;</li>
+          <li><a href="../../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Björn Eistel.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

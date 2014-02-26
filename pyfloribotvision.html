@@ -1,0 +1,217 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>pyfloribotvision Package &mdash; pyFloribotVision 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="pyFloribotVision 0.1 documentation" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="index.html">pyFloribotVision 0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="pyfloribotvision-package">
+<h1>pyfloribotvision Package<a class="headerlink" href="#pyfloribotvision-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2><a class="reference internal" href="#module-pyfloribotvision" title="pyfloribotvision"><tt class="xref py py-mod docutils literal"><span class="pre">pyfloribotvision</span></tt></a> Package<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-pyfloribotvision"></span></div>
+<div class="section" id="module-pyfloribotvision.PyFloribotVision">
+<span id="pyfloribotvision-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">PyFloribotVision</span></tt> Module<a class="headerlink" href="#module-pyfloribotvision.PyFloribotVision" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="pyfloribotvision.PyFloribotVision.PyFloribotVision">
+<em class="property">class </em><tt class="descclassname">pyfloribotvision.PyFloribotVision.</tt><tt class="descname">PyFloribotVision</tt><big>(</big><em>configFile</em>, <em>loggingConfig</em>, <em>relativePath=True</em><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/PyFloribotVision.html#PyFloribotVision"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.PyFloribotVision.PyFloribotVision" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>Application-Startup handling Startup-Parameters</p>
+<dl class="method">
+<dt id="pyfloribotvision.PyFloribotVision.PyFloribotVision.checkConfigExist">
+<tt class="descname">checkConfigExist</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/PyFloribotVision.html#PyFloribotVision.checkConfigExist"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.PyFloribotVision.PyFloribotVision.checkConfigExist" title="Permalink to this definition">¶</a></dt>
+<dd><p>checks if config files are exists and readable</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyfloribotvision.PyFloribotVision.PyFloribotVision.executeApplicationContext">
+<tt class="descname">executeApplicationContext</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/PyFloribotVision.html#PyFloribotVision.executeApplicationContext"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.PyFloribotVision.PyFloribotVision.executeApplicationContext" title="Permalink to this definition">¶</a></dt>
+<dd><p>execute configured behavior (invoke plugin methods)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyfloribotvision.PyFloribotVision.PyFloribotVision.initApplicationContext">
+<tt class="descname">initApplicationContext</tt><big>(</big><em>pluginprefix</em><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/PyFloribotVision.html#PyFloribotVision.initApplicationContext"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.PyFloribotVision.PyFloribotVision.initApplicationContext" title="Permalink to this definition">¶</a></dt>
+<dd><p>initializes the application context</p>
+<p>Arguments:
+pluginprefix &#8211; plugins should be relative under ./plugins if class invoked trough a</p>
+<blockquote>
+<div>startup-script or another application, the prefix have to point into the package where
+the plugin-package could be find.</div></blockquote>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="pyfloribotvision.PyFloribotVision.main">
+<tt class="descclassname">pyfloribotvision.PyFloribotVision.</tt><tt class="descname">main</tt><big>(</big><em>name</em>, <em>argv</em><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/PyFloribotVision.html#main"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.PyFloribotVision.main" title="Permalink to this definition">¶</a></dt>
+<dd><p>Startup entry point, parsing commandline parameter</p>
+</dd></dl>
+
+</div>
+<div class="section" id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="pyfloribotvision.controller.html">controller Package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pyfloribotvision.controller.html#id1"><tt class="docutils literal"><span class="pre">controller</span></tt> Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyfloribotvision.controller.html#module-pyfloribotvision.controller.ConfigController"><tt class="docutils literal"><span class="pre">ConfigController</span></tt> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyfloribotvision.controller.html#module-pyfloribotvision.controller.DataLinkController"><tt class="docutils literal"><span class="pre">DataLinkController</span></tt> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyfloribotvision.controller.html#module-pyfloribotvision.controller.PluginController"><tt class="docutils literal"><span class="pre">PluginController</span></tt> Module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pyfloribotvision.dto.html">dto Package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pyfloribotvision.dto.html#id1"><tt class="docutils literal"><span class="pre">dto</span></tt> Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyfloribotvision.dto.html#module-pyfloribotvision.dto.PluginDTO"><tt class="docutils literal"><span class="pre">PluginDTO</span></tt> Module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pyfloribotvision.manager.html">manager Package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pyfloribotvision.manager.html#id1"><tt class="docutils literal"><span class="pre">manager</span></tt> Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyfloribotvision.manager.html#module-pyfloribotvision.manager.ContextManager"><tt class="docutils literal"><span class="pre">ContextManager</span></tt> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyfloribotvision.manager.html#module-pyfloribotvision.manager.ProcessManager"><tt class="docutils literal"><span class="pre">ProcessManager</span></tt> Module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pyfloribotvision.plugins.html">plugins Package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pyfloribotvision.plugins.html#id1"><tt class="docutils literal"><span class="pre">plugins</span></tt> Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyfloribotvision.plugins.html#module-pyfloribotvision.plugins.BaseModule"><tt class="docutils literal"><span class="pre">BaseModule</span></tt> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyfloribotvision.plugins.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pyfloribotvision.plugins.floribot.html">floribot Package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pyfloribotvision.plugins.floribot.html#id1"><tt class="docutils literal"><span class="pre">floribot</span></tt> Package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyfloribotvision.plugins.floribot.html#module-pyfloribotvision.plugins.floribot.FilePickleSegmentOutput"><tt class="docutils literal"><span class="pre">FilePickleSegmentOutput</span></tt> Module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pyfloribotvision.plugins.opencv.html">opencv Package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pyfloribotvision.plugins.opencv.html#id1"><tt class="docutils literal"><span class="pre">opencv</span></tt> Package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyfloribotvision.plugins.opencv.html#module-pyfloribotvision.plugins.opencv.CVBitwiseOr"><tt class="docutils literal"><span class="pre">CVBitwiseOr</span></tt> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyfloribotvision.plugins.opencv.html#module-pyfloribotvision.plugins.opencv.CVContourConstraint"><tt class="docutils literal"><span class="pre">CVContourConstraint</span></tt> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyfloribotvision.plugins.opencv.html#module-pyfloribotvision.plugins.opencv.CVDrawContours"><tt class="docutils literal"><span class="pre">CVDrawContours</span></tt> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyfloribotvision.plugins.opencv.html#module-pyfloribotvision.plugins.opencv.CVFindContours"><tt class="docutils literal"><span class="pre">CVFindContours</span></tt> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyfloribotvision.plugins.opencv.html#module-pyfloribotvision.plugins.opencv.CVGaussBlur"><tt class="docutils literal"><span class="pre">CVGaussBlur</span></tt> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyfloribotvision.plugins.opencv.html#module-pyfloribotvision.plugins.opencv.CVInRange"><tt class="docutils literal"><span class="pre">CVInRange</span></tt> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyfloribotvision.plugins.opencv.html#module-pyfloribotvision.plugins.opencv.CVMorphologyEx"><tt class="docutils literal"><span class="pre">CVMorphologyEx</span></tt> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyfloribotvision.plugins.opencv.html#module-pyfloribotvision.plugins.opencv.CVStructuringElement"><tt class="docutils literal"><span class="pre">CVStructuringElement</span></tt> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyfloribotvision.plugins.opencv.html#module-pyfloribotvision.plugins.opencv.CVTransformColor"><tt class="docutils literal"><span class="pre">CVTransformColor</span></tt> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyfloribotvision.plugins.opencv.html#module-pyfloribotvision.plugins.opencv.CVValueList"><tt class="docutils literal"><span class="pre">CVValueList</span></tt> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyfloribotvision.plugins.opencv.html#module-pyfloribotvision.plugins.opencv.DirectCVCamSource"><tt class="docutils literal"><span class="pre">DirectCVCamSource</span></tt> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyfloribotvision.plugins.opencv.html#module-pyfloribotvision.plugins.opencv.DirectCVImageSource"><tt class="docutils literal"><span class="pre">DirectCVImageSource</span></tt> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyfloribotvision.plugins.opencv.html#module-pyfloribotvision.plugins.opencv.FileCVImageOutput"><tt class="docutils literal"><span class="pre">FileCVImageOutput</span></tt> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyfloribotvision.plugins.opencv.html#module-pyfloribotvision.plugins.opencv.ScreenCVImageOutput"><tt class="docutils literal"><span class="pre">ScreenCVImageOutput</span></tt> Module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pyfloribotvision.plugins.python.html">python Package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pyfloribotvision.plugins.python.html#id1"><tt class="docutils literal"><span class="pre">python</span></tt> Package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyfloribotvision.plugins.python.html#module-pyfloribotvision.plugins.python.DeltaTimePerFrame"><tt class="docutils literal"><span class="pre">DeltaTimePerFrame</span></tt> Module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pyfloribotvision.plugins.ros.html">ros Package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pyfloribotvision.plugins.ros.html#id1"><tt class="docutils literal"><span class="pre">ros</span></tt> Package</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">pyfloribotvision Package</a><ul>
+<li><a class="reference internal" href="#id1"><tt class="docutils literal"><span class="pre">pyfloribotvision</span></tt> Package</a></li>
+<li><a class="reference internal" href="#module-pyfloribotvision.PyFloribotVision"><tt class="docutils literal"><span class="pre">PyFloribotVision</span></tt> Module</a></li>
+<li><a class="reference internal" href="#subpackages">Subpackages</a><ul>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/pyfloribotvision.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="index.html">pyFloribotVision 0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Björn Eistel.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

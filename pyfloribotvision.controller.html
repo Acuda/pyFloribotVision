@@ -1,0 +1,214 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>controller Package &mdash; pyFloribotVision 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="pyFloribotVision 0.1 documentation" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="index.html">pyFloribotVision 0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="controller-package">
+<h1>controller Package<a class="headerlink" href="#controller-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2><tt class="xref py py-mod docutils literal"><span class="pre">controller</span></tt> Package<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-pyfloribotvision.controller"></span></div>
+<div class="section" id="module-pyfloribotvision.controller.ConfigController">
+<span id="configcontroller-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">ConfigController</span></tt> Module<a class="headerlink" href="#module-pyfloribotvision.controller.ConfigController" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="pyfloribotvision.controller.ConfigController.ConfigController">
+<em class="property">class </em><tt class="descclassname">pyfloribotvision.controller.ConfigController.</tt><tt class="descname">ConfigController</tt><big>(</big><em>configFileName</em><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/controller/ConfigController.html#ConfigController"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.controller.ConfigController.ConfigController" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>Simple Wrapper for the ConfigParser. Loads the Configuration-File and Convert its Data into
+a Dictionary Structure. Each Section becomes a Key for the tob-level dict and serves the Option
+Values in an dict again</p>
+<dl class="method">
+<dt id="pyfloribotvision.controller.ConfigController.ConfigController.convertRawConfigToDict">
+<tt class="descname">convertRawConfigToDict</tt><big>(</big><em>rawConfig=None</em><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/controller/ConfigController.html#ConfigController.convertRawConfigToDict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.controller.ConfigController.ConfigController.convertRawConfigToDict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts the rawConfig into a dict structure and returns them</p>
+<p>arguments:
+rawConfig &#8211; rawConfig from ConfigParser (default None)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyfloribotvision.controller.ConfigController.ConfigController.getConfig">
+<tt class="descname">getConfig</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/controller/ConfigController.html#ConfigController.getConfig"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.controller.ConfigController.ConfigController.getConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the config as dict</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyfloribotvision.controller.ConfigController.ConfigController.getOption">
+<tt class="descname">getOption</tt><big>(</big><em>sectionname</em>, <em>optionname</em><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/controller/ConfigController.html#ConfigController.getOption"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.controller.ConfigController.ConfigController.getOption" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the value from the option which belongs to the given sectionname</p>
+<p>arguments:
+sectionname &#8211; name of the section
+optionname &#8211; name of the option which value will be returned</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyfloribotvision.controller.ConfigController.ConfigController.getSection">
+<tt class="descname">getSection</tt><big>(</big><em>sectionname</em><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/controller/ConfigController.html#ConfigController.getSection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.controller.ConfigController.ConfigController.getSection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the whole section from the dict-config</p>
+<p>arguments:
+sectionname &#8211; name of the section which will be returned</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pyfloribotvision.controller.DataLinkController">
+<span id="datalinkcontroller-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">DataLinkController</span></tt> Module<a class="headerlink" href="#module-pyfloribotvision.controller.DataLinkController" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="pyfloribotvision.controller.DataLinkController.DataLinkController">
+<em class="property">class </em><tt class="descclassname">pyfloribotvision.controller.DataLinkController.</tt><tt class="descname">DataLinkController</tt><a class="reference internal" href="_modules/pyfloribotvision/controller/DataLinkController.html#DataLinkController"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.controller.DataLinkController.DataLinkController" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>Class for data-exchange between the plugins</p>
+<dl class="method">
+<dt id="pyfloribotvision.controller.DataLinkController.DataLinkController.getValue">
+<tt class="descname">getValue</tt><big>(</big><em>item</em><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/controller/DataLinkController.html#DataLinkController.getValue"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.controller.DataLinkController.DataLinkController.getValue" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the value corresponding to key (item)</p>
+<p>arguments:
+item &#8211; key for internal dictionary</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyfloribotvision.controller.DataLinkController.DataLinkController.setValue">
+<tt class="descname">setValue</tt><big>(</big><em>key</em>, <em>value</em><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/controller/DataLinkController.html#DataLinkController.setValue"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.controller.DataLinkController.DataLinkController.setValue" title="Permalink to this definition">¶</a></dt>
+<dd><p>set value to the internal dictionary</p>
+<p>arguments:
+key &#8211; key to set
+value &#8211; value to set for the given key</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pyfloribotvision.controller.PluginController">
+<span id="plugincontroller-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">PluginController</span></tt> Module<a class="headerlink" href="#module-pyfloribotvision.controller.PluginController" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="pyfloribotvision.controller.PluginController.PluginController">
+<em class="property">class </em><tt class="descclassname">pyfloribotvision.controller.PluginController.</tt><tt class="descname">PluginController</tt><big>(</big><em>pluginprefix</em><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/controller/PluginController.html#PluginController"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.controller.PluginController.PluginController" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>The PluginController handles loading and finding of the Plugins</p>
+<dl class="method">
+<dt id="pyfloribotvision.controller.PluginController.PluginController.findPlugin">
+<tt class="descname">findPlugin</tt><big>(</big><em>item</em>, <em>_itemList=None</em><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/controller/PluginController.html#PluginController.findPlugin"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.controller.PluginController.PluginController.findPlugin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find a Plugin and returns it if found, otherwise None</p>
+<dl class="docutils">
+<dt>item &#8211; the Plugin to search for</dt>
+<dd>if item is an instance of str the format is according to a relative import
+in the plugin package. e.g.: &#8216;opencv.cvDrawContours&#8217;</dd>
+<dt>_itemList &#8211; only for recursion purpose, should not be used due to cache mechanisms</dt>
+<dd>(default: None)</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyfloribotvision.controller.PluginController.PluginController.loadPlugins">
+<tt class="descname">loadPlugins</tt><big>(</big><em>module=None</em>, <em>forceReload=False</em><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/controller/PluginController.html#PluginController.loadPlugins"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.controller.PluginController.PluginController.loadPlugins" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load Plugins from &#8216;plugin&#8217; package and returns them as dict</p>
+<p>Keyword arguments:
+module &#8211; Python-Module to search in (default: None)
+forceReload &#8211; True forces reload of cached PluginList (default: False)</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">controller Package</a><ul>
+<li><a class="reference internal" href="#id1"><tt class="docutils literal"><span class="pre">controller</span></tt> Package</a></li>
+<li><a class="reference internal" href="#module-pyfloribotvision.controller.ConfigController"><tt class="docutils literal"><span class="pre">ConfigController</span></tt> Module</a></li>
+<li><a class="reference internal" href="#module-pyfloribotvision.controller.DataLinkController"><tt class="docutils literal"><span class="pre">DataLinkController</span></tt> Module</a></li>
+<li><a class="reference internal" href="#module-pyfloribotvision.controller.PluginController"><tt class="docutils literal"><span class="pre">PluginController</span></tt> Module</a></li>
+</ul>
+</li>
+</ul>
+
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/pyfloribotvision.controller.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="index.html">pyFloribotVision 0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Björn Eistel.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>
