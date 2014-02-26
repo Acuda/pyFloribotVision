@@ -18,37 +18,40 @@ class DataLinkController(object):
     def getValue(self, item):
         """Returns the value corresponding to key (item)
 
-        arguments:
-        item -- key for internal dictionary
+        :param item: key object in the square parenthesis
+        :type item: object
+        :returns: entry of the dictionary
+        :rtype: object
         """
         return self[item]
 
     def __contains__(self, item):
         """magic member for use with "in" keyword
 
-        arguments:
-        item  -- key object on the left side of in keyword"""
+        :param item: key object on the left side of in keyword"""
         return item in self._data
 
     def __getitem__(self, item):
         """magic member for use with square parenthesis as getter
 
-        arguments:
-        item -- key object in the square parenthesis"""
+        :param item: key object in the square parenthesis
+        :type item: object
+        :returns: entry of the dictionary
+        :rtype: object
+        """
         return self._data[item]
 
     def setValue(self, key, value):
         """set value to the internal dictionary
 
-        arguments:
-        key -- key to set
-        value -- value to set for the given key"""
+        :param key: key to set
+        :param value: value to set for the given key"""
         self[key] = value
 
     def __setitem__(self, key, value):
         """magic member for use with square parenthesis as getter
 
-        arguments:
-        key -- key to set
-        value -- value to set for the given key"""
+        :param key: key to set
+        :param value: value to set for the given key
+        """
         self._data[key] = value

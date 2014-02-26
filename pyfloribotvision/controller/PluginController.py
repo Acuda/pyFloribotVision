@@ -18,7 +18,10 @@ class PluginController(object):
 
 
     def __init__(self, pluginprefix):
-        """Initializes the PluginController and load its Plugins"""
+        """Initializes the PluginController and load its Plugins
+
+        :param pluginprefix: 
+        """
 
         self.log = logging.getLogger(__name__)
         self.log.debug('logging started')
@@ -34,14 +37,13 @@ class PluginController(object):
         """
         Load Plugins from 'plugin' package and returns them as dict
 
-        Keyword arguments:
-        module -- Python-Module to search in (default: None)
-        forceReload -- True forces reload of cached PluginList (default: False)
+        :param module: Python-Module to search in (default: None)
+        :param forceReload: True forces reload of cached PluginList (default: False)
         """
 
         self.log.debug('loadPlugins invoked for module: <%s>' % module)
 
-        if self._pluginList is not None:# or not forceReload:
+        if self._pluginList is not None and not forceReload:
             self.log.debug('existing pluginList or reload forced, returning previously loaded list')
             return self._pluginList
 
@@ -84,10 +86,10 @@ class PluginController(object):
         """
         Find a Plugin and returns it if found, otherwise None
 
-        item -- the Plugin to search for
+        :param item: the Plugin to search for
             if item is an instance of str the format is according to a relative import
             in the plugin package. e.g.: 'opencv.cvDrawContours'
-        _itemList -- only for recursion purpose, should not be used due to cache mechanisms
+        :param _itemList: only for recursion purpose, should not be used due to cache mechanisms
             (default: None)
         """
 
@@ -117,6 +119,5 @@ class PluginController(object):
     def __contains__(self, item):
         """magic member for use with "in" keyword
 
-        arguments:
-        item  -- key object on the left side of in keyword"""
+        :param item : key object on the left side of in keyword"""
         return self.findPlugin(item) is not None

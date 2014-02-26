@@ -27,10 +27,10 @@ class ProcessManager(object):
         """Gets the 'GENERAL' section from the ConfigController and acquires and instantiate the
         Plugins specified by the 'pluginSequence' Option in the Configuration
 
-        arguments:
-        pluginController -- Instance of the PluginController
-        configController -- Instance of the ConfigController
-        dataLinkController -- Instance of the DataLinkController"""
+        :param pluginController: Instance of the ``PluginController``
+        :param configController: Instance of the ``ConfigController``
+        :param dataLinkController: Instance of the ``DataLinkController``
+        """
 
         # Logging
         ##########
@@ -76,8 +76,8 @@ class ProcessManager(object):
         Furthermore returns a list of PluginDto for each loaded Plugin whose Name in the
         pluginSequence Option don't start with an exclamation mark
 
-        arguments:
-        generalConfigSection -- Config for 'GENERAL' section (default None)"""
+        :param generalConfigSection: Config for 'GENERAL' section (default ``None``)
+        """
 
         self.log.debug('enter acquirePlugins')
         if generalConfigSection is None:
@@ -100,8 +100,8 @@ class ProcessManager(object):
     def instantiatePlugins(self, pluginDtoList=None):
         """Instantiate the Plugins in the list of PluginDto's and return the List
 
-        arguments:
-        pluginDtoList -- List of PluginDto's (default None)"""
+        :param pluginDtoList: List of PluginDto's (default None)
+        """
 
         self.log.debug('enter instantiatePlugins')
         self.log.debug('check pluginDtoList')
@@ -165,7 +165,11 @@ class ProcessManager(object):
         self.triggerPluginMethods('preOptActions')
 
     def triggerPluginMethods(self, methodName, pluginDtoList=None):
-        """Triggers the corresponding methods of the active Plugins in the pluginDtoList"""
+        """Triggers the corresponding methods of the active Plugins in the pluginDtoList
+
+        :param methodName: Name of the Plugin-Method to trigger
+        :param pluginDtoList: List of PluginDto's (default None)
+        """
 
         if pluginDtoList is None:
             pluginDtoList = self.pluginDtoList

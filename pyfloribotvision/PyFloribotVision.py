@@ -21,10 +21,10 @@ class PyFloribotVision(object):
     def __init__(self, configFile, loggingConfig, relativePath=True):
         """Object initialization
 
-        Arguments:
-        configFile -- path to the plugin config
-        loggingConfig -- path to the logging config
-        relativePath -- if given paths not relative this should be set to False (default True)
+        :param configFile: path to the plugin config
+        :param loggingConfig: path to the logging config
+        :param relativePath: if given paths not relative this should be set to False
+            (default ``True``)
         """
 
         self.relativePathPrefix = ''
@@ -55,10 +55,9 @@ class PyFloribotVision(object):
     def initApplicationContext(self, pluginprefix):
         """initializes the application context
 
-        Arguments:
-        pluginprefix -- plugins should be relative under ./plugins if class invoked trough a
+        :param pluginprefix: plugins should be relative under ./plugins if class invoked trough a
             startup-script or another application, the prefix have to point into the package where
-            the plugin-package could be find.
+            the plugin-package could be find
         """
         self._context = ContextManager()
         self._context.initContext(self.configFile, self.loggingConfig, pluginprefix)
@@ -70,7 +69,11 @@ class PyFloribotVision(object):
 
 
 def main(name, argv):
-    """Startup entry point, parsing commandline parameter"""
+    """Startup entry point, parsing commandline parameter
+
+    :param name: Name of the script which was executed
+    :param argv: the list of command line arguments passed to the Python script
+    """
     print('enter main')
     global defaultConfigFile
     defaultConfigFile = 'config/default.conf'

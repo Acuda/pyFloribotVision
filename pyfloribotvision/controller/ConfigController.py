@@ -21,8 +21,7 @@ class ConfigController(object):
         """Load the rawConfig from Config-File with the ConfigParser and convert the rawConfig
         into a dict structure
 
-        Arguments:
-        configFileName -- Path to the Configuration-File"""
+        :param configFileName: Path to the Configuration-File"""
         self.configFileName = configFileName
         self.rawConfig = self._loadFile()
         self.dictConfig = self.convertRawConfigToDict()
@@ -37,8 +36,7 @@ class ConfigController(object):
     def convertRawConfigToDict(self, rawConfig=None):
         """Converts the rawConfig into a dict structure and returns them
 
-        arguments:
-        rawConfig -- rawConfig from ConfigParser (default None)
+        :param rawConfig: rawConfig from ConfigParser (default None)
         """
 
         if not rawConfig:
@@ -63,17 +61,15 @@ class ConfigController(object):
     def getSection(self, sectionname):
         """Returns the whole section from the dict-config
 
-        arguments:
-        sectionname -- name of the section which will be returned
+        :param sectionname: name of the section which will be returned
         """
         return self.dictConfig[sectionname] if sectionname in self.dictConfig else None
 
     def getOption(self, sectionname, optionname):
         """Returns the value from the option which belongs to the given sectionname
 
-        arguments:
-        sectionname -- name of the section
-        optionname -- name of the option which value will be returned
+        :param sectionname: name of the section
+        :param optionname: name of the option which value will be returned
         """
 
         # ToDo: Thinkover if its usefull...

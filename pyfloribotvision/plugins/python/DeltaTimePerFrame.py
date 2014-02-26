@@ -15,19 +15,17 @@ import logging
 
 
 class DeltaTimePerFrame(BaseModule):
-    obligatoryConfigOptions = {'displayTime': ['True', 'False'], 'startFrame': None, 'stopFrame': None}
-
+    obligatoryConfigOptions = {'displayTime': ['True', 'False'],
+                               'startFrame': None, 'stopFrame': None}
 
     def __init__(self, **kwargs):
         super(type(self), self).__init__(**kwargs)
         self.log = logging.getLogger(__name__)
         self.log.debug('logging started')
 
-
     def postOptActions(self):
-        curtime = time.time()
-        self.lastCallTime = curtime
-        self.lastBypassTime = curtime
+        #plugin specific
+        self.lastCallTime = time.time()
         self.timeList = list()
         self.frameCount = 1
 
@@ -35,7 +33,6 @@ class DeltaTimePerFrame(BaseModule):
         self.displayTime = self.displayTime == str(True)
         self.stopFrame = int(self.stopFrame)
         self.startFrame = int(self.startFrame)
-
 
     def externalCall(self):
         curtime = time.time()
@@ -49,6 +46,9 @@ class DeltaTimePerFrame(BaseModule):
                 print 'Frame: <%d>' % self.frameCount,
                 self.printTime(difftime)
         self.frameCount += 1
+
+        if self.frameCount == self.stopFrame:
+            self.preOptActions()
 
     def preOptActions(self):
         midtime = float(sum(self.timeList)) / len(self.timeList)

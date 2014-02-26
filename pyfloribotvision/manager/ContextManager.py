@@ -27,6 +27,9 @@ class ContextManager(object):
     def __new__(cls, *args, **kwargs):
         """
         Act as singleton for simpler data sharing. Internal use only!
+
+        :param args:
+        :param kwargs:
         """
         ctxName = args[0] if args else None
 
@@ -39,8 +42,7 @@ class ContextManager(object):
         """Initialize a new instance per given contextName. Every new init for a known contextName
         returns previously initialized instance for corresponding context.
 
-        Arguments:
-        contextName -- specifies the context (default None)
+        :param contextName: specifies the context (default ``None``)
         """
         self.pluginController = None
         self.configController = None
@@ -50,10 +52,9 @@ class ContextManager(object):
     def initContext(self, configFileName, loggingConfigFileName, pluginprefix):
         """Initializes the Controller, Manager and Logger for given configuration data.
 
-        Arguments:
-        configFileName -- Configuration-File for the ConfigController
-        loggingConfigFileName -- Configuration-File for the Logger
-        pluginprefix -- Prefix where the Plugin-Package can be found
+        :param configFileName: Configuration-File for the ConfigController
+        :param loggingConfigFileName: Configuration-File for the Logger
+        :param pluginprefix: Prefix where the Plugin-Package can be found
         """
         logging.config.fileConfig(loggingConfigFileName)
         self.log = logging.getLogger(__name__)
