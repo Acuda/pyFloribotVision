@@ -61,6 +61,21 @@
 initialisation for a given Pseudo-Namespace. The ContextManager provides the Plugins-,
 Configuration- and DataLink-Controller as well as the ProcessManager.</p>
 <dl class="method">
+<dt id="pyfloribotvision.manager.ContextManager.ContextManager.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>contextName=None</em><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/manager/ContextManager.html#ContextManager.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.manager.ContextManager.ContextManager.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize a new instance per given contextName. Every new init for a known contextName
+returns previously initialized instance for corresponding context.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>contextName</strong> &#8211; specifies the context (default <tt class="docutils literal"><span class="pre">None</span></tt>)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
 <dt id="pyfloribotvision.manager.ContextManager.ContextManager.executeContext">
 <tt class="descname">executeContext</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/manager/ContextManager.html#ContextManager.executeContext"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.manager.ContextManager.ContextManager.executeContext" title="Permalink to this definition">¶</a></dt>
 <dd><p>Triggers the executePlugins Method from the ProcessManager</p>
@@ -96,14 +111,40 @@ Configuration- and DataLink-Controller as well as the ProcessManager.</p>
 <dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
 <p>Manages the Process and is responsibly for the runtime behavior</p>
 <dl class="method">
+<dt id="pyfloribotvision.manager.ProcessManager.ProcessManager.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>pluginController</em>, <em>configController</em>, <em>dataLinkController</em><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/manager/ProcessManager.html#ProcessManager.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.manager.ProcessManager.ProcessManager.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the &#8216;GENERAL&#8217; section from the ConfigController and acquires and instantiate the
+Plugins specified by the &#8216;pluginSequence&#8217; Option in the Configuration</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>pluginController</strong> &#8211; Instance of the <tt class="docutils literal"><span class="pre">PluginController</span></tt></li>
+<li><strong>configController</strong> &#8211; Instance of the <tt class="docutils literal"><span class="pre">ConfigController</span></tt></li>
+<li><strong>dataLinkController</strong> &#8211; Instance of the <tt class="docutils literal"><span class="pre">DataLinkController</span></tt></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
 <dt id="pyfloribotvision.manager.ProcessManager.ProcessManager.acquirePlugins">
 <tt class="descname">acquirePlugins</tt><big>(</big><em>generalConfigSection=None</em><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/manager/ProcessManager.html#ProcessManager.acquirePlugins"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.manager.ProcessManager.ProcessManager.acquirePlugins" title="Permalink to this definition">¶</a></dt>
 <dd><p>Acquire the Plugins specified by the &#8216;pluginSequence&#8217; Option in the Configuration given
 by the dict generalConfigSection or internal config if generalConfigSection is None.
 Furthermore returns a list of PluginDto for each loaded Plugin whose Name in the
 pluginSequence Option don&#8217;t start with an exclamation mark</p>
-<p>arguments:
-generalConfigSection &#8211; Config for &#8216;GENERAL&#8217; section (default None)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>generalConfigSection</strong> &#8211; Config for &#8216;GENERAL&#8217; section (default <tt class="docutils literal"><span class="pre">None</span></tt>)</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
@@ -115,14 +156,32 @@ generalConfigSection &#8211; Config for &#8216;GENERAL&#8217; section (default N
 <dt id="pyfloribotvision.manager.ProcessManager.ProcessManager.instantiatePlugins">
 <tt class="descname">instantiatePlugins</tt><big>(</big><em>pluginDtoList=None</em><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/manager/ProcessManager.html#ProcessManager.instantiatePlugins"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.manager.ProcessManager.ProcessManager.instantiatePlugins" title="Permalink to this definition">¶</a></dt>
 <dd><p>Instantiate the Plugins in the list of PluginDto&#8217;s and return the List</p>
-<p>arguments:
-pluginDtoList &#8211; List of PluginDto&#8217;s (default None)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>pluginDtoList</strong> &#8211; List of PluginDto&#8217;s (default None)</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="pyfloribotvision.manager.ProcessManager.ProcessManager.triggerPluginMethods">
 <tt class="descname">triggerPluginMethods</tt><big>(</big><em>methodName</em>, <em>pluginDtoList=None</em><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/manager/ProcessManager.html#ProcessManager.triggerPluginMethods"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.manager.ProcessManager.ProcessManager.triggerPluginMethods" title="Permalink to this definition">¶</a></dt>
 <dd><p>Triggers the corresponding methods of the active Plugins in the pluginDtoList</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>methodName</strong> &#8211; Name of the Plugin-Method to trigger</li>
+<li><strong>pluginDtoList</strong> &#8211; List of PluginDto&#8217;s (default None)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 </dd></dl>

@@ -66,9 +66,9 @@
 
     <span class="n">obligatoryConfigOptions</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;inputImageList&#39;</span><span class="p">:</span> <span class="bp">None</span><span class="p">}</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="ScreenCVImageOutput.__init__"><a class="viewcode-back" href="../../../../pyfloribotvision.plugins.opencv.html#pyfloribotvision.plugins.opencv.ScreenCVImageOutput.ScreenCVImageOutput.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">),</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-
+</div>
 <div class="viewcode-block" id="ScreenCVImageOutput.postOptActions"><a class="viewcode-back" href="../../../../pyfloribotvision.plugins.opencv.html#pyfloribotvision.plugins.opencv.ScreenCVImageOutput.ScreenCVImageOutput.postOptActions">[docs]</a>    <span class="k">def</span> <span class="nf">postOptActions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">inputImageList</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">inputImageList</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39; &#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;,&#39;</span><span class="p">)</span>
 </div>

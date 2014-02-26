@@ -61,11 +61,32 @@
 a Dictionary Structure. Each Section becomes a Key for the tob-level dict and serves the Option
 Values in an dict again</p>
 <dl class="method">
+<dt id="pyfloribotvision.controller.ConfigController.ConfigController.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>configFileName</em><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/controller/ConfigController.html#ConfigController.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.controller.ConfigController.ConfigController.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load the rawConfig from Config-File with the ConfigParser and convert the rawConfig
+into a dict structure</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>configFileName</strong> &#8211; Path to the Configuration-File</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
 <dt id="pyfloribotvision.controller.ConfigController.ConfigController.convertRawConfigToDict">
 <tt class="descname">convertRawConfigToDict</tt><big>(</big><em>rawConfig=None</em><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/controller/ConfigController.html#ConfigController.convertRawConfigToDict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.controller.ConfigController.ConfigController.convertRawConfigToDict" title="Permalink to this definition">¶</a></dt>
 <dd><p>Converts the rawConfig into a dict structure and returns them</p>
-<p>arguments:
-rawConfig &#8211; rawConfig from ConfigParser (default None)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>rawConfig</strong> &#8211; rawConfig from ConfigParser (default None)</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
@@ -78,17 +99,32 @@ rawConfig &#8211; rawConfig from ConfigParser (default None)</p>
 <dt id="pyfloribotvision.controller.ConfigController.ConfigController.getOption">
 <tt class="descname">getOption</tt><big>(</big><em>sectionname</em>, <em>optionname</em><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/controller/ConfigController.html#ConfigController.getOption"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.controller.ConfigController.ConfigController.getOption" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the value from the option which belongs to the given sectionname</p>
-<p>arguments:
-sectionname &#8211; name of the section
-optionname &#8211; name of the option which value will be returned</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>sectionname</strong> &#8211; name of the section</li>
+<li><strong>optionname</strong> &#8211; name of the option which value will be returned</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="pyfloribotvision.controller.ConfigController.ConfigController.getSection">
 <tt class="descname">getSection</tt><big>(</big><em>sectionname</em><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/controller/ConfigController.html#ConfigController.getSection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.controller.ConfigController.ConfigController.getSection" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the whole section from the dict-config</p>
-<p>arguments:
-sectionname &#8211; name of the section which will be returned</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>sectionname</strong> &#8211; name of the section which will be returned</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 </dd></dl>
@@ -102,20 +138,45 @@ sectionname &#8211; name of the section which will be returned</p>
 <dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
 <p>Class for data-exchange between the plugins</p>
 <dl class="method">
+<dt id="pyfloribotvision.controller.DataLinkController.DataLinkController.__init__">
+<tt class="descname">__init__</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/controller/DataLinkController.html#DataLinkController.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.controller.DataLinkController.DataLinkController.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates internal dictionary</p>
+</dd></dl>
+
+<dl class="method">
 <dt id="pyfloribotvision.controller.DataLinkController.DataLinkController.getValue">
 <tt class="descname">getValue</tt><big>(</big><em>item</em><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/controller/DataLinkController.html#DataLinkController.getValue"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.controller.DataLinkController.DataLinkController.getValue" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the value corresponding to key (item)</p>
-<p>arguments:
-item &#8211; key for internal dictionary</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>item</strong> (<em>object</em>) &#8211; key object in the square parenthesis</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">entry of the dictionary</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">object</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="pyfloribotvision.controller.DataLinkController.DataLinkController.setValue">
 <tt class="descname">setValue</tt><big>(</big><em>key</em>, <em>value</em><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/controller/DataLinkController.html#DataLinkController.setValue"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.controller.DataLinkController.DataLinkController.setValue" title="Permalink to this definition">¶</a></dt>
 <dd><p>set value to the internal dictionary</p>
-<p>arguments:
-key &#8211; key to set
-value &#8211; value to set for the given key</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>key</strong> &#8211; key to set</li>
+<li><strong>value</strong> &#8211; value to set for the given key</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 </dd></dl>
@@ -129,25 +190,56 @@ value &#8211; value to set for the given key</p>
 <dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
 <p>The PluginController handles loading and finding of the Plugins</p>
 <dl class="method">
+<dt id="pyfloribotvision.controller.PluginController.PluginController.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>pluginprefix</em><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/controller/PluginController.html#PluginController.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.controller.PluginController.PluginController.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initializes the PluginController and load its Plugins</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>pluginprefix</strong> &#8211; </td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
 <dt id="pyfloribotvision.controller.PluginController.PluginController.findPlugin">
 <tt class="descname">findPlugin</tt><big>(</big><em>item</em>, <em>_itemList=None</em><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/controller/PluginController.html#PluginController.findPlugin"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.controller.PluginController.PluginController.findPlugin" title="Permalink to this definition">¶</a></dt>
 <dd><p>Find a Plugin and returns it if found, otherwise None</p>
-<dl class="docutils">
-<dt>item &#8211; the Plugin to search for</dt>
-<dd>if item is an instance of str the format is according to a relative import
-in the plugin package. e.g.: &#8216;opencv.cvDrawContours&#8217;</dd>
-<dt>_itemList &#8211; only for recursion purpose, should not be used due to cache mechanisms</dt>
-<dd>(default: None)</dd>
-</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>item</strong> &#8211; the Plugin to search for
+if item is an instance of str the format is according to a relative import
+in the plugin package. e.g.: &#8216;opencv.cvDrawContours&#8217;</li>
+<li><strong>_itemList</strong> &#8211; only for recursion purpose, should not be used due to cache mechanisms
+(default: None)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="pyfloribotvision.controller.PluginController.PluginController.loadPlugins">
 <tt class="descname">loadPlugins</tt><big>(</big><em>module=None</em>, <em>forceReload=False</em><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/controller/PluginController.html#PluginController.loadPlugins"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.controller.PluginController.PluginController.loadPlugins" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load Plugins from &#8216;plugin&#8217; package and returns them as dict</p>
-<p>Keyword arguments:
-module &#8211; Python-Module to search in (default: None)
-forceReload &#8211; True forces reload of cached PluginList (default: False)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>module</strong> &#8211; Python-Module to search in (default: None)</li>
+<li><strong>forceReload</strong> &#8211; True forces reload of cached PluginList (default: False)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 </dd></dl>

@@ -68,7 +68,7 @@
     <span class="sd">&quot;&quot;&quot;The PluginController handles loading and finding of the Plugins&quot;&quot;&quot;</span>
 
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pluginprefix</span><span class="p">):</span>
+<div class="viewcode-block" id="PluginController.__init__"><a class="viewcode-back" href="../../../pyfloribotvision.controller.html#pyfloribotvision.controller.PluginController.PluginController.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pluginprefix</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Initializes the PluginController and load its Plugins&quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">log</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
@@ -80,7 +80,7 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_pluginList</span> <span class="o">=</span> <span class="bp">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_pluginListFlat</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
-
+</div>
 <div class="viewcode-block" id="PluginController.loadPlugins"><a class="viewcode-back" href="../../../pyfloribotvision.controller.html#pyfloribotvision.controller.PluginController.PluginController.loadPlugins">[docs]</a>    <span class="k">def</span> <span class="nf">loadPlugins</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">module</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">forceReload</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Load Plugins from &#39;plugin&#39; package and returns them as dict</span>

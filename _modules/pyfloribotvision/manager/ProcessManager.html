@@ -74,7 +74,7 @@
 
     <span class="n">_SECTIONNAME</span> <span class="o">=</span> <span class="s">&#39;GENERAL&#39;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pluginController</span><span class="p">,</span> <span class="n">configController</span><span class="p">,</span> <span class="n">dataLinkController</span><span class="p">):</span>
+<div class="viewcode-block" id="ProcessManager.__init__"><a class="viewcode-back" href="../../../pyfloribotvision.manager.html#pyfloribotvision.manager.ProcessManager.ProcessManager.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pluginController</span><span class="p">,</span> <span class="n">configController</span><span class="p">,</span> <span class="n">dataLinkController</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Gets the &#39;GENERAL&#39; section from the ConfigController and acquires and instantiate the</span>
 <span class="sd">        Plugins specified by the &#39;pluginSequence&#39; Option in the Configuration</span>
 
@@ -120,7 +120,7 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">deltaExecTime</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">deltaBypassTime</span> <span class="o">=</span> <span class="mi">0</span>
-
+</div>
 <div class="viewcode-block" id="ProcessManager.acquirePlugins"><a class="viewcode-back" href="../../../pyfloribotvision.manager.html#pyfloribotvision.manager.ProcessManager.ProcessManager.acquirePlugins">[docs]</a>    <span class="k">def</span> <span class="nf">acquirePlugins</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">generalConfigSection</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Acquire the Plugins specified by the &#39;pluginSequence&#39; Option in the Configuration given</span>
 <span class="sd">        by the dict generalConfigSection or internal config if generalConfigSection is None.</span>

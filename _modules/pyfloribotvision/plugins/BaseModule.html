@@ -69,7 +69,7 @@
     <span class="c"># if set in subclass, these options will be loaded automatically from baseclass</span>
     <span class="n">obligatoryConfigOptions</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="BaseModule.__init__"><a class="viewcode-back" href="../../../pyfloribotvision.plugins.html#pyfloribotvision.plugins.BaseModule.BaseModule.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">log</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&#39;logging started&#39;</span><span class="p">)</span>
 
@@ -84,7 +84,7 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">loadOptions</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">postOptActions</span><span class="p">()</span>
-
+</div>
 <div class="viewcode-block" id="BaseModule.loadOptions"><a class="viewcode-back" href="../../../pyfloribotvision.plugins.html#pyfloribotvision.plugins.BaseModule.BaseModule.loadOptions">[docs]</a>    <span class="k">def</span> <span class="nf">loadOptions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 
         <span class="c"># ToDo:</span>

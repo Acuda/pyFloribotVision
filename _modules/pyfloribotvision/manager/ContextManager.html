@@ -89,7 +89,7 @@
 
         <span class="k">return</span> <span class="n">cls</span><span class="o">.</span><span class="n">_instance</span><span class="p">[</span><span class="n">ctxName</span><span class="p">]</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">contextName</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+<div class="viewcode-block" id="ContextManager.__init__"><a class="viewcode-back" href="../../../pyfloribotvision.manager.html#pyfloribotvision.manager.ContextManager.ContextManager.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">contextName</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Initialize a new instance per given contextName. Every new init for a known contextName</span>
 <span class="sd">        returns previously initialized instance for corresponding context.</span>
 
@@ -99,7 +99,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">configController</span> <span class="o">=</span> <span class="bp">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">dataLinkController</span> <span class="o">=</span> <span class="bp">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">processManager</span> <span class="o">=</span> <span class="bp">None</span>
-
+</div>
 <div class="viewcode-block" id="ContextManager.initContext"><a class="viewcode-back" href="../../../pyfloribotvision.manager.html#pyfloribotvision.manager.ContextManager.ContextManager.initContext">[docs]</a>    <span class="k">def</span> <span class="nf">initContext</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">configFileName</span><span class="p">,</span> <span class="n">loggingConfigFileName</span><span class="p">,</span> <span class="n">pluginprefix</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Initializes the Controller, Manager and Logger for given configuration data.</span>
 

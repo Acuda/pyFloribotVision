@@ -59,6 +59,26 @@
 <dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
 <p>Application-Startup handling Startup-Parameters</p>
 <dl class="method">
+<dt id="pyfloribotvision.PyFloribotVision.PyFloribotVision.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>configFile</em>, <em>loggingConfig</em>, <em>relativePath=True</em><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/PyFloribotVision.html#PyFloribotVision.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.PyFloribotVision.PyFloribotVision.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Object initialization</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>configFile</strong> &#8211; path to the plugin config</li>
+<li><strong>loggingConfig</strong> &#8211; path to the logging config</li>
+<li><strong>relativePath</strong> &#8211; if given paths not relative this should be set to False
+(default <tt class="docutils literal"><span class="pre">True</span></tt>)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
 <dt id="pyfloribotvision.PyFloribotVision.PyFloribotVision.checkConfigExist">
 <tt class="descname">checkConfigExist</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/PyFloribotVision.html#PyFloribotVision.checkConfigExist"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.PyFloribotVision.PyFloribotVision.checkConfigExist" title="Permalink to this definition">¶</a></dt>
 <dd><p>checks if config files are exists and readable</p>
@@ -74,11 +94,16 @@
 <dt id="pyfloribotvision.PyFloribotVision.PyFloribotVision.initApplicationContext">
 <tt class="descname">initApplicationContext</tt><big>(</big><em>pluginprefix</em><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/PyFloribotVision.html#PyFloribotVision.initApplicationContext"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.PyFloribotVision.PyFloribotVision.initApplicationContext" title="Permalink to this definition">¶</a></dt>
 <dd><p>initializes the application context</p>
-<p>Arguments:
-pluginprefix &#8211; plugins should be relative under ./plugins if class invoked trough a</p>
-<blockquote>
-<div>startup-script or another application, the prefix have to point into the package where
-the plugin-package could be find.</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>pluginprefix</strong> &#8211; plugins should be relative under ./plugins if class invoked trough a
+startup-script or another application, the prefix have to point into the package where
+the plugin-package could be find</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 </dd></dl>
@@ -87,6 +112,18 @@ the plugin-package could be find.</div></blockquote>
 <dt id="pyfloribotvision.PyFloribotVision.main">
 <tt class="descclassname">pyfloribotvision.PyFloribotVision.</tt><tt class="descname">main</tt><big>(</big><em>name</em>, <em>argv</em><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/PyFloribotVision.html#main"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.PyFloribotVision.main" title="Permalink to this definition">¶</a></dt>
 <dd><p>Startup entry point, parsing commandline parameter</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>name</strong> &#8211; Name of the script which was executed</li>
+<li><strong>argv</strong> &#8211; the list of command line arguments passed to the Python script</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 </div>
