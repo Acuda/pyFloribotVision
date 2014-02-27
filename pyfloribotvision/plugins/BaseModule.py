@@ -32,42 +32,47 @@ class BaseModule(object):
                        type(self).__name__, self.logicSectionName)
 
         self.loadOptions()
-        self.postOptActions()
+
+        if self.activeModule:
+            self.postOptActions()
+        else:
+            self.log.warning('plugin <%s> for section <%s> NOT active! skipping postOptActions',
+                             self.logicSectionName, type(self).__module__)
 
     def loadOptions(self):
-
-        # ToDo:
-        # real autoload of values to real objects
-        # eg. inputImageName = asd should result in self.inputImageName = real image from ioContainer so that
-        # the step to get the image myself via self.ioContaint[self.inputImageName] is needless
-        # note: check if name is in ioContainer, if not plain values are applied
-        # eg. value = 1,2,3 -> 1,2,3 is not a key so 1,2,3 must be values (hard map to int possible?)
-        # furthermore a list should handled the same
-        #
-        # note: loadOptions is triggered only once... so there shoud be a nice way do bypass this...
-        # decorators? if source is ioContainer -> decorator for reallogation at access once per cycle
-        #
-        # TestFile is ConfInputParseSample
-
         self.log.debug('loadOptions invoked')
         for key, value in self.obligatoryConfigOptions.items():
+
+            if key not in self.sectionConfig:
+                self.log.error('option <%s> for section <%s> missing, requested for plugin <%s>, '
+                               'setting plugin for section as inactive', key, self.logicSectionName,
+                               type(self).__module__)
+                self.activeModule = False
+                continue
+
             confValue = self.sectionConfig[key]
 
             if value is not None and confValue not in value:
-                self.log.error('constrained option <%s> with invalid value <%s> found! valid values are <%s>',
-                               key, confValue, value)
+                self.log.error('constrained option <%s> with invalid value <%s> found! valid '
+                               'values are <%s>', key, confValue, value)
 
             self.__dict__[key] = self.sectionConfig[key]
-            self.log.debug('dynamic attribute <%s> with value <%s> created', key, self.__dict__[key])
+            self.log.debug('dynamic attribute <%s> with value <%s> created',
+                           key, self.__dict__[key])
+
 
     def timeBypassActions(self):
-        self.log.debug('function timeBypassActions() is not overloaded in subclass <%s>', type(self).__name__)
+        self.log.debug('function timeBypassActions() is not overloaded in subclass <%s>',
+                       type(self).__name__)
 
     def postOptActions(self):
-        self.log.debug('function externalCall() is not overloaded in subclass <%s>', type(self).__name__)
+        self.log.debug('function externalCall() is not overloaded in subclass <%s>',
+                       type(self).__name__)
 
     def externalCall(self):
-        self.log.warning('function externalCall() is not overloaded in subclass <%s>!', type(self).__name__)
+        self.log.warning('function externalCall() is not overloaded in subclass <%s>!',
+                         type(self).__name__)
 
     def preOptActions(self):
-        self.log.debug('function preOptActions() is not overloaded in subclass <%s>', type(self).__name__)
+        self.log.debug('function preOptActions() is not overloaded in subclass <%s>',
+                       type(self).__name__)
