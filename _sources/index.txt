@@ -6,16 +6,21 @@
 Welcome to pyFloribotVision's documentation!
 ============================================
 
-Contents:
+
+.. include:: includeme.rst
+
+Contents
+--------
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 4
 
-   includeme
+   
+   pyfloribotvision
 
 
 Indices and tables
-==================
+------------------
 
 * :ref:`genindex`
 * :ref:`modindex`
