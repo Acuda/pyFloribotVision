@@ -4,7 +4,7 @@ pyFloribotVision
 Project-Page
 ~~~~~~~~~~~~
 
-The GitHub project page is located at:: http://acuda.github.io/pyFloribotVision/
+The GitHub project page is located at: http://acuda.github.io/pyFloribotVision/
 
 General
 ~~~~~~~
