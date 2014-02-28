@@ -64,7 +64,7 @@ release = '0.1'
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
-exclude_patterns = []
+exclude_patterns = ['testings']
 
 # The reST default role (used for this markup: `text`) to use for all documents.
 #default_role = None
@@ -91,7 +91,14 @@ pygments_style = 'sphinx'
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
-html_theme = 'default'
+#html_theme = 'default'
+#html_theme = 'sphinxdoc'
+#html_theme = 'scrolls'
+html_theme = 'agogo'
+#html_theme = 'traditional'
+#html_theme = 'nature'
+#html_theme = 'haiku'
+#html_theme = 'pyramid'
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
@@ -171,7 +178,7 @@ htmlhelp_basename = 'pyFloribotVisiondoc'
 
 latex_elements = {
 # The paper size ('letterpaper' or 'a4paper').
-#'papersize': 'letterpaper',
+'papersize': 'a4paper',
 
 # The font size ('10pt', '11pt' or '12pt').
 #'pointsize': '10pt',
