@@ -18,7 +18,7 @@ class CVValueList(BaseModule):
                                'runCycle': ['oneShoot', 'loop']}
 
     def __init__(self, **kwargs):
-        super(type(self), self).__init__(**kwargs)
+        super(CVValueList, self).__init__(**kwargs)
         self.log = logging.getLogger(__name__)
         self.log.debug('logging started')
 

@@ -20,7 +20,7 @@ class CVBitwiseOr(BaseModule):
     obligatoryConfigOptions = {'inputImageName1': None, 'inputImageName2': None, 'outputImageName': None}
 
     def __init__(self, **kwargs):
-        super(type(self), self).__init__(**kwargs)
+        super(CVBitwiseOr, self).__init__(**kwargs)
         self.log = logging.getLogger(__name__)
         self.log.debug('logging started')
 

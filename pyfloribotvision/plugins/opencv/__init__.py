@@ -23,3 +23,4 @@ import DirectCVCamSource
 import DirectCVImageSource
 import FileCVImageOutput
 import ScreenCVImageOutput
+import ApplyColorMap

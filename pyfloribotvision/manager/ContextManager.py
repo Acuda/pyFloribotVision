@@ -63,7 +63,6 @@ class ContextManager(object):
         if self.pluginController is None:
             self.pluginController = PluginController(pluginprefix)
 
-
         if self.configController is None:
             self.configController = ConfigController(configFileName)
 

@@ -17,7 +17,7 @@ class CVTransformColor(BaseModule):
     obligatoryConfigOptions = {'inputImageName': None, 'outputImageName': None, 'colorCode': None}
 
     def __init__(self, **kwargs):
-        super(type(self), self).__init__(**kwargs)
+        super(CVTransformColor, self).__init__(**kwargs)
         self.log = logging.getLogger(__name__)
         self.log.debug('logging started')
 

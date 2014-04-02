@@ -17,7 +17,7 @@ class CVGaussBlur(BaseModule):
                                'sigmaX': None, 'sigmaY': None, 'kSize': None}
 
     def __init__(self, **kwargs):
-        super(type(self), self).__init__(**kwargs)
+        super(CVGaussBlur, self).__init__(**kwargs)
 
     def postOptActions(self):
         self.sigmaX = float(self.sigmaX.replace(' ', ''))

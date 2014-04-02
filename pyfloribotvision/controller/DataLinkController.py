@@ -55,3 +55,6 @@ class DataLinkController(object):
         :param value: value to set for the given key
         """
         self._data[key] = value
+
+    def keys(self):
+        return self._data.keys()

@@ -23,7 +23,7 @@ class CVDrawContours(BaseModule):
                                'inputContourName': None, 'inputContourIndexListName': None, 'contourColor': None}
 
     def __init__(self, **kwargs):
-        super(type(self), self).__init__(**kwargs)
+        super(CVDrawContours, self).__init__(**kwargs)
         self.log = logging.getLogger(__name__)
         self.log.debug('logging started')
 

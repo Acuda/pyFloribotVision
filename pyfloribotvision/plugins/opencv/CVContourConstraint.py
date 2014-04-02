@@ -19,7 +19,7 @@ class CVContourConstraint(BaseModule):
                                'contourFunctions': None, 'resultPlaceholderName': None, 'contourConstraint': None}
 
     def __init__(self, **kwargs):
-        super(type(self), self).__init__(**kwargs)
+        super(CVContourConstraint, self).__init__(**kwargs)
         self.log = logging.getLogger(__name__)
         self.log.debug('logging started')
 

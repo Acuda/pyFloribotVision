@@ -22,7 +22,7 @@ class FilePickleSegmentOutput(BaseModule):
                                'cacheCycles': None, 'skipDump': None}
 
     def __init__(self, **kwargs):
-        super(type(self), self).__init__(**kwargs)
+        super(FilePickleSegmentOutput, self).__init__(**kwargs)
         self.log = logging.getLogger(__name__)
         self.log.debug('logging started')
         self.timelist = list()
@@ -32,7 +32,6 @@ class FilePickleSegmentOutput(BaseModule):
         self.pickleCache = list()
         self.dataFile = open(self.outputFile, 'wb')
         self.skipDump = True if self.skipDump == 'True' else False
-
 
     def externalCall(self):
         self.cacheCycles = int(self.cacheCycles)
@@ -58,8 +57,6 @@ class FilePickleSegmentOutput(BaseModule):
             contidx = self.ioContainer[self.inputContourIndexListName]
         else:
             contidx = range(len(cont))
-
-        self.ioContainer[self.inputImageName]
 
         #create
 

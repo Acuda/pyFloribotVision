@@ -9,7 +9,7 @@
 # USE AT YOUR OWN RISK.
 
 
-from BaseModule import BaseModule
+from .. BaseModule import BaseModule
 import cv2
 from freenect import sync_get_depth as get_depth, sync_get_video as get_video
 import numpy as np
@@ -21,7 +21,7 @@ class DirectKinectSource(BaseModule):
 
 
     def __init__(self, **kwargs):
-        super(type(self), self).__init__(**kwargs)
+        super(DirectKinectSource, self).__init__(**kwargs)
         self.log = logging.getLogger(__name__)
         self.log.debug('logging started')
 
