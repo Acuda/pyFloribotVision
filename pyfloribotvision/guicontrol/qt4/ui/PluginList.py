@@ -8,4 +8,13 @@
 # EVENT WILL THE AUTHOR BE HELD LIABLE FOR ANY DAMAGES ARISING FROM THE USE OF THIS SOURCE-CODE. 
 # USE AT YOUR OWN RISK.
 
-import DirectKinectSource
+
+from PyQt4 import QtGui
+from Ui_PluginList import Ui_PluginList as UiBase
+
+
+class PluginList(QtGui.QWidget, UiBase):
+
+    def __init__(self):
+        QtGui.QWidget.__init__(self)
+        self.setupUi(self)

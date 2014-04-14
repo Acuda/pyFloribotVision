@@ -8,12 +8,19 @@
 # THE AUTHOR BE HELD LIABLE FOR ANY DAMAGES ARISING FROM THE USE OF THIS SOURCE-CODE. USE AT YOUR OWN RISK.
 
 
+from pyfloribotvision.types.NameType import NameType
+from pyfloribotvision.types.IntType import IntType
 from .. BaseModule import BaseModule
 import cv2
 import logging
 from cv2 import cv
 
 class DirectCVCamSource(BaseModule):
+
+    configParameter = [
+        NameType('outputImageName', output=True),
+        IntType('camId'), IntType('frameWidth'), IntType('frameHeight'),
+    ]
 
     obligatoryConfigOptions = {'camId': None, 'outputImageName': None, 'frameWidth': None,
                                'frameHeight': None}
@@ -29,14 +36,14 @@ class DirectCVCamSource(BaseModule):
         pass
 
     def initCam(self):
-        self.frameWidth = float(self.frameWidth.replace(' ', ''))
-        self.frameHeight = float(self.frameHeight.replace(' ', ''))
+        #self.frameWidth = float(self.frameWidth.replace(' ', ''))
+        #self.frameHeight = float(self.frameHeight.replace(' ', ''))
 
-        self.cam = cv2.VideoCapture(self.camId)
+        self.cam = cv2.VideoCapture(self.camId.value)
         if self.frameWidth > 0:
-            self.cam.set(cv.CV_CAP_PROP_FRAME_WIDTH, self.frameWidth)
+            self.cam.set(cv.CV_CAP_PROP_FRAME_WIDTH, self.frameWidth.value)
         if self.frameHeight > 0:
-            self.cam.set(cv.CV_CAP_PROP_FRAME_HEIGHT, self.frameHeight)
+            self.cam.set(cv.CV_CAP_PROP_FRAME_HEIGHT, self.frameHeight.value)
 
 
 
@@ -44,11 +51,13 @@ class DirectCVCamSource(BaseModule):
         self.cam.read()
 
     def postOptActions(self):
-        self.camId = int(self.camId.replace(' ', ''))
+        #self.camId = int(self.camId.replace(' ', ''))
+        pass
 
     def externalCall(self):
         i, image = self.cam.read()
         self.ioContainer[self.outputImageName] = image.copy()
+        self.outputImageName.data = image.copy()
 
 
 

@@ -13,6 +13,7 @@ from __future__ import print_function
 import getopt
 import sys
 from pyfloribotvision.manager.ContextManager import ContextManager
+#from GuiThread import GuiThread
 import cProfile
 
 class PyFloribotVision(object):
@@ -91,12 +92,17 @@ def main(name, argv):
 
     helptext = '\n'.join([x.strip() for x in helptext.splitlines()])
 
+    print(argv)
+    if '--' in argv:
+        argv.remove('--')
+    print(argv)
     try:
-        opts, args = getopt.getopt(argv, 'hr:c:l:', ['configfile=', 'loggingfile='])
+        opts, args = getopt.getopt(argv, 'hgr:c:l:', ['configfile=', 'loggingfile='])
     except getopt.GetoptError:
         print(helptext)
         sys.exit(2)
 
+    print(opts)
     for opt, arg in opts:
         if opt == '-h':
             print(helptext)
@@ -107,8 +113,17 @@ def main(name, argv):
             defaultLoggingConfig = arg
         elif opt in ("-r", "--relativepath"):
             relativePath = bool(arg)
+        elif opt in ("-g"):
+            from PyQt4 import QtGui
+            from pyfloribotvision.guicontrol.qt4.ui.MainWindow import MainWindow
+            app = QtGui.QApplication(sys.argv)
+            mainWindow = MainWindow()
+            mainWindow.show()
+
+
 
     try:
+        print('startup')
         pfv = PyFloribotVision(defaultConfigFile, defaultLoggingConfig, relativePath)
         pfv.executeApplicationContext()
     except IOError as e:

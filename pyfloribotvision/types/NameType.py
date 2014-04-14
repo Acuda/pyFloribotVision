@@ -8,4 +8,9 @@
 # EVENT WILL THE AUTHOR BE HELD LIABLE FOR ANY DAMAGES ARISING FROM THE USE OF THIS SOURCE-CODE. 
 # USE AT YOUR OWN RISK.
 
-import DirectKinectSource
+
+from StringType import StringType
+
+class NameType(StringType):
+    def __init__(self, name, **kwargs):
+        super(NameType, self).__init__(name, **kwargs)

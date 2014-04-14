@@ -8,4 +8,10 @@
 # EVENT WILL THE AUTHOR BE HELD LIABLE FOR ANY DAMAGES ARISING FROM THE USE OF THIS SOURCE-CODE. 
 # USE AT YOUR OWN RISK.
 
-import DirectKinectSource
+
+from BaseNestedListType import BaseNestedListType
+
+class StringNestedListType(BaseNestedListType):
+    def __init__(self, name=None, value=None):
+        self.itemtype = str
+        super(StringNestedListType, self).__init__(name, value)

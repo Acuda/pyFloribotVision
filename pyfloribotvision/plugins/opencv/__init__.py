@@ -24,3 +24,7 @@ import DirectCVImageSource
 import FileCVImageOutput
 import ScreenCVImageOutput
 import ApplyColorMap
+import CreateContourBinaryImage
+import Moments
+import HuMoments
+import Watershed

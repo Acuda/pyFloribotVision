@@ -4,18 +4,30 @@
 #Author: Björn Eistel
 #Contact: <eistel@gmail.com>
 #
-# THIS SOURCE-CODE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED. IN NO EVENT WILL 
-# THE AUTHOR BE HELD LIABLE FOR ANY DAMAGES ARISING FROM THE USE OF THIS SOURCE-CODE. USE AT YOUR OWN RISK.
+# THIS SOURCE-CODE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED. IN NO
+# EVENT WILL THE AUTHOR BE HELD LIABLE FOR ANY DAMAGES ARISING FROM THE USE OF THIS SOURCE-CODE.
+# USE AT YOUR OWN RISK.
 
 
+from pyfloribotvision.types.StringType import StringType
+from pyfloribotvision.types.NameType import NameType
+from pyfloribotvision.types.IntListType import IntListType
 from .. BaseModule import BaseModule
 import cv2
 import logging
 
 
 class CVMorphologyEx(BaseModule):
-    obligatoryConfigOptions = {'cvOperation': None, 'inputImageName': None, 'inputElementName': None,
-                               'outputImageName': None}
+
+    configParameter = [
+        StringType('cvOperation'),
+        NameType('inputImageName', input=True),
+        NameType('inputElementName', input=True),
+        NameType('outputImageName', output=True),
+    ]
+
+    obligatoryConfigOptions = {'cvOperation': None, 'inputImageName': None,
+                               'inputElementName': None, 'outputImageName': None}
 
     def __init__(self, **kwargs):
         super(CVMorphologyEx, self).__init__(**kwargs)
@@ -23,17 +35,17 @@ class CVMorphologyEx(BaseModule):
         self.log.debug('logging started')
 
     def postOptActions(self):
-        if not hasattr(cv2, self.cvOperation):
-            self.log.error('unknown cvOperation <%s>, deactivating module <%s>', self.cvOperation, self.logicSectionName)
+        if not hasattr(cv2, self.cvOperation.value):
+            self.log.error('unknown cvOperation <%s>, deactivating module <%s>', self.cvOperation,
+                           self.logicSectionName)
             self.activeModule = False
         else:
-            self.cvOperation = getattr(cv2, self.cvOperation)
+            self.cvOperation.data = getattr(cv2, self.cvOperation.value)
 
 
     def externalCall(self):
-
-        image = cv2.morphologyEx(self.ioContainer[self.inputImageName], self.cvOperation,
-                                 self.ioContainer[self.inputElementName])
-        self.ioContainer[self.outputImageName] = image
+        image = cv2.morphologyEx(self.inputImageName.data, self.cvOperation.data,
+                                 self.inputElementName.data)
+        self.outputImageName.data = image
 
 

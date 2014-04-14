@@ -11,13 +11,14 @@
 
 from .. BaseModule import BaseModule
 import cv2
-from freenect import sync_get_depth as get_depth, sync_get_video as get_video
+import freenect
 import numpy as np
 import logging
 
 
-class DirectKinectSource(BaseModule):
-    obligatoryConfigOptions = {}
+class DirectKinectSource(BaseModule): #
+    obligatoryConfigOptions = {'camId': None, 'outputImageName': None, 'outputDepthImageName': None,
+                               'outputDepthRawName': None, 'reverseDepthVisualisation': None}
 
 
     def __init__(self, **kwargs):
@@ -25,23 +26,40 @@ class DirectKinectSource(BaseModule):
         self.log = logging.getLogger(__name__)
         self.log.debug('logging started')
 
-
-        self.initCam()
-
     def postOptActions(self):
 
-        vid, _ = get_video()
-        vid = np.array(vid)
-        vid = cv2.cvtColor(vid, cv2.COLOR_RGB2BGR)
+        #from config
+        self.reverseDepthVisualisation = self.reverseDepthVisualisation == str(True)
+        self.camId = int(self.camId)
 
-        self.ioContainer['vid'] = vid.copy()
+    def externalCall(self):
+        #try:
+        imageData, _ = freenect.sync_get_video(index=self.camId)
+        depthDataRaw, _ = freenect.sync_get_depth()
+        #except TypeError:
+        #    self.log.error('asd')
 
-        dep, _ = get_depth()
-        fdep = np.float32(dep)
-        fdep = 255 - np.uint8(cv2.normalize(fdep, fdep, 0, 255, cv2.NORM_MINMAX))
+        imageData = np.array(imageData)
+        imageData = cv2.cvtColor(imageData, cv2.COLOR_RGB2BGR)
 
-        self.ioContainer['dep3'] = fdep.copy()
+        self.ioContainer[self.outputImageName] = imageData.copy()
+
+        depthDataImage = np.float32(depthDataRaw)
 
 
-    def initCam(self):
-        pass
+
+        #depthDataImage = (depthDataImage)/2047*256
+        #depthDataImage = np.uint8(depthDataImage)
+        #depthDataImage = np.float32(depthDataImage) * 255 / 130
+        depthDataImage = np.uint8(depthDataImage)
+
+        #depthDataImage = depthDataImage * 255 / 130
+
+        #depthDataImage = np.uint8(cv2.normalize(depthDataImage, depthDataImage, 0, 255, cv2.NORM_MINMAX))
+
+        if self.reverseDepthVisualisation:
+            depthDataImage = 255 - depthDataImage
+
+        self.ioContainer[self.outputDepthImageName] = depthDataImage.copy()
+        self.ioContainer[self.outputDepthRawName] = depthDataRaw.copy()
+

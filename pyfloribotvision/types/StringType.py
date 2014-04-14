@@ -8,4 +8,10 @@
 # EVENT WILL THE AUTHOR BE HELD LIABLE FOR ANY DAMAGES ARISING FROM THE USE OF THIS SOURCE-CODE. 
 # USE AT YOUR OWN RISK.
 
-import DirectKinectSource
+
+from BaseType import BaseType
+
+class StringType(BaseType):
+    def __init__(self, name, **kwargs):
+        super(StringType, self).__init__(name, **kwargs)
+        self.type = str

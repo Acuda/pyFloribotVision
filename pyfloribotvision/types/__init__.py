@@ -8,4 +8,9 @@
 # EVENT WILL THE AUTHOR BE HELD LIABLE FOR ANY DAMAGES ARISING FROM THE USE OF THIS SOURCE-CODE. 
 # USE AT YOUR OWN RISK.
 
-import DirectKinectSource
+import FloatType
+import IntListType
+import IntType
+import NameType
+import StringListType
+import StringType

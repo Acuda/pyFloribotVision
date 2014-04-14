@@ -9,14 +9,20 @@
 # USE AT YOUR OWN RISK.
 
 
+from pyfloribotvision.types.BoolType import BoolType
+from pyfloribotvision.types.IntType import IntType
 from .. BaseModule import BaseModule
 import time
 import logging
 
 
 class DeltaTimePerFrame(BaseModule):
-    obligatoryConfigOptions = {'displayTime': ['True', 'False'],
-                               'startFrame': None, 'stopFrame': None}
+
+    configParameter = [
+        BoolType('displayTime'),
+        IntType('startFrame'),
+        IntType('stopFrame'),
+    ]
 
     def __init__(self, **kwargs):
         super(DeltaTimePerFrame, self).__init__(**kwargs)
@@ -24,25 +30,19 @@ class DeltaTimePerFrame(BaseModule):
         self.log.debug('logging started')
 
     def postOptActions(self):
-        #plugin specific
         self.lastCallTime = time.time()
         self.timeList = list()
         self.frameCount = 1
-
-        #from config
-        self.displayTime = self.displayTime == str(True)
-        self.stopFrame = int(self.stopFrame)
-        self.startFrame = int(self.startFrame)
 
     def externalCall(self):
         curtime = time.time()
         difftime = curtime - self.lastCallTime
         self.lastCallTime = curtime
 
-        if self.startFrame <= self.frameCount <= self.stopFrame:
+        if self.startFrame.value <= self.frameCount <= self.stopFrame.value:
             self.timeList.append(difftime)
 
-            if self.displayTime:
+            if self.displayTime.value:
                 print 'Frame: <%d>' % self.frameCount,
                 self.printTime(difftime)
         self.frameCount += 1

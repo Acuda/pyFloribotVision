@@ -8,11 +8,18 @@
 # THE AUTHOR BE HELD LIABLE FOR ANY DAMAGES ARISING FROM THE USE OF THIS SOURCE-CODE. USE AT YOUR OWN RISK.
 
 
+from pyfloribotvision.types.NameType import NameType
+from pyfloribotvision.types.StringType import StringType
 from .. BaseModule import BaseModule
 import cv2
 import logging
 
 class CVTransformColor(BaseModule):
+
+    configParameter = [
+        NameType('inputImageName', input=True), NameType('outputImageName', output=True),
+        StringType('colorCode'),
+    ]
 
     obligatoryConfigOptions = {'inputImageName': None, 'outputImageName': None, 'colorCode': None}
 
@@ -23,14 +30,17 @@ class CVTransformColor(BaseModule):
 
 
     def postOptActions(self):
-        self.colorCode = self.colorCode.upper()
+        self.colorCode.value = self.colorCode.value.upper()
 
-        if not hasattr(cv2, self.colorCode):
-            self.log.error('unknown colorCode <%s>, detaching module <%s>', self.colorCode, self.logicSectionName)
+        if not hasattr(cv2, self.colorCode.value):
+            self.log.error('unknown colorCode <%s>, detaching module <%s>', self.colorCode.value,
+                           self.logicSectionName)
             self.activeModule = False
 
 
     def externalCall(self):
-        image = self.ioContainer[self.inputImageName]
-        image = cv2.cvtColor(image, getattr(cv2, self.colorCode))
-        self.ioContainer[self.outputImageName] = image
+        #image = self.ioContainer[self.inputImageName]
+        image = self.inputImageName.data
+        image = cv2.cvtColor(image, getattr(cv2, self.colorCode.value))
+        self.outputImageName.data = image
+        #self.ioContainer[self.outputImageName] = image

@@ -9,6 +9,8 @@
 # USE AT YOUR OWN RISK.
 
 
+from pyfloribotvision.types.BaseType import BaseType
+
 class DataLinkController(object):
     """Class for data-exchange between the plugins"""
     def __init__(self):
@@ -23,13 +25,13 @@ class DataLinkController(object):
         :returns: entry of the dictionary
         :rtype: object
         """
-        return self[item]
+        return self[self._getValue(item)]
 
     def __contains__(self, item):
         """magic member for use with "in" keyword
 
         :param item: key object on the left side of in keyword"""
-        return item in self._data
+        return self._getValue(item) in self._data
 
     def __getitem__(self, item):
         """magic member for use with square parenthesis as getter
@@ -39,14 +41,14 @@ class DataLinkController(object):
         :returns: entry of the dictionary
         :rtype: object
         """
-        return self._data[item]
+        return self._data[self._getValue(item)]
 
     def setValue(self, key, value):
         """set value to the internal dictionary
 
         :param key: key to set
         :param value: value to set for the given key"""
-        self[key] = value
+        self[self._getValue(key)] = value
 
     def __setitem__(self, key, value):
         """magic member for use with square parenthesis as getter
@@ -54,7 +56,10 @@ class DataLinkController(object):
         :param key: key to set
         :param value: value to set for the given key
         """
-        self._data[key] = value
+        self._data[self._getValue(key)] = value
 
     def keys(self):
         return self._data.keys()
+
+    def _getValue(self, item):
+        return item.value if issubclass(item.__class__, BaseType) else item

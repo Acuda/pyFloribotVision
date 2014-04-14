@@ -13,6 +13,7 @@ import utils
 from pyfloribotvision.controller.PluginController import PluginController
 from pyfloribotvision.controller.ConfigController import ConfigController
 from pyfloribotvision.controller.DataLinkController import DataLinkController
+from pyfloribotvision.types.BaseType import BaseType
 from pyfloribotvision.dto.PluginDTO import PluginDTO
 import time
 import cv2
@@ -90,7 +91,11 @@ class ProcessManager(object):
             if not section.startswith('!'):
                 pdto = PluginDTO()
                 pdto.sectionName = section
-                pdto.modulePath = self.configController.getOption(section, 'pluginPath')
+                try:
+                    pdto.modulePath = self.configController.getOption(section, 'pluginPath')
+                except AssertionError as e:
+                    self.log.critical('asd %s', e.message)
+
                 pdto.classObject = self.pluginController.findPlugin(pdto.modulePath)
                 if pdto.classObject is None:
                     continue
@@ -120,6 +125,7 @@ class ProcessManager(object):
                                                    logicSectionName=pdto.sectionName,
                                                    ioContainer=self.dataLinkController)
 
+
     def executePlugins(self, pluginDtoList=None):
         if pluginDtoList is None:
             pluginDtoList = self.pluginDtoList
@@ -130,7 +136,13 @@ class ProcessManager(object):
         runOnce = self.ownConfig['runOnce'] == str(True)
         exitKey = self.ownConfig['exitKey']
 
+        self.log.debug('')
+        self.log.debug('=' * 30 + ' REGISTER DEPENDENCY ' + '=' * 30)
+        self.registerDependency()
+
+        self.log.debug('')
         self.log.debug('=' * 30 + ' RUN ACTIVE MODULES ' + '=' * 30)
+
 
         isFirstRun = True
         while True:
@@ -188,3 +200,58 @@ class ProcessManager(object):
 
             moduleFunction = getattr(pdtoObj, methodName)
             moduleFunction()
+
+    def registerDependency(self, pluginDtoList=None):
+
+        if pluginDtoList is None:
+            pluginDtoList = self.pluginDtoList
+        assert isinstance(pluginDtoList, list)
+
+        inputParameter = dict()
+        outputParameter = dict()
+
+
+        self.log.debug('')
+        self.log.debug('-' * 30 + ' PreLoad I/O-Parameter ' + '-' * 30)
+        for pdto in pluginDtoList:
+            self.log.debug('.' * 20 + ' <%s> ' + '.' * 20, pdto.instanceObject.logicSectionName)
+            assert isinstance(pdto, PluginDTO)
+            baseTypeParameter = [x for x in pdto.instanceObject.sectionConfig.values()
+                                 if issubclass(type(x), BaseType) and (x.output or x.input)]
+
+            for x in baseTypeParameter:
+                if x.input:
+                    self.log.debug('input found:')
+                    self.attachToDependencyIOList(x, inputParameter)
+
+                if x.output:
+                    self.log.debug('output found:')
+                    self.attachToDependencyIOList(x, outputParameter)
+
+        self.log.debug('')
+        self.log.debug('-' * 30 + ' Wire I/O-Callbacks for Parameter-Types ' + '-' * 30)
+
+        for oname, opara in outputParameter.items():
+            if oname in inputParameter:
+                for output in opara:
+                    for ipara in inputParameter[oname]:
+                        self.log.debug('parameter <%s> for value <%s> to <%s> on value <%s> ',
+                                       output.name, output.value, ipara.value, ipara.name)
+                        output.registerDataUpdate(ipara.dataUpdateCallback)
+
+
+    def attachToDependencyIOList(self, para, dstList):
+
+
+        valueList = para.value
+        if not isinstance(valueList, list):
+            valueList = [valueList]
+
+        for value in valueList:
+            if value not in dstList:
+                dstList[value] = list()
+
+            self.log.debug('parameter <%s> for value <%s>', para.name, value)
+            dstList[value].append(para)
+
+

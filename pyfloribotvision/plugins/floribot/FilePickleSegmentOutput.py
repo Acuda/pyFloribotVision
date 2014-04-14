@@ -4,10 +4,15 @@
 #Author: Björn Eistel
 #Contact: <eistel@gmail.com>
 #
-# THIS SOURCE-CODE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED. IN NO EVENT WILL 
-# THE AUTHOR BE HELD LIABLE FOR ANY DAMAGES ARISING FROM THE USE OF THIS SOURCE-CODE. USE AT YOUR OWN RISK.
+# THIS SOURCE-CODE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED. IN NO
+# EVENT WILL THE AUTHOR BE HELD LIABLE FOR ANY DAMAGES ARISING FROM THE USE OF THIS SOURCE-CODE.
+# USE AT YOUR OWN RISK.
 
 
+from pyfloribotvision.types.StringType import StringType
+from pyfloribotvision.types.NameType import NameType
+from pyfloribotvision.types.BoolType import BoolType
+from pyfloribotvision.types.IntType import IntType
 from .. BaseModule import BaseModule
 import cv2
 import logging
@@ -15,10 +20,23 @@ import pickle
 import numpy as np
 import time
 
-
+#FIXME: broken due to changes on plugin configuration
 class FilePickleSegmentOutput(BaseModule):
-    obligatoryConfigOptions = {'inputImageName': None, 'inputContourName': None, 'inputContourIndexListName': None,
-                               'outputFile': None, 'overwriteExistingFile': None, 'createFilePath': None,
+
+    configParameter = [
+        NameType('inputImageName'),
+        NameType('inputContourName'),
+        NameType('inputContourIndexListName'),
+        StringType('outputFile'),
+        BoolType('overwriteExistingFile'),
+        BoolType('createFilePath'),
+        IntType('cacheCycles'),
+        BoolType('skipDump'),
+    ]
+
+    obligatoryConfigOptions = {'inputImageName': None, 'inputContourName': None,
+                               'inputContourIndexListName': None, 'outputFile': None,
+                               'overwriteExistingFile': None, 'createFilePath': None,
                                'cacheCycles': None, 'skipDump': None}
 
     def __init__(self, **kwargs):
@@ -30,15 +48,14 @@ class FilePickleSegmentOutput(BaseModule):
     def postOptActions(self):
         self.pickleCycleCntr = 0
         self.pickleCache = list()
-        self.dataFile = open(self.outputFile, 'wb')
-        self.skipDump = True if self.skipDump == 'True' else False
+        self.dataFile = open(self.outputFile.value, 'wb')
+        #self.skipDump = True if self.skipDump == 'True' else False
 
     def externalCall(self):
-        self.cacheCycles = int(self.cacheCycles)
 
         self.appendOutputDataToCache()
 
-        if self.cacheCycles is not -1 and self.pickleCycleCntr >= self.cacheCycles:
+        if self.cacheCycles.value is not -1 and self.pickleCycleCntr >= self.cacheCycles.value:
             self.writeCacheToFile()
             self.pickleCycleCntr = -1
         self.pickleCycleCntr += 1
@@ -53,12 +70,14 @@ class FilePickleSegmentOutput(BaseModule):
     def appendOutputDataToCache(self):
         image = self.ioContainer[self.inputImageName]
         cont = self.ioContainer[self.inputContourName]
-        if self.inputContourIndexListName in self.ioContainer:
+        if self.inputContourIndexListName.value in self.ioContainer:
             contidx = self.ioContainer[self.inputContourIndexListName]
         else:
             contidx = range(len(cont))
 
         #create
+
+        #ToDo: Now there is a new Plugin called 'CreateContourBinaryImage'. Use it!
 
         shape = list(image.shape[0:2])
         #shape = list(image.shape)
@@ -116,7 +135,7 @@ class FilePickleSegmentOutput(BaseModule):
         cnt = 2
         cntmax = len(self.pickleCache)
         objectDumpNames = ['raw-image', 'segments']
-        self.log.debug('dump %d frames to file <%s>', cntmax, self.outputFile)
+        self.log.debug('dump %d frames to file <%s>', cntmax, self.outputFile.value)
         for data in self.pickleCache:
             stime = time.time()
             self.log.debug('Frame %d of %d (%s)', cnt / 2, cntmax / 2, objectDumpNames[cnt % 2])

@@ -36,6 +36,7 @@ class ApplyColorMap(BaseModule):
 
 
     def externalCall(self):
-        image = self.ioContainer[self.inputImageName]
-        image = cv2.applyColorMap(image, getattr(cv2, self.colorMapCode))
-        self.ioContainer[self.outputImageName] = image
+        if self.inputImageName in self.ioContainer:
+            image = self.ioContainer[self.inputImageName]
+            image = cv2.applyColorMap(image, getattr(cv2, self.colorMapCode))
+            self.ioContainer[self.outputImageName] = image

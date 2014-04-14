@@ -1,0 +1,29 @@
+* {
+    color: rgb(255, 230, 180, 250);
+    background-color: rgb(40, 40, 40);
+    alternate-background-color: rgba(255, 255, 255, 100);
+    /*font: 11pt "Terminus";*/
+    border: 1px solid rgba(255, 170, 100, 70);
+}
+
+QPushButton {
+    background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0 rgba(255, 255, 255, 100), stop:0.1 rgba(255, 255, 255, 70), stop:0.5 rgba(255, 255, 255, 40), stop:0.8 rgba(255, 255, 255, 40), stop:1 rgba(255, 255, 255, 250));
+    border-color: rgba(255, 255, 255, 100);
+}
+
+QLineEdit {
+    background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0 rgba(255, 255, 255, 125), stop:0.15 rgba(255, 255, 255, 20), stop:0.3 rgba(255, 255, 255, 20), stop:0.9 rgba(255, 255, 255, 35), stop:1 rgba(255, 255, 255, 125));
+    border-color: rgba(255, 255, 255, 100);
+
+    font-size: 13pt;
+
+}
+
+QPushButton:hover {
+    background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0 rgba(255, 170, 0, 100), stop:0.1 rgba(255, 170, 0, 70), stop:0.5 rgba(255, 170, 0, 40), stop:0.8 rgba(255, 170, 0, 40), stop:1 rgba(255, 170, 0, 250));
+}
+
+QAbstractItemView {
+    /*background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0.6 rgba(255,255,255,10), stop:1 rgba(255, 255, 255, 20));*/
+    background-color: rgba(255, 170, 100, 20);
+}

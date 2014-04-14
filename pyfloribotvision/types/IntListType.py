@@ -8,4 +8,11 @@
 # EVENT WILL THE AUTHOR BE HELD LIABLE FOR ANY DAMAGES ARISING FROM THE USE OF THIS SOURCE-CODE. 
 # USE AT YOUR OWN RISK.
 
-import DirectKinectSource
+
+from BaseListType import BaseListType
+
+class IntListType(BaseListType):
+    def __init__(self, name=None, **kwargs):
+        super(IntListType, self).__init__(name, **kwargs)
+        self.itemtype = int
+
