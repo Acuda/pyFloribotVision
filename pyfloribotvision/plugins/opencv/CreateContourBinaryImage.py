@@ -9,9 +9,7 @@
 # USE AT YOUR OWN RISK.
 
 
-from pyfloribotvision.types.StringType import StringType
 from pyfloribotvision.types.NameType import NameType
-from pyfloribotvision.types.IntListType import IntListType
 from ..BaseModule import BaseModule
 import cv2
 import logging
@@ -26,9 +24,6 @@ class CreateContourBinaryImage(BaseModule):
         NameType('inputContourIndexListName', input=True),
         NameType('outputImageName', output=True),
     ]
-
-    obligatoryConfigOptions = {'inputImageName': None, 'inputContourName': None,
-                               'inputContourIndexListName': None, 'outputImageName': None}
 
     def __init__(self, **kwargs):
         super(CreateContourBinaryImage, self).__init__(**kwargs)

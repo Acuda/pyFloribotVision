@@ -21,13 +21,10 @@ class CVTransformColor(BaseModule):
         StringType('colorCode'),
     ]
 
-    obligatoryConfigOptions = {'inputImageName': None, 'outputImageName': None, 'colorCode': None}
-
     def __init__(self, **kwargs):
         super(CVTransformColor, self).__init__(**kwargs)
         self.log = logging.getLogger(__name__)
         self.log.debug('logging started')
-
 
     def postOptActions(self):
         self.colorCode.value = self.colorCode.value.upper()
@@ -36,7 +33,6 @@ class CVTransformColor(BaseModule):
             self.log.error('unknown colorCode <%s>, detaching module <%s>', self.colorCode.value,
                            self.logicSectionName)
             self.activeModule = False
-
 
     def externalCall(self):
         #image = self.ioContainer[self.inputImageName]

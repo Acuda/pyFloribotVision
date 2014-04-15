@@ -9,9 +9,7 @@
 # USE AT YOUR OWN RISK.
 
 
-from pyfloribotvision.types.StringType import StringType
 from pyfloribotvision.types.NameType import NameType
-from pyfloribotvision.types.IntListType import IntListType
 from ..BaseModule import BaseModule
 import cv2
 import logging
@@ -23,9 +21,6 @@ class Moments(BaseModule):
         NameType('inputImageName', input=True),
         NameType('outputMomentListName', output=True),
     ]
-
-    obligatoryConfigOptions = {'inputImageName': None, 'outputMomentListName': None}
-
 
     def __init__(self, **kwargs):
         super(Moments, self).__init__(**kwargs)

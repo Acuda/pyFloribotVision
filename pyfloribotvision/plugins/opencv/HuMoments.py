@@ -24,8 +24,6 @@ class HuMoments(BaseModule):
         NameType('outputHuMomentListName', output=True),
     ]
 
-    obligatoryConfigOptions = {'inputMomentListName': None, 'outputHuMomentListName': None}
-
     def __init__(self, **kwargs):
         super(HuMoments, self).__init__(**kwargs)
         self.log = logging.getLogger(__name__)

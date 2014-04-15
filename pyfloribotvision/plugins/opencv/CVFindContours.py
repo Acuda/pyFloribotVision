@@ -11,7 +11,6 @@
 
 from pyfloribotvision.types.StringType import StringType
 from pyfloribotvision.types.NameType import NameType
-from pyfloribotvision.types.IntListType import IntListType
 from .. BaseModule import BaseModule
 import cv2
 import logging
@@ -26,9 +25,6 @@ class CVFindContours(BaseModule):
         StringType('cvMode'),
         StringType('cvMethod'),
     ]
-
-    obligatoryConfigOptions = {'inputImageName': None, 'outputContourName': None,
-                               'outputHierarchyName': None, 'cvMode': None, 'cvMethod': None}
 
     def __init__(self, **kwargs):
         super(CVFindContours, self).__init__(**kwargs)

@@ -13,7 +13,6 @@ from pyfloribotvision.types.NameType import NameType
 from pyfloribotvision.types.NameListType import NameListType
 from .. BaseModule import BaseModule
 import cv2
-import numpy as np
 import logging
 
 
@@ -24,9 +23,6 @@ class CVInRange(BaseModule):
         NameListType('cvValueListNames', input=True),
         NameListType('outputMaskListNames', output=True),
     ]
-
-    obligatoryConfigOptions = {'inputImageName': None, 'outputMaskListNames': None,
-                               'cvValueListNames': None}
 
     def __init__(self, **kwargs):
         super(CVInRange, self).__init__(**kwargs)

@@ -9,11 +9,8 @@
 # USE AT YOUR OWN RISK.
 
 
-from pyfloribotvision.types.StringType import StringType
 from pyfloribotvision.types.NameType import NameType
-from pyfloribotvision.types.IntListType import IntListType
 from .. BaseModule import BaseModule
-#from BaseModule import BaseModule
 import cv2
 import numpy as np
 import logging
@@ -26,9 +23,6 @@ class CVBitwiseOr(BaseModule):
         NameType('inputImageName2', input=True),
         NameType('outputImageName', output=True),
     ]
-
-    obligatoryConfigOptions = {'inputImageName1': None, 'inputImageName2': None,
-                               'outputImageName': None}
 
     def __init__(self, **kwargs):
         super(CVBitwiseOr, self).__init__(**kwargs)

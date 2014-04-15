@@ -11,7 +11,6 @@
 
 from pyfloribotvision.types.StringType import StringType
 from pyfloribotvision.types.NameType import NameType
-from pyfloribotvision.types.IntListType import IntListType
 from .. BaseModule import BaseModule
 import cv2
 import logging
@@ -25,9 +24,6 @@ class CVMorphologyEx(BaseModule):
         NameType('inputElementName', input=True),
         NameType('outputImageName', output=True),
     ]
-
-    obligatoryConfigOptions = {'cvOperation': None, 'inputImageName': None,
-                               'inputElementName': None, 'outputImageName': None}
 
     def __init__(self, **kwargs):
         super(CVMorphologyEx, self).__init__(**kwargs)

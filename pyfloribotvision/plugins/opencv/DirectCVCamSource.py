@@ -22,9 +22,6 @@ class DirectCVCamSource(BaseModule):
         IntType('camId'), IntType('frameWidth'), IntType('frameHeight'),
     ]
 
-    obligatoryConfigOptions = {'camId': None, 'outputImageName': None, 'frameWidth': None,
-                               'frameHeight': None}
-
     def __init__(self, **kwargs):
         super(DirectCVCamSource, self).__init__(**kwargs)
         self.log = logging.getLogger(__name__)
@@ -36,23 +33,14 @@ class DirectCVCamSource(BaseModule):
         pass
 
     def initCam(self):
-        #self.frameWidth = float(self.frameWidth.replace(' ', ''))
-        #self.frameHeight = float(self.frameHeight.replace(' ', ''))
-
         self.cam = cv2.VideoCapture(self.camId.value)
         if self.frameWidth > 0:
             self.cam.set(cv.CV_CAP_PROP_FRAME_WIDTH, self.frameWidth.value)
         if self.frameHeight > 0:
             self.cam.set(cv.CV_CAP_PROP_FRAME_HEIGHT, self.frameHeight.value)
 
-
-
     def timeBypassActions(self):
         self.cam.read()
-
-    def postOptActions(self):
-        #self.camId = int(self.camId.replace(' ', ''))
-        pass
 
     def externalCall(self):
         i, image = self.cam.read()

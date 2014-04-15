@@ -9,12 +9,9 @@
 # USE AT YOUR OWN RISK.
 
 
-from pyfloribotvision.types.StringType import StringType
 from pyfloribotvision.types.NameType import NameType
-from pyfloribotvision.types.IntListType import IntListType
 from .. BaseModule import BaseModule
 import cv2
-from cv2 import cv
 import numpy as np
 import logging
 
@@ -28,11 +25,6 @@ class Watershed(BaseModule):
         NameType('outputImage', output=True),
         NameType('inputDistanceElementName', input=True),
     ]
-
-    obligatoryConfigOptions = {'inputImage': None, 'inputImageBackground': None,
-                               'inputImageForeground': None, 'outputImage': None,
-                               'inputDistanceElementName': None}
-
 
     def __init__(self, **kwargs):
         super(Watershed, self).__init__(**kwargs)

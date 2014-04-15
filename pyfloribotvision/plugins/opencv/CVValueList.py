@@ -8,7 +8,6 @@
 # THE AUTHOR BE HELD LIABLE FOR ANY DAMAGES ARISING FROM THE USE OF THIS SOURCE-CODE. USE AT YOUR OWN RISK.
 
 
-from pyfloribotvision.types.NameType import NameType
 from pyfloribotvision.types.StringType import StringType
 from pyfloribotvision.types.IntNestedListType import IntNestedListType
 from pyfloribotvision.types.NameListType import NameListType
@@ -22,9 +21,6 @@ class CVValueList(BaseModule):
         IntNestedListType('inputValues'),
         NameListType('outputNames', output=True), StringType('runCycle'),
     ]
-
-    obligatoryConfigOptions = {'inputValues': None, 'inputType': None, 'outputNames': None,
-                               'runCycle': ['oneShoot', 'loop']}
 
     def __init__(self, **kwargs):
         super(CVValueList, self).__init__(**kwargs)

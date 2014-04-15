@@ -19,13 +19,11 @@ import cv2
 class CVGaussBlur(BaseModule):
 
     configParameter = [
-        NameType('inputImageName', input=True), NameType('outputImageName', output=True),
+        NameType('inputImageName', input=True),
+        NameType('outputImageName', output=True),
         FloatType('sigmaX'), FloatType('sigmaY'),
         IntType('kSize'),
     ]
-
-    obligatoryConfigOptions = {'inputImageName': None, 'outputImageName': None,
-                               'sigmaX': None, 'sigmaY': None, 'kSize': None}
 
     def __init__(self, **kwargs):
         super(CVGaussBlur, self).__init__(**kwargs)

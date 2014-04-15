@@ -9,12 +9,21 @@
 # USE AT YOUR OWN RISK.
 
 
+from pyfloribotvision.types.NameType import NameType
+from pyfloribotvision.types.StringType import StringType
 from .. BaseModule import BaseModule
 import cv2
 import logging
 
 
 class ApplyColorMap(BaseModule):
+
+    configParameter = [
+        NameType('inputImageName', input=True),
+        NameType('outputImageName', output=True),
+        StringType('colorMapCode'),
+    ]
+
     obligatoryConfigOptions = {'inputImageName': None, 'outputImageName': None,
                                'colorMapCode': None}
 
@@ -26,17 +35,16 @@ class ApplyColorMap(BaseModule):
 
 
     def postOptActions(self):
-        self.colorMapCode = self.colorMapCode.upper()
+        self.colorMapCode.value = self.colorMapCode.value.upper()
 
-        if not hasattr(cv2, self.colorMapCode):
-            self.log.error('unknown colorMapCode <%s>, detaching module <%s>', self.colorMapCode,
-                           self.logicSectionName)
+        if not hasattr(cv2, self.colorMapCode.value):
+            self.log.error('unknown colorMapCode <%s>, detaching module <%s>',
+                           self.colorMapCode.value, self.logicSectionName)
             self.activeModule = False
 
 
 
     def externalCall(self):
-        if self.inputImageName in self.ioContainer:
-            image = self.ioContainer[self.inputImageName]
-            image = cv2.applyColorMap(image, getattr(cv2, self.colorMapCode))
-            self.ioContainer[self.outputImageName] = image
+        self.outputImageName.data = cv2.applyColorMap(self.inputImageName.data,
+                                                     getattr(cv2, self.colorMapCode.value))
+

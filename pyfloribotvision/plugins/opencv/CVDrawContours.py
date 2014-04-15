@@ -9,13 +9,11 @@
 # USE AT YOUR OWN RISK.
 
 
-from pyfloribotvision.types.StringType import StringType
 from pyfloribotvision.types.NameType import NameType
 from pyfloribotvision.types.IntListType import IntListType
 from .. BaseModule import BaseModule
 import cv2
 import logging
-from utils import *
 
 
 class CVDrawContours(BaseModule):
@@ -30,10 +28,6 @@ class CVDrawContours(BaseModule):
         NameType('inputContourIndexListName', input=True),
         IntListType('contourColor'),
     ]
-
-    obligatoryConfigOptions = {'inputImageName': None, 'outputImageName': None,
-                               'inputContourName': None, 'inputContourIndexListName': None,
-                               'contourColor': None}
 
     def __init__(self, **kwargs):
         super(CVDrawContours, self).__init__(**kwargs)

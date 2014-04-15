@@ -28,10 +28,6 @@ class CVContourConstraint(BaseModule):
         StringListType('contourConstraint'),
     ]
 
-    obligatoryConfigOptions = {'inputContourName': None, 'outputContourIndexList': None,
-                               'contourFunctions': None, 'resultPlaceholderName': None,
-                               'contourConstraint': None}
-
     def __init__(self, **kwargs):
         super(CVContourConstraint, self).__init__(**kwargs)
         self.log = logging.getLogger(__name__)

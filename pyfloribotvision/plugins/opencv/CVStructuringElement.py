@@ -25,8 +25,6 @@ class CVStructuringElement(BaseModule):
         IntListType('cvKSize'),
     ]
 
-    obligatoryConfigOptions = {'outputElementName': None, 'cvShape': None, 'cvKSize': None}
-
     def __init__(self, **kwargs):
         super(CVStructuringElement, self).__init__(**kwargs)
         self.log = logging.getLogger(__name__)
