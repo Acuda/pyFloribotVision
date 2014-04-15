@@ -20,24 +20,19 @@ import pickle
 import numpy as np
 import time
 
-#FIXME: broken due to changes on plugin configuration
+
 class FilePickleSegmentOutput(BaseModule):
 
     configParameter = [
-        NameType('inputImageName'),
-        NameType('inputContourName'),
-        NameType('inputContourIndexListName'),
+        NameType('inputImageName', input=True),
+        NameType('inputContourName', input=True),
+        NameType('inputContourIndexListName', input=True),
         StringType('outputFile'),
         BoolType('overwriteExistingFile'),
         BoolType('createFilePath'),
         IntType('cacheCycles'),
         BoolType('skipDump'),
     ]
-
-    obligatoryConfigOptions = {'inputImageName': None, 'inputContourName': None,
-                               'inputContourIndexListName': None, 'outputFile': None,
-                               'overwriteExistingFile': None, 'createFilePath': None,
-                               'cacheCycles': None, 'skipDump': None}
 
     def __init__(self, **kwargs):
         super(FilePickleSegmentOutput, self).__init__(**kwargs)
@@ -46,13 +41,15 @@ class FilePickleSegmentOutput(BaseModule):
         self.timelist = list()
 
     def postOptActions(self):
+        self.log.debug('postOptActions called')
         self.pickleCycleCntr = 0
         self.pickleCache = list()
+        self.log.debug('open dataFile at <%s> in mode "write binary"', self.outputFile.value)
         self.dataFile = open(self.outputFile.value, 'wb')
-        #self.skipDump = True if self.skipDump == 'True' else False
 
     def externalCall(self):
 
+        self.log.debug('externalCall called')
         self.appendOutputDataToCache()
 
         if self.cacheCycles.value is not -1 and self.pickleCycleCntr >= self.cacheCycles.value:
@@ -64,14 +61,16 @@ class FilePickleSegmentOutput(BaseModule):
             print sum(self.timelist) / float(len(self.timelist))
 
     def preOptActions(self):
+        self.log.debug('preOptActions called')
         self.writeCacheToFile()
         self.dataFile.close()
 
     def appendOutputDataToCache(self):
-        image = self.ioContainer[self.inputImageName]
-        cont = self.ioContainer[self.inputContourName]
-        if self.inputContourIndexListName.value in self.ioContainer:
-            contidx = self.ioContainer[self.inputContourIndexListName]
+        image = self.inputImageName.data
+        cont = self.inputContourName.data
+
+        if len(self.inputContourIndexListName.data) > 0:
+            contidx = self.inputContourIndexListName.data
         else:
             contidx = range(len(cont))
 
@@ -93,25 +92,7 @@ class FilePickleSegmentOutput(BaseModule):
         #each found segment in image
         for segmentid, segmentcnt in enumerate(ccimage):
 
-            segmentObjPoints = list()
             pixlist = np.nonzero(segmentcnt)
-
-
-            #for xk, y in enumerate(pixlist[0]):
-            #    x = pixlist[1][xk]
-
-                #segmentObjPoints.append([x, y])
-                #segmentObjPoints.append([x, y, image[y][x][2], image[y][x][1], image[y][x][0]])
-
-                # little speedup (~0.8ns each access),
-                # for accessing 750.000 values (500 x 500 pixels each with BGR-values)
-                # the improvement is round about 0.6s per frame!
-
-                #segmentObjPoints.append([np.array([x, y], np.uint16),
-                #                         np.array([image.item(y, x, 2), image.item(y, x, 1), image.item(y, x, 0)],
-                #                                  np.uint8)])
-
-            #singleImageDump.append([cont[contidx[segmentid]], segmentObjPoints])
             singleImageDump.append([cont[contidx[segmentid]], pixlist])
 
         #if len(singleImageDump) > 0:
@@ -120,17 +101,12 @@ class FilePickleSegmentOutput(BaseModule):
 
 
     def writeCacheToFile(self):
-        if self.skipDump:
+        self.log.debug('check if skipDump <%s>', self.skipDump.value)
+        if self.skipDump.value:
             self.log.debug('writeCacheToFile method is skipped')
             return
 
         #ToDo: create directory if not exist and allowed
-        #print 'chache length', len(self.pickleCache)
-
-        #directory = os.path.dirname(self.outputFile)
-
-        #if not os.path.exists(directory):
-        #    os.makedirs(directory)
 
         cnt = 2
         cntmax = len(self.pickleCache)
