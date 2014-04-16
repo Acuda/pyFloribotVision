@@ -33,112 +33,23 @@ class PluginController(object):
         self._pluginList = None
         self._pluginListFlat = dict()
 
-    '''
-    def loadPlugins(self, module=None, forceReload=False):
-        """
-        Load Plugins from 'plugin' package and returns them as dict
-
-        :param module: Python-Module to search in (default: None)
-        :param forceReload: True forces reload of cached PluginList (default: False)
-        """
-
-        self.log.debug('loadPlugins invoked for module: <%s>' % module)
-
-        if self._pluginList is not None and not forceReload:
-            self.log.debug('existing pluginList or reload forced, returning previously loaded list')
-            return self._pluginList
-
-        if module is None:
-            try:
-                self.log.debug('try import plugindir: <%s>' % self._plugindir)
-                if '.' in self._plugindir:
-                    plist = self._plugindir.split('.', 2)
-                    module = __import__(plist[0])
-                    for m in plist[1:]:
-                        module = getattr(module, m)
-                else:
-                    module = __import__(self._plugindir)
-            except ImportError as ex:
-                self.log.error('fail to import PLUGINDIR %s',ex.message)
-                return dict()
-
-        self.log.debug(module.__name__ + str(dir(module)))
-
-        pluginNameList = [x for x in dir(module) if not x.startswith('_')]
-        pluginList = dict()
-
-        for pluginName in pluginNameList:
-            #first level, get submodule or class
-            anonobj = getattr(module, pluginName)
-
-            #python-way: instead of checking treat as class and handle error...
-            try:
-                objclass = getattr(anonobj, pluginName)
-                pluginList[pluginName] = objclass
-                self.log.debug('CLASS <%s> found in <%s>' % (objclass.__name__, module.__name__))
-            except AttributeError:
-                #not a class - assuming a submodule
-                self.log.debug('MODULE <%s> found' % anonobj.__name__)
-                pluginList[pluginName] = self.loadPlugins(anonobj)
-
-        return pluginList
-    '''
-
-    def findPlugin(self, item, _itemList=None):
+    def loadPluginClass(self, item):
         pkgd = '.'  # delimiter for packages
 
         pkgpath = self._plugindir + pkgd + item
         cname = item.split(pkgd)[-1:][0]
 
-        print 'TRY IMPORT FOR'
-        print '\t', pkgpath
-        print '\t', cname
+        self.log.debug('try import for <%s> in package <%s>', pkgpath, cname)
 
-        imod = import_module(pkgpath)
+        try:
+            imod = import_module(pkgpath)
+        except ImportError as ex:
+            self.log.critical('import for <%s>', pkgpath, exc_info=1)
+            return None
 
         if hasattr(imod, cname):
             return getattr(imod, cname)
+        else:
+            self.log.error('loading of class <%s> in package <%s>', cname, pkgpath)
 
         return None
-
-    '''
-    def findPlugin(self, item, _itemList=None):
-        """
-        Find a Plugin and returns it if found, otherwise None
-
-        :param item: the Plugin to search for
-            if item is an instance of str the format is according to a relative import
-            in the plugin package. e.g.: 'opencv.cvDrawContours'
-        :param _itemList: only for recursion purpose, should not be used due to cache mechanisms
-            (default: None)
-        """
-
-        if item in self._pluginListFlat.keys():
-            return self._pluginListFlat[item]
-
-        if _itemList is None:
-            _itemList = self._pluginList
-        if _itemList is None:
-            self._pluginList = self.loadPlugins()
-            _itemList = self._pluginList
-
-        if isinstance(item, str):
-            itemListKeys = _itemList.keys()
-
-            if item in itemListKeys and not isinstance(_itemList[item], dict):
-                self._pluginListFlat[_itemList[item].__module__.split('.', 1)[1]] = _itemList[item]
-                return _itemList[item]
-
-            if '.' in item:
-                prefix, suffix = item.split('.', 1)
-                if prefix in itemListKeys and isinstance(_itemList[prefix], dict):
-                    return self.findPlugin(suffix, _itemList[prefix])
-
-        return None
-    '''
-
-    def __contains__(self, item):
-        """magic member for use with "in" keyword
-
-        :param item : key object on the left side of in keyword"""
-        return self.findPlugin(item) is not None
