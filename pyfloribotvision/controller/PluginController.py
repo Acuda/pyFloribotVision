@@ -34,6 +34,14 @@ class PluginController(object):
         self._pluginListFlat = dict()
 
     def loadPluginClass(self, item):
+        """
+        Finds a PluginClass by Path and returns it if found, otherwise None
+
+        :param item: the Plugin to search for
+            str of the format according to a relative import in the plugin package.
+            e.g.: 'opencv.cvDrawContours'
+        """
+
         pkgd = '.'  # delimiter for packages
 
         pkgpath = self._plugindir + pkgd + item
