@@ -96,7 +96,7 @@ class ProcessManager(object):
                 except AssertionError as e:
                     self.log.critical('asd %s', e.message)
 
-                pdto.classObject = self.pluginController.findPlugin(pdto.modulePath)
+                pdto.classObject = self.pluginController.loadPluginClass(pdto.modulePath)
                 if pdto.classObject is None:
                     continue
                 pluginDtoList.append(pdto)
