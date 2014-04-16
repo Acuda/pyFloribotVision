@@ -43,7 +43,7 @@ class PluginController(object):
 
         try:
             imod = import_module(pkgpath)
-        except ImportError as ex:
+        except ImportError:
             self.log.critical('import for <%s>', pkgpath, exc_info=1)
             return None
 
