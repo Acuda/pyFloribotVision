@@ -11,8 +11,8 @@
 from pyfloribotvision.types.NameType import NameType
 from pyfloribotvision.types.IntType import IntType
 from .. BaseModule import BaseModule
-import cv2
 import logging
+import cv2
 from cv2 import cv
 
 class DirectCVCamSource(BaseModule):
@@ -44,7 +44,6 @@ class DirectCVCamSource(BaseModule):
 
     def externalCall(self):
         i, image = self.cam.read()
-        self.ioContainer[self.outputImageName] = image.copy()
         self.outputImageName.data = image.copy()
 
 

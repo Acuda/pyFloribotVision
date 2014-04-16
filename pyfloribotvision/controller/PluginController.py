@@ -9,8 +9,8 @@
 # USE AT YOUR OWN RISK.
 
 
-from __future__ import print_function
 import logging
+from importlib import import_module
 
 
 class PluginController(object):
@@ -33,6 +33,7 @@ class PluginController(object):
         self._pluginList = None
         self._pluginListFlat = dict()
 
+    '''
     def loadPlugins(self, module=None, forceReload=False):
         """
         Load Plugins from 'plugin' package and returns them as dict
@@ -81,7 +82,26 @@ class PluginController(object):
                 pluginList[pluginName] = self.loadPlugins(anonobj)
 
         return pluginList
+    '''
 
+    def findPlugin(self, item, _itemList=None):
+        pkgd = '.'  # delimiter for packages
+
+        pkgpath = self._plugindir + pkgd + item
+        cname = item.split(pkgd)[-1:][0]
+
+        print 'TRY IMPORT FOR'
+        print '\t', pkgpath
+        print '\t', cname
+
+        imod = import_module(pkgpath)
+
+        if hasattr(imod, cname):
+            return getattr(imod, cname)
+
+        return None
+
+    '''
     def findPlugin(self, item, _itemList=None):
         """
         Find a Plugin and returns it if found, otherwise None
@@ -115,6 +135,7 @@ class PluginController(object):
                     return self.findPlugin(suffix, _itemList[prefix])
 
         return None
+    '''
 
     def __contains__(self, item):
         """magic member for use with "in" keyword

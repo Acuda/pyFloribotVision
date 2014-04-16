@@ -29,9 +29,7 @@ class CVGaussBlur(BaseModule):
         super(CVGaussBlur, self).__init__(**kwargs)
 
     def externalCall(self):
-        #image = self.ioContainer[self.inputImageName]
         image = self.inputImageName.data
         image = cv2.GaussianBlur(image, (self.kSize.value, self.kSize.value),
                                  sigmaX=self.sigmaX.value, sigmaY=self.sigmaY.value)
         self.outputImageName.data = image
-        #self.ioContainer[self.outputImageName] = image

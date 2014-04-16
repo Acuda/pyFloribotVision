@@ -16,10 +16,9 @@ import numpy as np
 import logging
 
 
-class DirectKinectSource(BaseModule): #
+class DirectKinectSource(BaseModule):
     obligatoryConfigOptions = {'camId': None, 'outputImageName': None, 'outputDepthImageName': None,
                                'outputDepthRawName': None, 'reverseDepthVisualisation': None}
-
 
     def __init__(self, **kwargs):
         super(DirectKinectSource, self).__init__(**kwargs)
@@ -27,7 +26,6 @@ class DirectKinectSource(BaseModule): #
         self.log.debug('logging started')
 
     def postOptActions(self):
-
         #from config
         self.reverseDepthVisualisation = self.reverseDepthVisualisation == str(True)
         self.camId = int(self.camId)

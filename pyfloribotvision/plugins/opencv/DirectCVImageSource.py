@@ -12,9 +12,8 @@
 from pyfloribotvision.types.StringType import StringType
 from pyfloribotvision.types.NameType import NameType
 from .. BaseModule import BaseModule
-import cv2
 import logging
-
+import cv2
 
 class DirectCVImageSource(BaseModule):
 
