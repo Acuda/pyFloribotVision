@@ -7,4 +7,5 @@
    pyfloribotvision
    startup
    testings
+   unittesting
    utils

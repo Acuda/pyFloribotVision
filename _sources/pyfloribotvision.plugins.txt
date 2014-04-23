@@ -23,6 +23,7 @@ Subpackages
 .. toctree::
 
     pyfloribotvision.plugins.floribot
+    pyfloribotvision.plugins.kinect
     pyfloribotvision.plugins.opencv
     pyfloribotvision.plugins.python
     pyfloribotvision.plugins.ros

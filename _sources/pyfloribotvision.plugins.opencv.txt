@@ -9,6 +9,14 @@ opencv Package
     :undoc-members:
     :show-inheritance:
 
+:mod:`ApplyColorMap` Module
+---------------------------
+
+.. automodule:: pyfloribotvision.plugins.opencv.ApplyColorMap
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 :mod:`CVBitwiseOr` Module
 -------------------------
 
@@ -89,6 +97,14 @@ opencv Package
     :undoc-members:
     :show-inheritance:
 
+:mod:`CreateContourBinaryImage` Module
+--------------------------------------
+
+.. automodule:: pyfloribotvision.plugins.opencv.CreateContourBinaryImage
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 :mod:`DirectCVCamSource` Module
 -------------------------------
 
@@ -113,10 +129,34 @@ opencv Package
     :undoc-members:
     :show-inheritance:
 
+:mod:`HuMoments` Module
+-----------------------
+
+.. automodule:: pyfloribotvision.plugins.opencv.HuMoments
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+:mod:`Moments` Module
+---------------------
+
+.. automodule:: pyfloribotvision.plugins.opencv.Moments
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 :mod:`ScreenCVImageOutput` Module
 ---------------------------------
 
 .. automodule:: pyfloribotvision.plugins.opencv.ScreenCVImageOutput
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+:mod:`Watershed` Module
+-----------------------
+
+.. automodule:: pyfloribotvision.plugins.opencv.Watershed
     :members:
     :undoc-members:
     :show-inheritance:

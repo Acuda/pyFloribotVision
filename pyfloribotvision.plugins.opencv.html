@@ -28,7 +28,7 @@
     <link rel="top" title="pyFloribotVision 0.1 documentation" href="index.html" />
     <link rel="up" title="plugins Package" href="pyfloribotvision.plugins.html" />
     <link rel="next" title="python Package" href="pyfloribotvision.plugins.python.html" />
-    <link rel="prev" title="floribot Package" href="pyfloribotvision.plugins.floribot.html" /> 
+    <link rel="prev" title="kinect Package" href="pyfloribotvision.plugins.kinect.html" /> 
   </head>
   <body>
     <div class="header-wrapper">
@@ -36,7 +36,7 @@
         <div class="headertitle"><a
           href="index.html">pyFloribotVision 0.1 documentation</a></div>
         <div class="rel">
-          <a href="pyfloribotvision.plugins.floribot.html" title="floribot Package"
+          <a href="pyfloribotvision.plugins.kinect.html" title="kinect Package"
              accesskey="P">previous</a> |
           <a href="pyfloribotvision.plugins.python.html" title="python Package"
              accesskey="N">next</a> |
@@ -61,6 +61,40 @@
 <div class="section" id="id1">
 <h2><tt class="xref py py-mod docutils literal"><span class="pre">opencv</span></tt> Package<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <span class="target" id="module-pyfloribotvision.plugins.opencv"></span></div>
+<div class="section" id="module-pyfloribotvision.plugins.opencv.ApplyColorMap">
+<span id="applycolormap-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">ApplyColorMap</span></tt> Module<a class="headerlink" href="#module-pyfloribotvision.plugins.opencv.ApplyColorMap" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="pyfloribotvision.plugins.opencv.ApplyColorMap.ApplyColorMap">
+<em class="property">class </em><tt class="descclassname">pyfloribotvision.plugins.opencv.ApplyColorMap.</tt><tt class="descname">ApplyColorMap</tt><big>(</big><em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/plugins/opencv/ApplyColorMap.html#ApplyColorMap"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.plugins.opencv.ApplyColorMap.ApplyColorMap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="pyfloribotvision.plugins.html#pyfloribotvision.plugins.BaseModule.BaseModule" title="pyfloribotvision.plugins.BaseModule.BaseModule"><tt class="xref py py-class docutils literal"><span class="pre">pyfloribotvision.plugins.BaseModule.BaseModule</span></tt></a></p>
+<dl class="method">
+<dt id="pyfloribotvision.plugins.opencv.ApplyColorMap.ApplyColorMap.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/plugins/opencv/ApplyColorMap.html#ApplyColorMap.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.plugins.opencv.ApplyColorMap.ApplyColorMap.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pyfloribotvision.plugins.opencv.ApplyColorMap.ApplyColorMap.configParameter">
+<tt class="descname">configParameter</tt><em class="property"> = [&lt;pyfloribotvision.types.NameType.NameType object at 0x28bc750&gt;, &lt;pyfloribotvision.types.NameType.NameType object at 0x28bca90&gt;, &lt;pyfloribotvision.types.StringType.StringType object at 0x28bcad0&gt;]</em><a class="headerlink" href="#pyfloribotvision.plugins.opencv.ApplyColorMap.ApplyColorMap.configParameter" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pyfloribotvision.plugins.opencv.ApplyColorMap.ApplyColorMap.externalCall">
+<tt class="descname">externalCall</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/plugins/opencv/ApplyColorMap.html#ApplyColorMap.externalCall"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.plugins.opencv.ApplyColorMap.ApplyColorMap.externalCall" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pyfloribotvision.plugins.opencv.ApplyColorMap.ApplyColorMap.obligatoryConfigOptions">
+<tt class="descname">obligatoryConfigOptions</tt><em class="property"> = {'inputImageName': None, 'outputImageName': None, 'colorMapCode': None}</em><a class="headerlink" href="#pyfloribotvision.plugins.opencv.ApplyColorMap.ApplyColorMap.obligatoryConfigOptions" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pyfloribotvision.plugins.opencv.ApplyColorMap.ApplyColorMap.postOptActions">
+<tt class="descname">postOptActions</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/plugins/opencv/ApplyColorMap.html#ApplyColorMap.postOptActions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.plugins.opencv.ApplyColorMap.ApplyColorMap.postOptActions" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
 <div class="section" id="module-pyfloribotvision.plugins.opencv.CVBitwiseOr">
 <span id="cvbitwiseor-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">CVBitwiseOr</span></tt> Module<a class="headerlink" href="#module-pyfloribotvision.plugins.opencv.CVBitwiseOr" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
@@ -72,14 +106,14 @@
 <tt class="descname">__init__</tt><big>(</big><em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/plugins/opencv/CVBitwiseOr.html#CVBitwiseOr.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.plugins.opencv.CVBitwiseOr.CVBitwiseOr.__init__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<dl class="attribute">
+<dt id="pyfloribotvision.plugins.opencv.CVBitwiseOr.CVBitwiseOr.configParameter">
+<tt class="descname">configParameter</tt><em class="property"> = [&lt;pyfloribotvision.types.NameType.NameType object at 0x2968710&gt;, &lt;pyfloribotvision.types.NameType.NameType object at 0x2968850&gt;, &lt;pyfloribotvision.types.NameType.NameType object at 0x2968250&gt;]</em><a class="headerlink" href="#pyfloribotvision.plugins.opencv.CVBitwiseOr.CVBitwiseOr.configParameter" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="method">
 <dt id="pyfloribotvision.plugins.opencv.CVBitwiseOr.CVBitwiseOr.externalCall">
 <tt class="descname">externalCall</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/plugins/opencv/CVBitwiseOr.html#CVBitwiseOr.externalCall"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.plugins.opencv.CVBitwiseOr.CVBitwiseOr.externalCall" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="pyfloribotvision.plugins.opencv.CVBitwiseOr.CVBitwiseOr.obligatoryConfigOptions">
-<tt class="descname">obligatoryConfigOptions</tt><em class="property"> = {'outputImageName': None, 'inputImageName1': None, 'inputImageName2': None}</em><a class="headerlink" href="#pyfloribotvision.plugins.opencv.CVBitwiseOr.CVBitwiseOr.obligatoryConfigOptions" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -96,14 +130,14 @@
 <tt class="descname">__init__</tt><big>(</big><em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/plugins/opencv/CVContourConstraint.html#CVContourConstraint.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.plugins.opencv.CVContourConstraint.CVContourConstraint.__init__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<dl class="attribute">
+<dt id="pyfloribotvision.plugins.opencv.CVContourConstraint.CVContourConstraint.configParameter">
+<tt class="descname">configParameter</tt><em class="property"> = [&lt;pyfloribotvision.types.NameType.NameType object at 0x28d58d0&gt;, &lt;pyfloribotvision.types.NameType.NameType object at 0x1ed3690&gt;, &lt;pyfloribotvision.types.StringListType.StringListType object at 0x1ed36d0&gt;, &lt;pyfloribotvision.types.StringType.StringType object at 0x1ed3750&gt;, &lt;pyfloribotvision.types.StringListType.StringListType object at 0x1ed30d0&gt;]</em><a class="headerlink" href="#pyfloribotvision.plugins.opencv.CVContourConstraint.CVContourConstraint.configParameter" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="method">
 <dt id="pyfloribotvision.plugins.opencv.CVContourConstraint.CVContourConstraint.externalCall">
 <tt class="descname">externalCall</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/plugins/opencv/CVContourConstraint.html#CVContourConstraint.externalCall"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.plugins.opencv.CVContourConstraint.CVContourConstraint.externalCall" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="pyfloribotvision.plugins.opencv.CVContourConstraint.CVContourConstraint.obligatoryConfigOptions">
-<tt class="descname">obligatoryConfigOptions</tt><em class="property"> = {'contourFunctions': None, 'resultPlaceholderName': None, 'inputContourName': None, 'contourConstraint': None, 'outputContourIndexList': None}</em><a class="headerlink" href="#pyfloribotvision.plugins.opencv.CVContourConstraint.CVContourConstraint.obligatoryConfigOptions" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -126,19 +160,14 @@
 <tt class="descname">__init__</tt><big>(</big><em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/plugins/opencv/CVDrawContours.html#CVDrawContours.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.plugins.opencv.CVDrawContours.CVDrawContours.__init__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<dl class="attribute">
+<dt id="pyfloribotvision.plugins.opencv.CVDrawContours.CVDrawContours.configParameter">
+<tt class="descname">configParameter</tt><em class="property"> = [&lt;pyfloribotvision.types.NameType.NameType object at 0x2c40f10&gt;, &lt;pyfloribotvision.types.NameType.NameType object at 0x2c40f50&gt;, &lt;pyfloribotvision.types.NameType.NameType object at 0x2c40fd0&gt;, &lt;pyfloribotvision.types.NameType.NameType object at 0x2c40550&gt;, &lt;pyfloribotvision.types.IntListType.IntListType object at 0x2c40d10&gt;]</em><a class="headerlink" href="#pyfloribotvision.plugins.opencv.CVDrawContours.CVDrawContours.configParameter" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="method">
 <dt id="pyfloribotvision.plugins.opencv.CVDrawContours.CVDrawContours.externalCall">
 <tt class="descname">externalCall</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/plugins/opencv/CVDrawContours.html#CVDrawContours.externalCall"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.plugins.opencv.CVDrawContours.CVDrawContours.externalCall" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="pyfloribotvision.plugins.opencv.CVDrawContours.CVDrawContours.obligatoryConfigOptions">
-<tt class="descname">obligatoryConfigOptions</tt><em class="property"> = {'inputImageName': None, 'inputContourIndexListName': None, 'inputContourName': None, 'outputImageName': None, 'contourColor': None}</em><a class="headerlink" href="#pyfloribotvision.plugins.opencv.CVDrawContours.CVDrawContours.obligatoryConfigOptions" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="pyfloribotvision.plugins.opencv.CVDrawContours.CVDrawContours.postOptActions">
-<tt class="descname">postOptActions</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/plugins/opencv/CVDrawContours.html#CVDrawContours.postOptActions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.plugins.opencv.CVDrawContours.CVDrawContours.postOptActions" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -155,14 +184,14 @@
 <tt class="descname">__init__</tt><big>(</big><em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/plugins/opencv/CVFindContours.html#CVFindContours.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.plugins.opencv.CVFindContours.CVFindContours.__init__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<dl class="attribute">
+<dt id="pyfloribotvision.plugins.opencv.CVFindContours.CVFindContours.configParameter">
+<tt class="descname">configParameter</tt><em class="property"> = [&lt;pyfloribotvision.types.NameType.NameType object at 0x1ed3510&gt;, &lt;pyfloribotvision.types.NameType.NameType object at 0x1ed3050&gt;, &lt;pyfloribotvision.types.NameType.NameType object at 0x1ed31d0&gt;, &lt;pyfloribotvision.types.StringType.StringType object at 0x1ed3090&gt;, &lt;pyfloribotvision.types.StringType.StringType object at 0x1ed35d0&gt;]</em><a class="headerlink" href="#pyfloribotvision.plugins.opencv.CVFindContours.CVFindContours.configParameter" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="method">
 <dt id="pyfloribotvision.plugins.opencv.CVFindContours.CVFindContours.externalCall">
 <tt class="descname">externalCall</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/plugins/opencv/CVFindContours.html#CVFindContours.externalCall"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.plugins.opencv.CVFindContours.CVFindContours.externalCall" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="pyfloribotvision.plugins.opencv.CVFindContours.CVFindContours.obligatoryConfigOptions">
-<tt class="descname">obligatoryConfigOptions</tt><em class="property"> = {'inputImageName': None, 'cvMode': None, 'outputHierarchyName': None, 'cvMethod': None, 'outputContourName': None}</em><a class="headerlink" href="#pyfloribotvision.plugins.opencv.CVFindContours.CVFindContours.obligatoryConfigOptions" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -184,19 +213,14 @@
 <tt class="descname">__init__</tt><big>(</big><em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/plugins/opencv/CVGaussBlur.html#CVGaussBlur.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.plugins.opencv.CVGaussBlur.CVGaussBlur.__init__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<dl class="attribute">
+<dt id="pyfloribotvision.plugins.opencv.CVGaussBlur.CVGaussBlur.configParameter">
+<tt class="descname">configParameter</tt><em class="property"> = [&lt;pyfloribotvision.types.NameType.NameType object at 0x3249b50&gt;, &lt;pyfloribotvision.types.NameType.NameType object at 0x3249990&gt;, &lt;pyfloribotvision.types.FloatType.FloatType object at 0x3249610&gt;, &lt;pyfloribotvision.types.FloatType.FloatType object at 0x3249950&gt;, &lt;pyfloribotvision.types.IntType.IntType object at 0x3249850&gt;]</em><a class="headerlink" href="#pyfloribotvision.plugins.opencv.CVGaussBlur.CVGaussBlur.configParameter" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="method">
 <dt id="pyfloribotvision.plugins.opencv.CVGaussBlur.CVGaussBlur.externalCall">
 <tt class="descname">externalCall</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/plugins/opencv/CVGaussBlur.html#CVGaussBlur.externalCall"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.plugins.opencv.CVGaussBlur.CVGaussBlur.externalCall" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="pyfloribotvision.plugins.opencv.CVGaussBlur.CVGaussBlur.obligatoryConfigOptions">
-<tt class="descname">obligatoryConfigOptions</tt><em class="property"> = {'inputImageName': None, 'sigmaY': None, 'outputImageName': None, 'sigmaX': None, 'kSize': None}</em><a class="headerlink" href="#pyfloribotvision.plugins.opencv.CVGaussBlur.CVGaussBlur.obligatoryConfigOptions" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="pyfloribotvision.plugins.opencv.CVGaussBlur.CVGaussBlur.postOptActions">
-<tt class="descname">postOptActions</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/plugins/opencv/CVGaussBlur.html#CVGaussBlur.postOptActions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.plugins.opencv.CVGaussBlur.CVGaussBlur.postOptActions" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -213,19 +237,14 @@
 <tt class="descname">__init__</tt><big>(</big><em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/plugins/opencv/CVInRange.html#CVInRange.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.plugins.opencv.CVInRange.CVInRange.__init__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<dl class="attribute">
+<dt id="pyfloribotvision.plugins.opencv.CVInRange.CVInRange.configParameter">
+<tt class="descname">configParameter</tt><em class="property"> = [&lt;pyfloribotvision.types.NameType.NameType object at 0x2778f50&gt;, &lt;pyfloribotvision.types.NameListType.NameListType object at 0x285ac10&gt;, &lt;pyfloribotvision.types.NameListType.NameListType object at 0x285ab90&gt;]</em><a class="headerlink" href="#pyfloribotvision.plugins.opencv.CVInRange.CVInRange.configParameter" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="method">
 <dt id="pyfloribotvision.plugins.opencv.CVInRange.CVInRange.externalCall">
 <tt class="descname">externalCall</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/plugins/opencv/CVInRange.html#CVInRange.externalCall"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.plugins.opencv.CVInRange.CVInRange.externalCall" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="pyfloribotvision.plugins.opencv.CVInRange.CVInRange.obligatoryConfigOptions">
-<tt class="descname">obligatoryConfigOptions</tt><em class="property"> = {'inputImageName': None, 'cvValueListNames': None, 'outputMaskListNames': None}</em><a class="headerlink" href="#pyfloribotvision.plugins.opencv.CVInRange.CVInRange.obligatoryConfigOptions" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="pyfloribotvision.plugins.opencv.CVInRange.CVInRange.postOptActions">
-<tt class="descname">postOptActions</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/plugins/opencv/CVInRange.html#CVInRange.postOptActions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.plugins.opencv.CVInRange.CVInRange.postOptActions" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -242,14 +261,14 @@
 <tt class="descname">__init__</tt><big>(</big><em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/plugins/opencv/CVMorphologyEx.html#CVMorphologyEx.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.plugins.opencv.CVMorphologyEx.CVMorphologyEx.__init__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<dl class="attribute">
+<dt id="pyfloribotvision.plugins.opencv.CVMorphologyEx.CVMorphologyEx.configParameter">
+<tt class="descname">configParameter</tt><em class="property"> = [&lt;pyfloribotvision.types.StringType.StringType object at 0x3298a50&gt;, &lt;pyfloribotvision.types.NameType.NameType object at 0x3298a90&gt;, &lt;pyfloribotvision.types.NameType.NameType object at 0x3298ad0&gt;, &lt;pyfloribotvision.types.NameType.NameType object at 0x3298b10&gt;]</em><a class="headerlink" href="#pyfloribotvision.plugins.opencv.CVMorphologyEx.CVMorphologyEx.configParameter" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="method">
 <dt id="pyfloribotvision.plugins.opencv.CVMorphologyEx.CVMorphologyEx.externalCall">
 <tt class="descname">externalCall</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/plugins/opencv/CVMorphologyEx.html#CVMorphologyEx.externalCall"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.plugins.opencv.CVMorphologyEx.CVMorphologyEx.externalCall" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="pyfloribotvision.plugins.opencv.CVMorphologyEx.CVMorphologyEx.obligatoryConfigOptions">
-<tt class="descname">obligatoryConfigOptions</tt><em class="property"> = {'inputImageName': None, 'cvOperation': None, 'outputImageName': None, 'inputElementName': None}</em><a class="headerlink" href="#pyfloribotvision.plugins.opencv.CVMorphologyEx.CVMorphologyEx.obligatoryConfigOptions" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -271,14 +290,14 @@
 <tt class="descname">__init__</tt><big>(</big><em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/plugins/opencv/CVStructuringElement.html#CVStructuringElement.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.plugins.opencv.CVStructuringElement.CVStructuringElement.__init__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<dl class="attribute">
+<dt id="pyfloribotvision.plugins.opencv.CVStructuringElement.CVStructuringElement.configParameter">
+<tt class="descname">configParameter</tt><em class="property"> = [&lt;pyfloribotvision.types.StringType.StringType object at 0x2782bd0&gt;, &lt;pyfloribotvision.types.NameType.NameType object at 0x2782c50&gt;, &lt;pyfloribotvision.types.IntListType.IntListType object at 0x2782190&gt;]</em><a class="headerlink" href="#pyfloribotvision.plugins.opencv.CVStructuringElement.CVStructuringElement.configParameter" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="method">
 <dt id="pyfloribotvision.plugins.opencv.CVStructuringElement.CVStructuringElement.externalCall">
 <tt class="descname">externalCall</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/plugins/opencv/CVStructuringElement.html#CVStructuringElement.externalCall"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.plugins.opencv.CVStructuringElement.CVStructuringElement.externalCall" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="pyfloribotvision.plugins.opencv.CVStructuringElement.CVStructuringElement.obligatoryConfigOptions">
-<tt class="descname">obligatoryConfigOptions</tt><em class="property"> = {'outputElementName': None, 'cvKSize': None, 'cvShape': None}</em><a class="headerlink" href="#pyfloribotvision.plugins.opencv.CVStructuringElement.CVStructuringElement.obligatoryConfigOptions" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -300,14 +319,14 @@
 <tt class="descname">__init__</tt><big>(</big><em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/plugins/opencv/CVTransformColor.html#CVTransformColor.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.plugins.opencv.CVTransformColor.CVTransformColor.__init__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<dl class="attribute">
+<dt id="pyfloribotvision.plugins.opencv.CVTransformColor.CVTransformColor.configParameter">
+<tt class="descname">configParameter</tt><em class="property"> = [&lt;pyfloribotvision.types.NameType.NameType object at 0x32e6110&gt;, &lt;pyfloribotvision.types.NameType.NameType object at 0x32e6090&gt;, &lt;pyfloribotvision.types.StringType.StringType object at 0x32e6050&gt;]</em><a class="headerlink" href="#pyfloribotvision.plugins.opencv.CVTransformColor.CVTransformColor.configParameter" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="method">
 <dt id="pyfloribotvision.plugins.opencv.CVTransformColor.CVTransformColor.externalCall">
 <tt class="descname">externalCall</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/plugins/opencv/CVTransformColor.html#CVTransformColor.externalCall"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.plugins.opencv.CVTransformColor.CVTransformColor.externalCall" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="pyfloribotvision.plugins.opencv.CVTransformColor.CVTransformColor.obligatoryConfigOptions">
-<tt class="descname">obligatoryConfigOptions</tt><em class="property"> = {'inputImageName': None, 'colorCode': None, 'outputImageName': None}</em><a class="headerlink" href="#pyfloribotvision.plugins.opencv.CVTransformColor.CVTransformColor.obligatoryConfigOptions" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -329,19 +348,38 @@
 <tt class="descname">__init__</tt><big>(</big><em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/plugins/opencv/CVValueList.html#CVValueList.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.plugins.opencv.CVValueList.CVValueList.__init__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<dl class="attribute">
+<dt id="pyfloribotvision.plugins.opencv.CVValueList.CVValueList.configParameter">
+<tt class="descname">configParameter</tt><em class="property"> = [&lt;pyfloribotvision.types.IntNestedListType.IntNestedListType object at 0x32e6990&gt;, &lt;pyfloribotvision.types.NameListType.NameListType object at 0x32e6a90&gt;, &lt;pyfloribotvision.types.StringType.StringType object at 0x32e6c50&gt;]</em><a class="headerlink" href="#pyfloribotvision.plugins.opencv.CVValueList.CVValueList.configParameter" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="method">
 <dt id="pyfloribotvision.plugins.opencv.CVValueList.CVValueList.externalCall">
 <tt class="descname">externalCall</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/plugins/opencv/CVValueList.html#CVValueList.externalCall"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.plugins.opencv.CVValueList.CVValueList.externalCall" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+</dd></dl>
+
+</div>
+<div class="section" id="module-pyfloribotvision.plugins.opencv.CreateContourBinaryImage">
+<span id="createcontourbinaryimage-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">CreateContourBinaryImage</span></tt> Module<a class="headerlink" href="#module-pyfloribotvision.plugins.opencv.CreateContourBinaryImage" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="pyfloribotvision.plugins.opencv.CreateContourBinaryImage.CreateContourBinaryImage">
+<em class="property">class </em><tt class="descclassname">pyfloribotvision.plugins.opencv.CreateContourBinaryImage.</tt><tt class="descname">CreateContourBinaryImage</tt><big>(</big><em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/plugins/opencv/CreateContourBinaryImage.html#CreateContourBinaryImage"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.plugins.opencv.CreateContourBinaryImage.CreateContourBinaryImage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="pyfloribotvision.plugins.html#pyfloribotvision.plugins.BaseModule.BaseModule" title="pyfloribotvision.plugins.BaseModule.BaseModule"><tt class="xref py py-class docutils literal"><span class="pre">pyfloribotvision.plugins.BaseModule.BaseModule</span></tt></a></p>
+<dl class="method">
+<dt id="pyfloribotvision.plugins.opencv.CreateContourBinaryImage.CreateContourBinaryImage.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/plugins/opencv/CreateContourBinaryImage.html#CreateContourBinaryImage.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.plugins.opencv.CreateContourBinaryImage.CreateContourBinaryImage.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="attribute">
-<dt id="pyfloribotvision.plugins.opencv.CVValueList.CVValueList.obligatoryConfigOptions">
-<tt class="descname">obligatoryConfigOptions</tt><em class="property"> = {'runCycle': ['oneShoot', 'loop'], 'inputValues': None, 'outputNames': None, 'inputType': None}</em><a class="headerlink" href="#pyfloribotvision.plugins.opencv.CVValueList.CVValueList.obligatoryConfigOptions" title="Permalink to this definition">¶</a></dt>
+<dt id="pyfloribotvision.plugins.opencv.CreateContourBinaryImage.CreateContourBinaryImage.configParameter">
+<tt class="descname">configParameter</tt><em class="property"> = [&lt;pyfloribotvision.types.NameType.NameType object at 0x277b610&gt;, &lt;pyfloribotvision.types.NameType.NameType object at 0x277b4d0&gt;, &lt;pyfloribotvision.types.NameType.NameType object at 0x277b950&gt;, &lt;pyfloribotvision.types.NameType.NameType object at 0x277b310&gt;]</em><a class="headerlink" href="#pyfloribotvision.plugins.opencv.CreateContourBinaryImage.CreateContourBinaryImage.configParameter" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
-<dt id="pyfloribotvision.plugins.opencv.CVValueList.CVValueList.postOptActions">
-<tt class="descname">postOptActions</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/plugins/opencv/CVValueList.html#CVValueList.postOptActions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.plugins.opencv.CVValueList.CVValueList.postOptActions" title="Permalink to this definition">¶</a></dt>
+<dt id="pyfloribotvision.plugins.opencv.CreateContourBinaryImage.CreateContourBinaryImage.externalCall">
+<tt class="descname">externalCall</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/plugins/opencv/CreateContourBinaryImage.html#CreateContourBinaryImage.externalCall"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.plugins.opencv.CreateContourBinaryImage.CreateContourBinaryImage.externalCall" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -358,6 +396,11 @@
 <tt class="descname">__init__</tt><big>(</big><em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/plugins/opencv/DirectCVCamSource.html#DirectCVCamSource.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.plugins.opencv.DirectCVCamSource.DirectCVCamSource.__init__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<dl class="attribute">
+<dt id="pyfloribotvision.plugins.opencv.DirectCVCamSource.DirectCVCamSource.configParameter">
+<tt class="descname">configParameter</tt><em class="property"> = [&lt;pyfloribotvision.types.NameType.NameType object at 0x324c710&gt;, &lt;pyfloribotvision.types.IntType.IntType object at 0x324c6d0&gt;, &lt;pyfloribotvision.types.IntType.IntType object at 0x324c910&gt;, &lt;pyfloribotvision.types.IntType.IntType object at 0x324c650&gt;]</em><a class="headerlink" href="#pyfloribotvision.plugins.opencv.DirectCVCamSource.DirectCVCamSource.configParameter" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="method">
 <dt id="pyfloribotvision.plugins.opencv.DirectCVCamSource.DirectCVCamSource.externalCall">
 <tt class="descname">externalCall</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/plugins/opencv/DirectCVCamSource.html#DirectCVCamSource.externalCall"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.plugins.opencv.DirectCVCamSource.DirectCVCamSource.externalCall" title="Permalink to this definition">¶</a></dt>
@@ -366,11 +409,6 @@
 <dl class="method">
 <dt id="pyfloribotvision.plugins.opencv.DirectCVCamSource.DirectCVCamSource.initCam">
 <tt class="descname">initCam</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/plugins/opencv/DirectCVCamSource.html#DirectCVCamSource.initCam"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.plugins.opencv.DirectCVCamSource.DirectCVCamSource.initCam" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="pyfloribotvision.plugins.opencv.DirectCVCamSource.DirectCVCamSource.obligatoryConfigOptions">
-<tt class="descname">obligatoryConfigOptions</tt><em class="property"> = {'camId': None, 'outputImageName': None, 'frameHeight': None, 'frameWidth': None}</em><a class="headerlink" href="#pyfloribotvision.plugins.opencv.DirectCVCamSource.DirectCVCamSource.obligatoryConfigOptions" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -397,19 +435,14 @@
 <tt class="descname">__init__</tt><big>(</big><em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/plugins/opencv/DirectCVImageSource.html#DirectCVImageSource.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.plugins.opencv.DirectCVImageSource.DirectCVImageSource.__init__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<dl class="attribute">
+<dt id="pyfloribotvision.plugins.opencv.DirectCVImageSource.DirectCVImageSource.configParameter">
+<tt class="descname">configParameter</tt><em class="property"> = [&lt;pyfloribotvision.types.StringType.StringType object at 0x2c33bd0&gt;, &lt;pyfloribotvision.types.NameType.NameType object at 0x2c33810&gt;]</em><a class="headerlink" href="#pyfloribotvision.plugins.opencv.DirectCVImageSource.DirectCVImageSource.configParameter" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="method">
 <dt id="pyfloribotvision.plugins.opencv.DirectCVImageSource.DirectCVImageSource.externalCall">
 <tt class="descname">externalCall</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/plugins/opencv/DirectCVImageSource.html#DirectCVImageSource.externalCall"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.plugins.opencv.DirectCVImageSource.DirectCVImageSource.externalCall" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="pyfloribotvision.plugins.opencv.DirectCVImageSource.DirectCVImageSource.obligatoryConfigOptions">
-<tt class="descname">obligatoryConfigOptions</tt><em class="property"> = {'inputImageFile': None, 'outputImageName': None}</em><a class="headerlink" href="#pyfloribotvision.plugins.opencv.DirectCVImageSource.DirectCVImageSource.obligatoryConfigOptions" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="pyfloribotvision.plugins.opencv.DirectCVImageSource.DirectCVImageSource.postOptActions">
-<tt class="descname">postOptActions</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/plugins/opencv/DirectCVImageSource.html#DirectCVImageSource.postOptActions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.plugins.opencv.DirectCVImageSource.DirectCVImageSource.postOptActions" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -426,19 +459,62 @@
 <tt class="descname">__init__</tt><big>(</big><em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/plugins/opencv/FileCVImageOutput.html#FileCVImageOutput.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.plugins.opencv.FileCVImageOutput.FileCVImageOutput.__init__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<dl class="attribute">
+<dt id="pyfloribotvision.plugins.opencv.FileCVImageOutput.FileCVImageOutput.configParameter">
+<tt class="descname">configParameter</tt><em class="property"> = [&lt;pyfloribotvision.types.NameType.NameType object at 0x32495d0&gt;, &lt;pyfloribotvision.types.StringType.StringType object at 0x3249dd0&gt;]</em><a class="headerlink" href="#pyfloribotvision.plugins.opencv.FileCVImageOutput.FileCVImageOutput.configParameter" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="method">
 <dt id="pyfloribotvision.plugins.opencv.FileCVImageOutput.FileCVImageOutput.externalCall">
 <tt class="descname">externalCall</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/plugins/opencv/FileCVImageOutput.html#FileCVImageOutput.externalCall"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.plugins.opencv.FileCVImageOutput.FileCVImageOutput.externalCall" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+</dd></dl>
+
+</div>
+<div class="section" id="module-pyfloribotvision.plugins.opencv.HuMoments">
+<span id="humoments-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">HuMoments</span></tt> Module<a class="headerlink" href="#module-pyfloribotvision.plugins.opencv.HuMoments" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="pyfloribotvision.plugins.opencv.HuMoments.HuMoments">
+<em class="property">class </em><tt class="descclassname">pyfloribotvision.plugins.opencv.HuMoments.</tt><tt class="descname">HuMoments</tt><big>(</big><em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/plugins/opencv/HuMoments.html#HuMoments"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.plugins.opencv.HuMoments.HuMoments" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="pyfloribotvision.plugins.html#pyfloribotvision.plugins.BaseModule.BaseModule" title="pyfloribotvision.plugins.BaseModule.BaseModule"><tt class="xref py py-class docutils literal"><span class="pre">pyfloribotvision.plugins.BaseModule.BaseModule</span></tt></a></p>
+<dl class="method">
+<dt id="pyfloribotvision.plugins.opencv.HuMoments.HuMoments.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/plugins/opencv/HuMoments.html#HuMoments.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.plugins.opencv.HuMoments.HuMoments.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="attribute">
-<dt id="pyfloribotvision.plugins.opencv.FileCVImageOutput.FileCVImageOutput.obligatoryConfigOptions">
-<tt class="descname">obligatoryConfigOptions</tt><em class="property"> = {'inputImageName': None, 'outputImageFile': None}</em><a class="headerlink" href="#pyfloribotvision.plugins.opencv.FileCVImageOutput.FileCVImageOutput.obligatoryConfigOptions" title="Permalink to this definition">¶</a></dt>
+<dt id="pyfloribotvision.plugins.opencv.HuMoments.HuMoments.configParameter">
+<tt class="descname">configParameter</tt><em class="property"> = [&lt;pyfloribotvision.types.NameType.NameType object at 0x277ca90&gt;, &lt;pyfloribotvision.types.NameType.NameType object at 0x277cfd0&gt;]</em><a class="headerlink" href="#pyfloribotvision.plugins.opencv.HuMoments.HuMoments.configParameter" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
-<dt id="pyfloribotvision.plugins.opencv.FileCVImageOutput.FileCVImageOutput.postOptActions">
-<tt class="descname">postOptActions</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/plugins/opencv/FileCVImageOutput.html#FileCVImageOutput.postOptActions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.plugins.opencv.FileCVImageOutput.FileCVImageOutput.postOptActions" title="Permalink to this definition">¶</a></dt>
+<dt id="pyfloribotvision.plugins.opencv.HuMoments.HuMoments.externalCall">
+<tt class="descname">externalCall</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/plugins/opencv/HuMoments.html#HuMoments.externalCall"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.plugins.opencv.HuMoments.HuMoments.externalCall" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pyfloribotvision.plugins.opencv.Moments">
+<span id="moments-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">Moments</span></tt> Module<a class="headerlink" href="#module-pyfloribotvision.plugins.opencv.Moments" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="pyfloribotvision.plugins.opencv.Moments.Moments">
+<em class="property">class </em><tt class="descclassname">pyfloribotvision.plugins.opencv.Moments.</tt><tt class="descname">Moments</tt><big>(</big><em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/plugins/opencv/Moments.html#Moments"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.plugins.opencv.Moments.Moments" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="pyfloribotvision.plugins.html#pyfloribotvision.plugins.BaseModule.BaseModule" title="pyfloribotvision.plugins.BaseModule.BaseModule"><tt class="xref py py-class docutils literal"><span class="pre">pyfloribotvision.plugins.BaseModule.BaseModule</span></tt></a></p>
+<dl class="method">
+<dt id="pyfloribotvision.plugins.opencv.Moments.Moments.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/plugins/opencv/Moments.html#Moments.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.plugins.opencv.Moments.Moments.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pyfloribotvision.plugins.opencv.Moments.Moments.configParameter">
+<tt class="descname">configParameter</tt><em class="property"> = [&lt;pyfloribotvision.types.NameType.NameType object at 0x3230610&gt;, &lt;pyfloribotvision.types.NameType.NameType object at 0x3230690&gt;]</em><a class="headerlink" href="#pyfloribotvision.plugins.opencv.Moments.Moments.configParameter" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pyfloribotvision.plugins.opencv.Moments.Moments.externalCall">
+<tt class="descname">externalCall</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/plugins/opencv/Moments.html#Moments.externalCall"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.plugins.opencv.Moments.Moments.externalCall" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -455,19 +531,38 @@
 <tt class="descname">__init__</tt><big>(</big><em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/plugins/opencv/ScreenCVImageOutput.html#ScreenCVImageOutput.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.plugins.opencv.ScreenCVImageOutput.ScreenCVImageOutput.__init__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<dl class="attribute">
+<dt id="pyfloribotvision.plugins.opencv.ScreenCVImageOutput.ScreenCVImageOutput.configParameter">
+<tt class="descname">configParameter</tt><em class="property"> = [&lt;pyfloribotvision.types.StringListType.StringListType object at 0x3421290&gt;]</em><a class="headerlink" href="#pyfloribotvision.plugins.opencv.ScreenCVImageOutput.ScreenCVImageOutput.configParameter" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="method">
 <dt id="pyfloribotvision.plugins.opencv.ScreenCVImageOutput.ScreenCVImageOutput.externalCall">
 <tt class="descname">externalCall</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/plugins/opencv/ScreenCVImageOutput.html#ScreenCVImageOutput.externalCall"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.plugins.opencv.ScreenCVImageOutput.ScreenCVImageOutput.externalCall" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+</dd></dl>
+
+</div>
+<div class="section" id="module-pyfloribotvision.plugins.opencv.Watershed">
+<span id="watershed-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">Watershed</span></tt> Module<a class="headerlink" href="#module-pyfloribotvision.plugins.opencv.Watershed" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="pyfloribotvision.plugins.opencv.Watershed.Watershed">
+<em class="property">class </em><tt class="descclassname">pyfloribotvision.plugins.opencv.Watershed.</tt><tt class="descname">Watershed</tt><big>(</big><em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/plugins/opencv/Watershed.html#Watershed"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.plugins.opencv.Watershed.Watershed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="pyfloribotvision.plugins.html#pyfloribotvision.plugins.BaseModule.BaseModule" title="pyfloribotvision.plugins.BaseModule.BaseModule"><tt class="xref py py-class docutils literal"><span class="pre">pyfloribotvision.plugins.BaseModule.BaseModule</span></tt></a></p>
+<dl class="method">
+<dt id="pyfloribotvision.plugins.opencv.Watershed.Watershed.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/plugins/opencv/Watershed.html#Watershed.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.plugins.opencv.Watershed.Watershed.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="attribute">
-<dt id="pyfloribotvision.plugins.opencv.ScreenCVImageOutput.ScreenCVImageOutput.obligatoryConfigOptions">
-<tt class="descname">obligatoryConfigOptions</tt><em class="property"> = {'inputImageList': None}</em><a class="headerlink" href="#pyfloribotvision.plugins.opencv.ScreenCVImageOutput.ScreenCVImageOutput.obligatoryConfigOptions" title="Permalink to this definition">¶</a></dt>
+<dt id="pyfloribotvision.plugins.opencv.Watershed.Watershed.configParameter">
+<tt class="descname">configParameter</tt><em class="property"> = [&lt;pyfloribotvision.types.NameType.NameType object at 0x324c490&gt;, &lt;pyfloribotvision.types.NameType.NameType object at 0x324c290&gt;, &lt;pyfloribotvision.types.NameType.NameType object at 0x324cf90&gt;, &lt;pyfloribotvision.types.NameType.NameType object at 0x324cf50&gt;, &lt;pyfloribotvision.types.NameType.NameType object at 0x324c210&gt;]</em><a class="headerlink" href="#pyfloribotvision.plugins.opencv.Watershed.Watershed.configParameter" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
-<dt id="pyfloribotvision.plugins.opencv.ScreenCVImageOutput.ScreenCVImageOutput.postOptActions">
-<tt class="descname">postOptActions</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/plugins/opencv/ScreenCVImageOutput.html#ScreenCVImageOutput.postOptActions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.plugins.opencv.ScreenCVImageOutput.ScreenCVImageOutput.postOptActions" title="Permalink to this definition">¶</a></dt>
+<dt id="pyfloribotvision.plugins.opencv.Watershed.Watershed.externalCall">
+<tt class="descname">externalCall</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/plugins/opencv/Watershed.html#Watershed.externalCall"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.plugins.opencv.Watershed.Watershed.externalCall" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -504,7 +599,7 @@
     <div class="footer-wrapper">
       <div class="footer">
         <div class="left">
-          <a href="pyfloribotvision.plugins.floribot.html" title="floribot Package"
+          <a href="pyfloribotvision.plugins.kinect.html" title="kinect Package"
              >previous</a> |
           <a href="pyfloribotvision.plugins.python.html" title="python Package"
              >next</a> |

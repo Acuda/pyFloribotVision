@@ -24,6 +24,8 @@ Subpackages
 
     pyfloribotvision.controller
     pyfloribotvision.dto
+    pyfloribotvision.guicontrol
     pyfloribotvision.manager
     pyfloribotvision.plugins
+    pyfloribotvision.types
 
