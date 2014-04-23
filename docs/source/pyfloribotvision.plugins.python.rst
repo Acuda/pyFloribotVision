@@ -9,6 +9,14 @@ python Package
     :undoc-members:
     :show-inheritance:
 
+:mod:`DataToStdout` Module
+--------------------------
+
+.. automodule:: pyfloribotvision.plugins.python.DataToStdout
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 :mod:`DeltaTimePerFrame` Module
 -------------------------------
 

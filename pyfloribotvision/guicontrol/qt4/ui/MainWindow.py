@@ -11,10 +11,15 @@
 
 from PyQt4 import QtGui
 from Ui_MainWindow import Ui_MainWindow as UiBase
-#from ConfigControl import ConfigControl
+from ConfigControl import ConfigControl
 from PluginList import PluginList
 from PyQt4 import QtCore
 from pyfloribotvision.manager.ContextManager import ContextManager
+from pyfloribotvision.types.BaseType import BaseType
+from pyfloribotvision.types.StringType import StringType
+from pyfloribotvision.types.FloatType import FloatType
+from pyfloribotvision.types.IntType import IntType
+from pyfloribotvision.types.NameType import NameType
 
 class MainWindow(QtGui.QMainWindow, UiBase):
 
@@ -22,13 +27,20 @@ class MainWindow(QtGui.QMainWindow, UiBase):
         QtGui.QMainWindow.__init__(self)
         self.setupUi(self)
 
+        self.typeHandleList = self.initTypeHandleDict()
+
         css = ''
         with open('./config/dark.css', 'r') as f:
             css = ' '.join(f.readlines())
         self.setStyleSheet(css)
 
-        self.textEdit = QtGui.QTextEdit()
-        self.tab1Content.addWidget(self.textEdit)
+        self.cc = ConfigControl()
+        self.tab1Content.addWidget(self.cc)
+
+        self.cc.verticalLayout.addChildWidget(QtGui.QPushButton())
+        self.cc.verticalLayout.addChildWidget(QtGui.QPushButton())
+        #self.textEdit = QtGui.QTextEdit()
+        #self.tab1Content.addWidget(self.textEdit)
 
         self.pluginList = PluginList()
         self.tab1Content.addWidget(self.pluginList)
@@ -47,11 +59,31 @@ class MainWindow(QtGui.QMainWindow, UiBase):
     def itemClicked(self, item):
         assert isinstance(item, QtGui.QListWidgetItem)
         secconf = self.conf[str(item.text())]
-        self.textEdit.setText(str(secconf))
+        print secconf
+        for k, v in secconf.items():
+            print k,
+            if issubclass(type(v), BaseType):
+                vclass = v.__class__
+                if vclass in self.typeHandleList:
+                    self.typeHandleList[vclass]()
+                else:
+                    print 'NOT IMPLEMENTED', type(v)
+                print v.__class__, StringType,
+
+        #self.textEdit.setText(str(secconf))
 
 
+    def initTypeHandleDict(self):
+        thl = dict()
+
+        thl[StringType] = self.handle
+        thl[NameType] = self.handle
+
+        return thl
 
 
+    def handle(self):
+        print 'handle invoked'
 
 
 

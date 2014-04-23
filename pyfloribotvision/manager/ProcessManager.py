@@ -62,7 +62,6 @@ class ProcessManager(object):
         # Cycle-Specific (execute Plugins / handle runtime characteristics)
         ####################################################################
 
-        #self.cycleTimeLast = 0
         curTime = time.time()
         self.lastExecTime = curTime
         self.lastBypassTime = curTime
@@ -91,6 +90,7 @@ class ProcessManager(object):
             if not section.startswith('!'):
                 pdto = PluginDTO()
                 pdto.sectionName = section
+                #FIXME: AssertionError seems to take no effect, useless?
                 try:
                     pdto.modulePath = self.configController.getOption(section, 'pluginPath')
                 except AssertionError as e:
@@ -103,7 +103,7 @@ class ProcessManager(object):
         return pluginDtoList
 
     def instantiatePlugins(self, pluginDtoList=None):
-        """Instantiate the Plugins in the list of PluginDto's and return the List
+        """Instantiate the Plugins in the list of PluginDto's
 
         :param pluginDtoList: List of PluginDto's (default None)
         """
@@ -154,8 +154,6 @@ class ProcessManager(object):
 
                 if waitLeadTime and not isFirstRun and waitTime > 0:
                     time.sleep(waitTime)
-                if leadTime != 0 and waitTime < 0:
-                    self.log.warn('LeadTime <%d> unreachable!')
 
                 self.lastExecTime = time.time()
                 self.triggerPluginMethods('externalCall')

@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'ConfigControl.ui'
 #
-# Created: Thu Apr 10 14:59:25 2014
+# Created: Tue Apr 15 10:33:04 2014
 #      by: PyQt4 UI code generator 4.10.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -26,15 +26,16 @@ except AttributeError:
 class Ui_ConfigControl(object):
     def setupUi(self, ConfigControl):
         ConfigControl.setObjectName(_fromUtf8("ConfigControl"))
-        ConfigControl.resize(400, 300)
-        self.pushButton = QtGui.QPushButton(ConfigControl)
-        self.pushButton.setGeometry(QtCore.QRect(160, 120, 75, 23))
-        self.pushButton.setObjectName(_fromUtf8("pushButton"))
+        ConfigControl.resize(582, 404)
+        self.verticalLayout_2 = QtGui.QVBoxLayout(ConfigControl)
+        self.verticalLayout_2.setObjectName(_fromUtf8("verticalLayout_2"))
+        self.verticalLayout = QtGui.QVBoxLayout()
+        self.verticalLayout.setObjectName(_fromUtf8("verticalLayout"))
+        self.verticalLayout_2.addLayout(self.verticalLayout)
 
         self.retranslateUi(ConfigControl)
         QtCore.QMetaObject.connectSlotsByName(ConfigControl)
 
     def retranslateUi(self, ConfigControl):
         ConfigControl.setWindowTitle(_translate("ConfigControl", "Form", None))
-        self.pushButton.setText(_translate("ConfigControl", "PushButton", None))
 

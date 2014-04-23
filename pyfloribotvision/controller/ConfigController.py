@@ -13,15 +13,17 @@ from ConfigParser import ConfigParser
 
 
 class ConfigController(object):
-    """Simple Wrapper for the ConfigParser. Loads the Configuration-File and Convert its Data into
+    """Simple Wrapper for the ConfigParser. Loads the Configuration-File and Convert it's Data into
     a Dictionary Structure. Each Section becomes a Key for the tob-level dict and serves the Option
-    Values in an dict again"""
+    Values in an concatenated-dict saved as section-value"""
 
     def __init__(self, configFileName):
         """Load the rawConfig from Config-File with the ConfigParser and convert the rawConfig
         into a dict structure
 
-        :param configFileName: Path to the Configuration-File"""
+        :param configFileName: Path to the Configuration-File
+        :type configFileName: str
+        """
         self.configFileName = configFileName
         self.rawConfig = self._loadFile()
         self.dictConfig = self.convertRawConfigToDict()

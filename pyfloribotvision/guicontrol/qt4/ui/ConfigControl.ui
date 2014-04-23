@@ -6,13 +6,18 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>659</width>
-    <height>440</height>
+    <width>582</width>
+    <height>404</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
+  <layout class="QVBoxLayout" name="verticalLayout_2">
+   <item>
+    <layout class="QVBoxLayout" name="verticalLayout"/>
+   </item>
+  </layout>
  </widget>
  <resources/>
  <connections/>

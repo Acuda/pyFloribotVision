@@ -9,12 +9,9 @@
 # USE AT YOUR OWN RISK.
 
 
-from __future__ import print_function
 import getopt
 import sys
 from pyfloribotvision.manager.ContextManager import ContextManager
-#from GuiThread import GuiThread
-import cProfile
 
 class PyFloribotVision(object):
     """Application-Startup handling Startup-Parameters"""
