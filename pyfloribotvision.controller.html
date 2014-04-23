@@ -93,7 +93,18 @@ into a dict structure</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>rawConfig</strong> &#8211; rawConfig from ConfigParser (default None)</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>rawConfig</strong> &#8211; rawConfig from ConfigParser, if <tt class="docutils literal"><span class="pre">None</span></tt> the previously loaded</td>
+</tr>
+</tbody>
+</table>
+<p>configuration will be converted (default None)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">converted configuration with sections on top level</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">dict</td>
 </tr>
 </tbody>
 </table>
@@ -102,21 +113,34 @@ into a dict structure</p>
 <dl class="method">
 <dt id="pyfloribotvision.controller.ConfigController.ConfigController.getConfig">
 <tt class="descname">getConfig</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/controller/ConfigController.html#ConfigController.getConfig"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.controller.ConfigController.ConfigController.getConfig" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the config as dict</p>
+<dd><p>simple getter for the converted configuration</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">dictionary or None if no configuration was loaded</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">dict</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="pyfloribotvision.controller.ConfigController.ConfigController.getOption">
 <tt class="descname">getOption</tt><big>(</big><em>sectionname</em>, <em>optionname</em><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/controller/ConfigController.html#ConfigController.getOption"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.controller.ConfigController.ConfigController.getOption" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the value from the option which belongs to the given sectionname</p>
+<dd><p>returns the value from the option which belongs to the given sectionname</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>sectionname</strong> &#8211; name of the section</li>
-<li><strong>optionname</strong> &#8211; name of the option which value will be returned</li>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>sectionname</strong> (<em>str</em>) &#8211; name of the section</li>
+<li><strong>optionname</strong> (<em>str</em>) &#8211; name of the option which value will be returned</li>
 </ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">str</p>
 </td>
 </tr>
 </tbody>
@@ -126,12 +150,16 @@ into a dict structure</p>
 <dl class="method">
 <dt id="pyfloribotvision.controller.ConfigController.ConfigController.getSection">
 <tt class="descname">getSection</tt><big>(</big><em>sectionname</em><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/controller/ConfigController.html#ConfigController.getSection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.controller.ConfigController.ConfigController.getSection" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the whole section from the dict-config</p>
+<dd><p>simple getter for a section (sub-dict) from the configuration (top-dict)</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>sectionname</strong> &#8211; name of the section which will be returned</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>sectionname</strong> (<em>str</em>) &#8211; name of the section which will be returned</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">sub-dictionary or None if no section found</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">dict</td>
 </tr>
 </tbody>
 </table>
