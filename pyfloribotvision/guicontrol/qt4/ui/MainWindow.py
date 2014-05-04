@@ -39,8 +39,9 @@ class MainWindow(QtGui.QMainWindow, UiBase):
 
         self.cc.verticalLayout.addChildWidget(QtGui.QPushButton())
         self.cc.verticalLayout.addChildWidget(QtGui.QPushButton())
-        #self.textEdit = QtGui.QTextEdit()
-        #self.tab1Content.addWidget(self.textEdit)
+
+        self.textEdit = QtGui.QTextEdit()
+        self.tab1Content.addWidget(self.textEdit)
 
         self.pluginList = PluginList()
         self.tab1Content.addWidget(self.pluginList)
@@ -59,31 +60,48 @@ class MainWindow(QtGui.QMainWindow, UiBase):
     def itemClicked(self, item):
         assert isinstance(item, QtGui.QListWidgetItem)
         secconf = self.conf[str(item.text())]
-        print secconf
+        print '-'*50
+        #print secconf
         for k, v in secconf.items():
             print k,
             if issubclass(type(v), BaseType):
                 vclass = v.__class__
                 if vclass in self.typeHandleList:
-                    self.typeHandleList[vclass]()
+                    self.typeHandleList[vclass](v)
                 else:
                     print 'NOT IMPLEMENTED', type(v)
-                print v.__class__, StringType,
+                #print v.__class__, StringType,
 
-        #self.textEdit.setText(str(secconf))
+        self.textEdit.setText(str(secconf))
 
 
     def initTypeHandleDict(self):
         thl = dict()
 
-        thl[StringType] = self.handle
-        thl[NameType] = self.handle
+        thl[StringType] = self.handleString
+        thl[IntType] = self.handleIntType
+        thl[FloatType] = self.handleFloatType
+        thl[NameType] = self.handleName
 
         return thl
 
 
-    def handle(self):
-        print 'handle invoked'
+    def handleString(self, parameter):
+        print 'handle invoked STRING-TYPE for name <%s> and parameter-value <%s>' % (parameter.name, str(parameter.value))
+
+    def handleIntType(self, parameter):
+        print 'handle invoked INT-TYPE for name <%s> and parameter-value <%s>' % (parameter.name, str(parameter.value))
+
+    def handleName(self, parameter):
+        print 'handle invoked NAME-TYPE for name <%s> and parameter-value <%s>' % (parameter.name, str(parameter.value))
+
+    def handleFloatType(self, parameter):
+        print 'handle invoked FLOAT-TYPE for name <%s> and parameter-value <%s>' % (parameter.name, str(parameter.value))
+        if parameter.name == 'sigmaY' or parameter.name == 'sigmaX':
+            if parameter.value == 50.0:
+                parameter.value = 0.0
+            else:
+                parameter.value = 50.0
 
 
 
