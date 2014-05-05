@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'ParameterBase.ui'
 #
-# Created: Tue Apr 15 10:29:36 2014
+# Created: Mon May  5 20:07:38 2014
 #      by: PyQt4 UI code generator 4.10.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -27,11 +27,8 @@ class Ui_ParameterBase(object):
     def setupUi(self, ParameterBase):
         ParameterBase.setObjectName(_fromUtf8("ParameterBase"))
         ParameterBase.resize(336, 43)
-        self.horizontalLayout_2 = QtGui.QHBoxLayout(ParameterBase)
-        self.horizontalLayout_2.setObjectName(_fromUtf8("horizontalLayout_2"))
-        self.horizontalLayout = QtGui.QHBoxLayout()
-        self.horizontalLayout.setObjectName(_fromUtf8("horizontalLayout"))
-        self.horizontalLayout_2.addLayout(self.horizontalLayout)
+        self.verticalLayout = QtGui.QVBoxLayout(ParameterBase)
+        self.verticalLayout.setObjectName(_fromUtf8("verticalLayout"))
 
         self.retranslateUi(ParameterBase)
         QtCore.QMetaObject.connectSlotsByName(ParameterBase)

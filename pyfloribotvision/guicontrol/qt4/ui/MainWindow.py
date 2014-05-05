@@ -13,6 +13,8 @@ from PyQt4 import QtGui
 from Ui_MainWindow import Ui_MainWindow as UiBase
 from ConfigControl import ConfigControl
 from PluginList import PluginList
+from ParameterBase import ParameterBase
+from IntType import IntType as IntTypeGui
 from PyQt4 import QtCore
 from pyfloribotvision.manager.ContextManager import ContextManager
 from pyfloribotvision.types.BaseType import BaseType
@@ -28,23 +30,23 @@ class MainWindow(QtGui.QMainWindow, UiBase):
         self.setupUi(self)
 
         self.typeHandleList = self.initTypeHandleDict()
+        self.activeParameters = dict()
 
         css = ''
         with open('./config/dark.css', 'r') as f:
             css = ' '.join(f.readlines())
         self.setStyleSheet(css)
-
         self.cc = ConfigControl()
         self.tab1Content.addWidget(self.cc)
 
         self.cc.verticalLayout.addChildWidget(QtGui.QPushButton())
         self.cc.verticalLayout.addChildWidget(QtGui.QPushButton())
 
-        self.textEdit = QtGui.QTextEdit()
-        self.tab1Content.addWidget(self.textEdit)
-
+        self.parameterBase = ParameterBase()
+        self.tab1Content.addWidget(self.parameterBase)
         self.pluginList = PluginList()
         self.tab1Content.addWidget(self.pluginList)
+
 
         self.connect(self.pluginList.btnUpdate, QtCore.SIGNAL('clicked()'), self.loadList)
         self.connect(self.pluginList.listWidget, QtCore.SIGNAL('itemClicked(QListWidgetItem*)'), self.itemClicked)
@@ -57,8 +59,14 @@ class MainWindow(QtGui.QMainWindow, UiBase):
         for x in self.conf:
             self.pluginList.listWidget.addItem(x)
 
+    def cleanParameterBase(self):
+        for i in reversed(range(self.parameterBase.verticalLayout.count())):
+             self.parameterBase.verticalLayout.itemAt(i).widget().setParent(None)
+        self.activeParameters = dict()
+
     def itemClicked(self, item):
         assert isinstance(item, QtGui.QListWidgetItem)
+        self.cleanParameterBase()
         secconf = self.conf[str(item.text())]
         print '-'*50
         #print secconf
@@ -72,16 +80,16 @@ class MainWindow(QtGui.QMainWindow, UiBase):
                     print 'NOT IMPLEMENTED', type(v)
                 #print v.__class__, StringType,
 
-        self.textEdit.setText(str(secconf))
 
 
     def initTypeHandleDict(self):
         thl = dict()
 
-        thl[StringType] = self.handleString
+        #thl[StringType] = self.handleString
         thl[IntType] = self.handleIntType
-        thl[FloatType] = self.handleFloatType
-        thl[NameType] = self.handleName
+        #thl[FloatType] = self.handleFloatType
+        #thl[NameType] = self.handleName
+
 
         return thl
 
@@ -92,16 +100,32 @@ class MainWindow(QtGui.QMainWindow, UiBase):
     def handleIntType(self, parameter):
         print 'handle invoked INT-TYPE for name <%s> and parameter-value <%s>' % (parameter.name, str(parameter.value))
 
+        itg = IntTypeGui()
+
+        itg.label.setText(parameter.name)
+        itg.lineEdit.setText(str(parameter.value))
+        itg.horizontalSlider.setValue(parameter.value)
+
+        itg.horizontalSlider.setMinimum(0)
+        itg.horizontalSlider.setMaximum(500)
+        itg.horizontalSlider.setSingleStep(1)
+        itg.horizontalSlider.setPageStep(10)
+
+        itg.registerNotify(self.widgetValueChanged)
+        self.parameterBase.verticalLayout.addWidget(itg)
+        self.activeParameters[itg] = parameter
+
+    def widgetValueChanged(self, caller, value):
+        for widget, parameter in self.activeParameters.items():
+            if widget is caller:
+                parameter.value = value
+
     def handleName(self, parameter):
         print 'handle invoked NAME-TYPE for name <%s> and parameter-value <%s>' % (parameter.name, str(parameter.value))
 
     def handleFloatType(self, parameter):
         print 'handle invoked FLOAT-TYPE for name <%s> and parameter-value <%s>' % (parameter.name, str(parameter.value))
-        if parameter.name == 'sigmaY' or parameter.name == 'sigmaX':
-            if parameter.value == 50.0:
-                parameter.value = 0.0
-            else:
-                parameter.value = 50.0
+
 
 
 
