@@ -20,6 +20,8 @@ from pyfloribotvision.manager.ContextManager import ContextManager
 from pyfloribotvision.types.BaseType import BaseType
 from pyfloribotvision.types.StringType import StringType
 from pyfloribotvision.types.FloatType import FloatType
+from pyfloribotvision.types.ImageType import ImageType
+from ImageParameter import ImageParameter
 from pyfloribotvision.types.IntType import IntType
 from pyfloribotvision.types.NameType import NameType
 
@@ -89,7 +91,7 @@ class MainWindow(QtGui.QMainWindow, UiBase):
         thl[IntType] = self.handleIntType
         #thl[FloatType] = self.handleFloatType
         #thl[NameType] = self.handleName
-
+        thl[ImageType] = self.handleImageType
 
         return thl
 
@@ -119,6 +121,15 @@ class MainWindow(QtGui.QMainWindow, UiBase):
         for widget, parameter in self.activeParameters.items():
             if widget is caller:
                 parameter.value = value
+
+    def handleImageType(self, parameter):
+        widget = ImageParameter()
+        widget.parameter = parameter
+        widget.label.setText(parameter.name)
+        widget.lineEdit.setText(parameter.value)
+        widget.lineEdit.setDisabled(True)
+        self.parameterBase.verticalLayout.addWidget(widget)
+        self.activeParameters[widget] = parameter
 
     def handleName(self, parameter):
         print 'handle invoked NAME-TYPE for name <%s> and parameter-value <%s>' % (parameter.name, str(parameter.value))

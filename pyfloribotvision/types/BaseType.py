@@ -18,6 +18,11 @@ class BaseType(object):
         if 'value' in kwargs:
             self.value = kwargs['value']
 
+        self.constraint = None
+        if 'constraint' in kwargs:
+            self.constraint = kwargs['constraint']
+
+
         self.output = False
         if 'output' in kwargs:
             self.output = kwargs['output']
@@ -47,7 +52,8 @@ class BaseType(object):
     def value(self, value):
         if type(value) is not self.type:
             value = self.type(value)
-        self._value = value
+        if self.checkConstraint(value):
+            self._value = value
 
     @property
     def data(self):
@@ -69,6 +75,9 @@ class BaseType(object):
             return self.name == other.name and self.value == other.value
         else:
             return self.value == self.type(other)
+
+    def checkConstraint(self, value):
+        return value in self.constraint if self.constraint is not None else True
 
     def invokeCallbacks(self, data):
         for cb in self._DataCallbackList:

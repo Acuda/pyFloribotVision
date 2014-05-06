@@ -9,14 +9,9 @@
 # USE AT YOUR OWN RISK.
 
 
-from PyQt4 import QtGui
-from Ui_ParameterBase import Ui_ParameterBase as UiBase
+from BaseType import BaseType
 
-
-class ParameterBase(QtGui.QWidget, UiBase):
-
-    def __init__(self, **kwargs):
-        QtGui.QWidget.__init__(self, **kwargs)
-        self.setupUi(self)
-
-
+class ImageType(BaseType):
+    def __init__(self, name, **kwargs):
+        super(ImageType, self).__init__(name, **kwargs)
+        self.type = str

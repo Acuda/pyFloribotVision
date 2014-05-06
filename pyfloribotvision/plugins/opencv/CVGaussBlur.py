@@ -12,17 +12,18 @@
 from pyfloribotvision.types.NameType import NameType
 from pyfloribotvision.types.FloatType import FloatType
 from pyfloribotvision.types.IntType import IntType
+from pyfloribotvision.types.ImageType import ImageType
 
-from .. BaseModule import BaseModule
+from .. BasePlugin import BasePlugin
 import cv2
 
-class CVGaussBlur(BaseModule):
+class CVGaussBlur(BasePlugin):
 
     configParameter = [
-        NameType('inputImageName', input=True),
+        ImageType('inputImageName', input=True),
         NameType('outputImageName', output=True),
         FloatType('sigmaX'), FloatType('sigmaY'),
-        IntType('kSize'),
+        IntType('kSize', constraint=range(1,99,2)),
     ]
 
     def __init__(self, **kwargs):
