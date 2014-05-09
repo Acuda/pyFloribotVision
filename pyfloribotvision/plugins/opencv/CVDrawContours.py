@@ -11,12 +11,12 @@
 
 from pyfloribotvision.types.NameType import NameType
 from pyfloribotvision.types.IntListType import IntListType
-from .. BaseModule import BaseModule
+from .. BasePlugin import BasePlugin
 import cv2
 import logging
 
 
-class CVDrawContours(BaseModule):
+class CVDrawContours(BasePlugin):
     """
     if inputContourIndexListName is empty, then draw all contours
     """

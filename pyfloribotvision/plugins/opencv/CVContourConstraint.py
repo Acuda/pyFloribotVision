@@ -12,13 +12,13 @@
 from pyfloribotvision.types.StringType import StringType
 from pyfloribotvision.types.NameType import NameType
 from pyfloribotvision.types.StringListType import StringListType
-from .. BaseModule import BaseModule
+from .. BasePlugin import BasePlugin
 import cv2
 import logging
 from utils import configStrToList
 
 
-class CVContourConstraint(BaseModule):
+class CVContourConstraint(BasePlugin):
 
     configParameter = [
         NameType('inputContourName', input=True),
@@ -33,7 +33,7 @@ class CVContourConstraint(BaseModule):
         self.log = logging.getLogger(__name__)
         self.log.debug('logging started')
 
-    def postOptActions(self):
+    def preCyclicCall(self):
         assert len(self.contourFunctions.value) == len(self.contourConstraint.value)
 
         for k, fnc in enumerate(self.contourFunctions):

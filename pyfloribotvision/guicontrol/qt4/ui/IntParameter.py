@@ -12,24 +12,18 @@
 from PyQt4 import QtGui
 from PyQt4 import QtCore
 from Ui_IntType import Ui_IntType as UiBase
+import BaseParameterClasses as BPC
 
-
-class IntType(QtGui.QWidget, UiBase):
+class IntParameter(QtGui.QWidget, UiBase, BPC.ValueUpdate, BPC.ValueCallback):
 
     def __init__(self):
         QtGui.QWidget.__init__(self)
         self.setupUi(self)
-        self.callback = list()
         self.connect(self.horizontalSlider, QtCore.SIGNAL('valueChanged(int)'), self.sliderChanged)
+        self.connect(self.lineEdit, QtCore.SIGNAL('textChanged(QString)'), self.lineEditChanged)
+
+    def lineEditChanged(self, value):
+        self.updateValue(value, self.horizontalSlider.setValue, int)
 
     def sliderChanged(self, value):
-        self.lineEdit.setText(str(value))
-        self.doNotify(value)
-
-    def registerNotify(self, fnc):
-        self.callback.append(fnc)
-
-    def doNotify(self, value):
-        for fnc in self.callback:
-            fnc(self, value)
-
+        self.updateValue(value, self.lineEdit.setText, str)

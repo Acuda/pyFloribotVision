@@ -10,13 +10,13 @@
 
 
 from pyfloribotvision.types.NameType import NameType
-from ..BaseModule import BaseModule
+from ..BasePlugin import BasePlugin
 import cv2
 import logging
 import numpy as np
 
 
-class CreateContourBinaryImage(BaseModule):
+class CreateContourBinaryImage(BasePlugin):
 
     configParameter = [
         NameType('inputImageName', input=True),

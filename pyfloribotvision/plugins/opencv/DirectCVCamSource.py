@@ -8,18 +8,20 @@
 # THE AUTHOR BE HELD LIABLE FOR ANY DAMAGES ARISING FROM THE USE OF THIS SOURCE-CODE. USE AT YOUR OWN RISK.
 
 
-from pyfloribotvision.types.NameType import NameType
+from pyfloribotvision.types.ImageType import ImageType
 from pyfloribotvision.types.IntType import IntType
-from .. BaseModule import BaseModule
+from .. BasePlugin import BasePlugin
 import logging
 import cv2
 from cv2 import cv
 
-class DirectCVCamSource(BaseModule):
+class DirectCVCamSource(BasePlugin):
 
     configParameter = [
-        NameType('outputImageName', output=True),
-        IntType('camId'), IntType('frameWidth'), IntType('frameHeight'),
+        ImageType('outputImageName', output=True),
+        IntType('camId'),
+        IntType('frameWidth'),
+        IntType('frameHeight'),
     ]
 
     def __init__(self, **kwargs):
@@ -29,7 +31,7 @@ class DirectCVCamSource(BaseModule):
 
         self.initCam()
 
-    def postOptActions(self):
+    def preCyclicCall(self):
         pass
 
     def initCam(self):

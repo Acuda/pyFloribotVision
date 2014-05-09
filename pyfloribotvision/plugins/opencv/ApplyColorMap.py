@@ -11,12 +11,12 @@
 
 from pyfloribotvision.types.NameType import NameType
 from pyfloribotvision.types.StringType import StringType
-from .. BaseModule import BaseModule
+from .. BasePlugin import BasePlugin
 import cv2
 import logging
 
 
-class ApplyColorMap(BaseModule):
+class ApplyColorMap(BasePlugin):
 
     configParameter = [
         NameType('inputImageName', input=True),
@@ -34,7 +34,7 @@ class ApplyColorMap(BaseModule):
         self.log.debug('logging started')
 
 
-    def postOptActions(self):
+    def preCyclicCall(self):
         self.colorMapCode.value = self.colorMapCode.value.upper()
 
         if not hasattr(cv2, self.colorMapCode.value):

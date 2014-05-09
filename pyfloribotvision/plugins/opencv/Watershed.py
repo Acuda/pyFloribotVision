@@ -10,13 +10,13 @@
 
 
 from pyfloribotvision.types.NameType import NameType
-from .. BaseModule import BaseModule
+from .. BasePlugin import BasePlugin
 import cv2
 import numpy as np
 import logging
 
 
-class Watershed(BaseModule):
+class Watershed(BasePlugin):
 
     configParameter = [
         NameType('inputImage', input=True),

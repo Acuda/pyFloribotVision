@@ -13,7 +13,7 @@ from pyfloribotvision.types.StringType import StringType
 from pyfloribotvision.types.NameType import NameType
 from pyfloribotvision.types.BoolType import BoolType
 from pyfloribotvision.types.IntType import IntType
-from .. BaseModule import BaseModule
+from .. BasePlugin import BasePlugin
 import cv2
 import logging
 import pickle
@@ -21,7 +21,7 @@ import numpy as np
 import time
 
 
-class FilePickleSegmentOutput(BaseModule):
+class FilePickleSegmentOutput(BasePlugin):
 
     configParameter = [
         NameType('inputImageName', input=True),
@@ -40,8 +40,8 @@ class FilePickleSegmentOutput(BaseModule):
         self.log.debug('logging started')
         self.timelist = list()
 
-    def postOptActions(self):
-        self.log.debug('postOptActions called')
+    def preCyclicCall(self):
+        self.log.debug('preCyclicCall called')
         self.pickleCycleCntr = 0
         self.pickleCache = list()
         self.log.debug('open dataFile at <%s> in mode "write binary"', self.outputFile.value)
@@ -60,8 +60,8 @@ class FilePickleSegmentOutput(BaseModule):
         if len(self.timelist) > 0:
             print sum(self.timelist) / float(len(self.timelist))
 
-    def preOptActions(self):
-        self.log.debug('preOptActions called')
+    def postCyclicCall(self):
+        self.log.debug('postCyclicCall called')
         self.writeCacheToFile()
         self.dataFile.close()
 

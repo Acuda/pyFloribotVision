@@ -27,7 +27,6 @@ class PyFloribotVision(object):
 
         self.relativePathPrefix = ''
         pluginprefix = '.'.join(__name__.split('.')[:-1])
-        print('NAME',__name__)
         if __name__ == '__main__':
             self.relativePathPrefix = '../'
             pluginprefix = ''
@@ -72,7 +71,6 @@ def main(name, argv):
     :param name: Name of the script which was executed
     :param argv: the list of command line arguments passed to the Python script
     """
-    print('enter main')
     global defaultConfigFile
     defaultConfigFile = 'config/default.conf'
 
@@ -89,17 +87,16 @@ def main(name, argv):
 
     helptext = '\n'.join([x.strip() for x in helptext.splitlines()])
 
-    print(argv)
     if '--' in argv:
         argv.remove('--')
-    print(argv)
+
     try:
         opts, args = getopt.getopt(argv, 'hgr:c:l:', ['configfile=', 'loggingfile='])
     except getopt.GetoptError:
         print(helptext)
         sys.exit(2)
 
-    print(opts)
+
     for opt, arg in opts:
         if opt == '-h':
             print(helptext)
@@ -117,10 +114,7 @@ def main(name, argv):
             mainWindow = MainWindow()
             mainWindow.show()
 
-
-
     try:
-        print('startup')
         pfv = PyFloribotVision(defaultConfigFile, defaultLoggingConfig, relativePath)
         pfv.executeApplicationContext()
     except IOError as e:

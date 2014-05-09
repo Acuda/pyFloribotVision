@@ -12,12 +12,12 @@
 from pyfloribotvision.types.StringType import StringType
 from pyfloribotvision.types.NameType import NameType
 from pyfloribotvision.types.IntListType import IntListType
-from ..BaseModule import BaseModule
+from ..BasePlugin import BasePlugin
 import cv2
 import logging
 
 
-class HuMoments(BaseModule):
+class HuMoments(BasePlugin):
 
     configParameter = [
         NameType('inputMomentListName', input=True),

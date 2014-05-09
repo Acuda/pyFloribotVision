@@ -11,11 +11,11 @@
 from pyfloribotvision.types.StringType import StringType
 from pyfloribotvision.types.IntNestedListType import IntNestedListType
 from pyfloribotvision.types.NameListType import NameListType
-from .. BaseModule import BaseModule
+from .. BasePlugin import BasePlugin
 import numpy as np
 import logging
 
-class CVValueList(BaseModule):
+class CVValueList(BasePlugin):
 
     configParameter = [
         IntNestedListType('inputValues'),

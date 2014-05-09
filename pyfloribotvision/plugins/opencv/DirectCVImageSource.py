@@ -11,11 +11,11 @@
 
 from pyfloribotvision.types.StringType import StringType
 from pyfloribotvision.types.NameType import NameType
-from .. BaseModule import BaseModule
+from .. BasePlugin import BasePlugin
 import logging
 import cv2
 
-class DirectCVImageSource(BaseModule):
+class DirectCVImageSource(BasePlugin):
 
     configParameter = [
         StringType('inputImageFile'),

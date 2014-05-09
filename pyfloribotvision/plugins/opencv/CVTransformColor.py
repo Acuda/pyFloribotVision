@@ -10,11 +10,11 @@
 
 from pyfloribotvision.types.NameType import NameType
 from pyfloribotvision.types.StringType import StringType
-from .. BaseModule import BaseModule
+from .. BasePlugin import BasePlugin
 import cv2
 import logging
 
-class CVTransformColor(BaseModule):
+class CVTransformColor(BasePlugin):
 
     configParameter = [
         NameType('inputImageName', input=True), NameType('outputImageName', output=True),
@@ -26,7 +26,7 @@ class CVTransformColor(BaseModule):
         self.log = logging.getLogger(__name__)
         self.log.debug('logging started')
 
-    def postOptActions(self):
+    def preCyclicCall(self):
         self.colorCode.value = self.colorCode.value.upper()
 
         if not hasattr(cv2, self.colorCode.value):

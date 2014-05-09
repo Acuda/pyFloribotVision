@@ -10,18 +10,19 @@
 
 
 from pyfloribotvision.types.NameType import NameType
-from .. BaseModule import BaseModule
+from pyfloribotvision.types.ImageType import ImageType
+from .. BasePlugin import BasePlugin
 import cv2
 import numpy as np
 import logging
 
 
-class CVBitwiseOr(BaseModule):
+class CVBitwiseOr(BasePlugin):
 
     configParameter = [
-        NameType('inputImageName1', input=True),
-        NameType('inputImageName2', input=True),
-        NameType('outputImageName', output=True),
+        ImageType('inputImageName1', input=True),
+        ImageType('inputImageName2', input=True),
+        ImageType('outputImageName', output=True),
     ]
 
     def __init__(self, **kwargs):

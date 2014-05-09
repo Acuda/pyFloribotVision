@@ -11,12 +11,12 @@
 
 from pyfloribotvision.types.StringType import StringType
 from pyfloribotvision.types.NameType import NameType
-from .. BaseModule import BaseModule
+from .. BasePlugin import BasePlugin
 import cv2
 import logging
 
 
-class CVMorphologyEx(BaseModule):
+class CVMorphologyEx(BasePlugin):
 
     configParameter = [
         StringType('cvOperation'),
@@ -30,7 +30,7 @@ class CVMorphologyEx(BaseModule):
         self.log = logging.getLogger(__name__)
         self.log.debug('logging started')
 
-    def postOptActions(self):
+    def preCyclicCall(self):
         if not hasattr(cv2, self.cvOperation.value):
             self.log.error('unknown cvOperation <%s>, deactivating module <%s>', self.cvOperation,
                            self.logicSectionName)

@@ -32,7 +32,7 @@ class ImageParameter(QtGui.QWidget, UiBase):
         self._showImage = not self._showImage
         if self._showImage:
             self.btnToggleImage.setText('HIDE')
-            self._timer.start(20)
+            self._timer.start(200)
             self.videoFrame.setEnabled(True)
         else:
             self.btnToggleImage.setText('SHOW')
@@ -42,7 +42,7 @@ class ImageParameter(QtGui.QWidget, UiBase):
 
     def updateImage(self):
         self.videoFrame.setPixmap(self.convertImage())
-        self.videoFrame.setScaledContents(True)
+        #self.videoFrame.setScaledContents(True)
         self.update()
 
     def convertImage(self):

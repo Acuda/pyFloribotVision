@@ -12,12 +12,12 @@
 from pyfloribotvision.types.StringType import StringType
 from pyfloribotvision.types.NameType import NameType
 from pyfloribotvision.types.IntListType import IntListType
-from .. BaseModule import BaseModule
+from .. BasePlugin import BasePlugin
 import cv2
 import logging
 
 
-class CVStructuringElement(BaseModule):
+class CVStructuringElement(BasePlugin):
 
     configParameter = [
         StringType('cvShape'),
@@ -30,7 +30,7 @@ class CVStructuringElement(BaseModule):
         self.log = logging.getLogger(__name__)
         self.log.debug('logging started')
 
-    def postOptActions(self):
+    def preCyclicCall(self):
         if not hasattr(cv2, self.cvShape.value):
             self.log.error('unknown cvShape <%s>, deactivating module <%s>', self.cvShape.value, self.logicSectionName)
             self.activeModule = False

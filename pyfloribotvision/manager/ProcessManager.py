@@ -143,6 +143,7 @@ class ProcessManager(object):
         self.log.debug('')
         self.log.debug('=' * 30 + ' RUN ACTIVE MODULES ' + '=' * 30)
 
+        self.triggerPluginMethods('preCyclicCall')
 
         isFirstRun = True
         while True:
@@ -172,7 +173,7 @@ class ProcessManager(object):
                 break
 
 
-        self.triggerPluginMethods('preOptActions')
+        self.triggerPluginMethods('postCyclicCall')
 
     def triggerPluginMethods(self, methodName, pluginDtoList=None):
         """Triggers the corresponding methods of the active Plugins in the pluginDtoList

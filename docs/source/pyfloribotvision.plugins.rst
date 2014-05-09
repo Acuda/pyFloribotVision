@@ -9,10 +9,10 @@ plugins Package
     :undoc-members:
     :show-inheritance:
 
-:mod:`BaseModule` Module
+:mod:`BasePlugin` Module
 ------------------------
 
-.. automodule:: pyfloribotvision.plugins.BaseModule
+.. automodule:: pyfloribotvision.plugins.BasePlugin
     :members:
     :undoc-members:
     :show-inheritance:

@@ -48,10 +48,6 @@ class BaseListType(BaseType):
             super(BaseListType, self).invokeCallbacks(data)
 
 
-
-
-
-
     def dataUpdateCallback(self, name, data):
         if name in self.value:
             if self.data is None:

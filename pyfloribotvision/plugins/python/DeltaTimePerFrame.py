@@ -11,12 +11,12 @@
 
 from pyfloribotvision.types.BoolType import BoolType
 from pyfloribotvision.types.IntType import IntType
-from .. BaseModule import BaseModule
+from .. BasePlugin import BasePlugin
 import time
 import logging
 
 
-class DeltaTimePerFrame(BaseModule):
+class DeltaTimePerFrame(BasePlugin):
 
     configParameter = [
         BoolType('displayTime'),
@@ -29,7 +29,7 @@ class DeltaTimePerFrame(BaseModule):
         self.log = logging.getLogger(__name__)
         self.log.debug('logging started')
 
-    def postOptActions(self):
+    def preCyclicCall(self):
         self.lastCallTime = time.time()
         self.timeList = list()
         self.frameCount = 1
@@ -48,9 +48,9 @@ class DeltaTimePerFrame(BaseModule):
         self.frameCount += 1
 
         if self.frameCount == self.stopFrame:
-            self.preOptActions()
+            self.postCyclicCall()
 
-    def preOptActions(self):
+    def postCyclicCall(self):
         midtime = float(sum(self.timeList)) / len(self.timeList)
         self.printTime(midtime)
 

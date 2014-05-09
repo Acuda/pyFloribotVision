@@ -10,16 +10,17 @@
 
 
 from pyfloribotvision.types.NameType import NameType
+from pyfloribotvision.types.ImageType import ImageType
 from pyfloribotvision.types.NameListType import NameListType
-from .. BaseModule import BaseModule
+from .. BasePlugin import BasePlugin
 import cv2
 import logging
 
 
-class CVInRange(BaseModule):
+class CVInRange(BasePlugin):
 
     configParameter = [
-        NameType('inputImageName', input=True),
+        ImageType('inputImageName', input=True),
         NameListType('cvValueListNames', input=True),
         NameListType('outputMaskListNames', output=True),
     ]

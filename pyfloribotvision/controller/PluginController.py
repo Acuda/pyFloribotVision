@@ -4,9 +4,9 @@
 #Author: Björn Eistel
 #Contact: <eistel@gmail.com>
 #
-# THIS SOURCE-CODE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED. IN NO 
-# EVENT WILL THE AUTHOR BE HELD LIABLE FOR ANY DAMAGES ARISING FROM THE USE OF THIS SOURCE-CODE. 
-# USE AT YOUR OWN RISK.
+# THIS SOURCE-CODE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED. IN NO EVENT WILL THE AUTHOR BE HELD LIABLE FOR ANY DAMAGES ARISING FROM
+# THE USE OF THIS SOURCE-CODE. USE AT YOUR OWN RISK.
 
 
 import logging
@@ -14,13 +14,14 @@ from importlib import import_module
 
 
 class PluginController(object):
-    """The PluginController handles loading and finding of the Plugins"""
+    """The PluginController handles the loading and finding of the Plugins"""
 
 
     def __init__(self, pluginprefix):
         """Initializes the PluginController and load its Plugins
 
-        :param pluginprefix: 
+        :param pluginprefix: the package-path where the plugin-package can be found
+        :type pluginprefix: str
         """
 
         self.log = logging.getLogger(__name__)
@@ -35,19 +36,24 @@ class PluginController(object):
 
     def loadPluginClass(self, item):
         """
-        Finds a PluginClass by Path and returns it if found, otherwise None
+        Loads a PluginClass by relativ path and returns it if found, otherwise None
+        Due to conventions, the name of the PluginClass must be the same as the
+        FileName containing the class.
 
         :param item: the Plugin to search for
             str of the format according to a relative import in the plugin package.
             e.g.: 'opencv.cvDrawContours'
+        :type item: str
+
+        :returns: the class of the loaded plugin or None if an error occurred
         """
 
         pkgd = '.'  # delimiter for packages
 
-        pkgpath = self._plugindir + pkgd + item
-        cname = item.split(pkgd)[-1:][0]
+        pkgpath = self._plugindir + pkgd + item  # package-path
+        cname = item.split(pkgd)[-1:][0]  # class-name
 
-        self.log.debug('try import for <%s> in package <%s>', pkgpath, cname)
+        self.log.debug('try import for <%s> in package <%s>', cname, pkgpath)
 
         try:
             imod = import_module(pkgpath)

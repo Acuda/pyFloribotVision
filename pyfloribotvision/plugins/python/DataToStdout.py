@@ -20,12 +20,12 @@
 
 
 from pyfloribotvision.types.StringListType import StringListType
-from .. BaseModule import BaseModule
+from .. BasePlugin import BasePlugin
 import time
 import logging
 
 
-class DataToStdout(BaseModule):
+class DataToStdout(BasePlugin):
 
     configParameter = [
         StringListType('inputData', input=True),

@@ -9,14 +9,14 @@
 # USE AT YOUR OWN RISK.
 
 
-from .. BaseModule import BaseModule
+from .. BasePlugin import BasePlugin
 import cv2
 import freenect
 import numpy as np
 import logging
 
 
-class DirectKinectSource(BaseModule):
+class DirectKinectSource(BasePlugin):
     obligatoryConfigOptions = {'camId': None, 'outputImageName': None, 'outputDepthImageName': None,
                                'outputDepthRawName': None, 'reverseDepthVisualisation': None}
 
@@ -25,7 +25,7 @@ class DirectKinectSource(BaseModule):
         self.log = logging.getLogger(__name__)
         self.log.debug('logging started')
 
-    def postOptActions(self):
+    def preCyclicCall(self):
         #from config
         self.reverseDepthVisualisation = self.reverseDepthVisualisation == str(True)
         self.camId = int(self.camId)

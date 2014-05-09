@@ -11,12 +11,12 @@
 
 from pyfloribotvision.types.StringType import StringType
 from pyfloribotvision.types.NameType import NameType
-from .. BaseModule import BaseModule
+from .. BasePlugin import BasePlugin
 import cv2
 import logging
 
 
-class CVFindContours(BaseModule):
+class CVFindContours(BasePlugin):
 
     configParameter = [
         NameType('inputImageName', input=True),
@@ -26,12 +26,13 @@ class CVFindContours(BaseModule):
         StringType('cvMethod'),
     ]
 
+
     def __init__(self, **kwargs):
         super(CVFindContours, self).__init__(**kwargs)
         self.log = logging.getLogger(__name__)
         self.log.debug('logging started')
 
-    def postOptActions(self):
+    def preCyclicCall(self):
         self.cvMode.value = self.cvMode.value.upper()
         self.cvMethod.value = self.cvMethod.value.upper()
 

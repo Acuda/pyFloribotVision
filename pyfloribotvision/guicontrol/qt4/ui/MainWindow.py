@@ -14,12 +14,13 @@ from Ui_MainWindow import Ui_MainWindow as UiBase
 from ConfigControl import ConfigControl
 from PluginList import PluginList
 from ParameterBase import ParameterBase
-from IntType import IntType as IntTypeGui
+from IntParameter import IntParameter
 from PyQt4 import QtCore
 from pyfloribotvision.manager.ContextManager import ContextManager
 from pyfloribotvision.types.BaseType import BaseType
 from pyfloribotvision.types.StringType import StringType
 from pyfloribotvision.types.FloatType import FloatType
+from FloatParameter import FloatParameter
 from pyfloribotvision.types.ImageType import ImageType
 from ImageParameter import ImageParameter
 from pyfloribotvision.types.IntType import IntType
@@ -49,11 +50,17 @@ class MainWindow(QtGui.QMainWindow, UiBase):
         self.pluginList = PluginList()
         self.tab1Content.addWidget(self.pluginList)
 
-
-        self.connect(self.pluginList.btnUpdate, QtCore.SIGNAL('clicked()'), self.loadList)
+        # beware.. the timer is needed due to the IMHO  python loading concept
+        # the contextManager is not available in the startup process (__init__-stuff)
+        self._timer = QtCore.QTimer(self)
+        self._timer.setSingleShot(True)
+        self._timer.timeout.connect(self.loadList)
+        self._timer.start(1)
+        #self.connect(self.pluginList.btnUpdate, QtCore.SIGNAL('clicked()'), self.loadList)
         self.connect(self.pluginList.listWidget, QtCore.SIGNAL('itemClicked(QListWidgetItem*)'), self.itemClicked)
 
         self.cm = ContextManager()
+
 
 
     def loadList(self):
@@ -89,7 +96,7 @@ class MainWindow(QtGui.QMainWindow, UiBase):
 
         #thl[StringType] = self.handleString
         thl[IntType] = self.handleIntType
-        #thl[FloatType] = self.handleFloatType
+        thl[FloatType] = self.handleFloatType
         #thl[NameType] = self.handleName
         thl[ImageType] = self.handleImageType
 
@@ -102,14 +109,14 @@ class MainWindow(QtGui.QMainWindow, UiBase):
     def handleIntType(self, parameter):
         print 'handle invoked INT-TYPE for name <%s> and parameter-value <%s>' % (parameter.name, str(parameter.value))
 
-        itg = IntTypeGui()
+        itg = IntParameter()
 
         itg.label.setText(parameter.name)
         itg.lineEdit.setText(str(parameter.value))
         itg.horizontalSlider.setValue(parameter.value)
 
         itg.horizontalSlider.setMinimum(0)
-        itg.horizontalSlider.setMaximum(500)
+        itg.horizontalSlider.setMaximum(1000)
         itg.horizontalSlider.setSingleStep(1)
         itg.horizontalSlider.setPageStep(10)
 
@@ -138,5 +145,20 @@ class MainWindow(QtGui.QMainWindow, UiBase):
         print 'handle invoked FLOAT-TYPE for name <%s> and parameter-value <%s>' % (parameter.name, str(parameter.value))
 
 
+        ftg = FloatParameter()
+
+        ftg.label.setText(parameter.name)
+        ftg.lineEdit.setText(str(parameter.value))
+        ftg.horizontalSlider.setValue(parameter.value)
+        print parameter.name, parameter.value
+
+        ftg.horizontalSlider.setMinimum(0)
+        ftg.horizontalSlider.setMaximum(500)
+        ftg.horizontalSlider.setSingleStep(1)
+        ftg.horizontalSlider.setPageStep(10)
+
+        ftg.registerNotify(self.widgetValueChanged)
+        self.parameterBase.verticalLayout.addWidget(ftg)
+        self.activeParameters[ftg] = parameter
 
 

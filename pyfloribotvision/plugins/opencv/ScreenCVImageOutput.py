@@ -10,10 +10,10 @@
 
 
 from pyfloribotvision.types.StringListType import StringListType
-from .. BaseModule import BaseModule
+from .. BasePlugin import BasePlugin
 import cv2
 
-class ScreenCVImageOutput(BaseModule):
+class ScreenCVImageOutput(BasePlugin):
 
     configParameter = [
         StringListType('inputImageList', input=True),
