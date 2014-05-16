@@ -31,7 +31,7 @@ class BasePlugin(object):
         self.log.debug('logging started')
 
         self.sectionConfig = kwargs['sectionConfig']
-        self.ioContainer = kwargs['ioContainer']
+        #self.ioContainer = kwargs['ioContainer']
         self.logicSectionName = kwargs['logicSectionName']
 
         self.log.debug('invoked by subclass <%s> for logicSectionName <%s> ',
@@ -47,29 +47,35 @@ class BasePlugin(object):
                              self.logicSectionName, type(self).__module__)
 
 
-    def loadOptions(self):
+    def loadOptions(self, obj=None):
         # keep at the following line in mind, that self.configParameter is static
         # and refers to the same memory on all instances of the same plugin class.
         # therefore we have to duplicate the static-data to a new _un_static memory
-        self.configParameter = copy.deepcopy(self.configParameter)
-        for parameter in self.configParameter:
-            parameter._logicSectionName = self.logicSectionName
+
+        if obj is None:
+            obj = self
+
+        self.log.debug('try to load and inject configuration')
+
+        obj.configParameter = copy.deepcopy(obj.configParameter)
+        for parameter in obj.configParameter:
+            parameter._logicSectionName = obj.logicSectionName
             parameter.initLog()
-            if parameter.name not in self.sectionConfig:
-                self.log.error('option <%s> for section <%s> missing, '
+            if parameter.name not in obj.sectionConfig:
+                obj.log.error('option <%s> for section <%s> missing, '
                                'requested for plugin <%s>, '
                                'setting plugin for section as inactive',
-                               parameter.name, self.logicSectionName,
-                               type(self).__module__)
-                self.activeModule = False
+                               parameter.name, obj.logicSectionName,
+                               type(obj).__module__)
+                obj.activeModule = False
                 continue
 
-            parameter.value = self.sectionConfig[parameter.name]
-            self.sectionConfig[parameter.name] = parameter
+            parameter.value = obj.sectionConfig[parameter.name]
+            obj.sectionConfig[parameter.name] = parameter
 
-            self.__dict__[parameter.name] = parameter
-            self.log.debug('dynamic attribute <%s> with value <%s> created',
-                           parameter.name, self.__dict__[parameter.name])
+            obj.__dict__[parameter.name] = parameter
+            obj.log.debug('dynamic attribute <%s> with value <%s> created',
+                           parameter.name, parameter.value)
 
     def preCyclicCall(self):
         self.log.debug('function preCyclicCall is not overloaded in subclass <%s>',

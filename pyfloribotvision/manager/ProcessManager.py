@@ -12,9 +12,15 @@ import logging
 import utils
 from pyfloribotvision.controller.PluginController import PluginController
 from pyfloribotvision.controller.ConfigController import ConfigController
-from pyfloribotvision.controller.DataLinkController import DataLinkController
+from pyfloribotvision.plugins.BasePlugin import BasePlugin
 from pyfloribotvision.types.BaseType import BaseType
 from pyfloribotvision.dto.PluginDTO import PluginDTO
+#config parameter
+from pyfloribotvision.types.StringListType import StringListType
+from pyfloribotvision.types.StringType import StringType
+from pyfloribotvision.types.IntType import IntType
+from pyfloribotvision.types.BoolType import BoolType
+
 import time
 import cv2
 
@@ -22,9 +28,17 @@ import cv2
 class ProcessManager(object):
     """Manages the Process and is responsibly for the runtime behavior"""
 
-    _SECTIONNAME = 'GENERAL'
+    logicSectionName = 'GENERAL'
 
-    def __init__(self, pluginController, configController, dataLinkController):
+    configParameter = [
+        StringListType('pluginSequence'),
+        StringType('exitKey'),
+        IntType('leadTime'),
+        BoolType('waitLeadTime'),
+        BoolType('runOnce'),
+    ]
+
+    def __init__(self, pluginController, configController):
         """Gets the 'GENERAL' section from the ConfigController and acquires and instantiate the
         Plugins specified by the 'pluginSequence' Option in the Configuration
 
@@ -48,13 +62,12 @@ class ProcessManager(object):
         assert isinstance(configController, ConfigController)
         self.configController = configController
 
-        assert isinstance(dataLinkController, DataLinkController)
-        self.dataLinkController = dataLinkController
-
         # Init-Specific (Config / Plugins)
         ###################################
 
-        self.ownConfig = self.configController.getSection(self._SECTIONNAME)
+        self.sectionConfig = self.configController.getSection(self.logicSectionName)
+        bp = BasePlugin(sectionConfig=self.sectionConfig, logicSectionName=self.logicSectionName)
+        bp.loadOptions(self)
 
         self.pluginDtoList = self.acquirePlugins()
         self.instantiatePlugins()
@@ -70,7 +83,7 @@ class ProcessManager(object):
         self.deltaExecTime = 0
         self.deltaBypassTime = 0
 
-    def acquirePlugins(self, generalConfigSection=None):
+    def acquirePlugins(self):
         """Acquire the Plugins specified by the 'pluginSequence' Option in the Configuration given
         by the dict generalConfigSection or internal config if generalConfigSection is None.
         Furthermore returns a list of PluginDto for each loaded Plugin whose Name in the
@@ -80,13 +93,8 @@ class ProcessManager(object):
         """
 
         self.log.debug('enter acquirePlugins')
-        if generalConfigSection is None:
-            generalConfigSection = self.ownConfig['pluginSequence']
-        if generalConfigSection is None:
-            return None
-
         pluginDtoList = list()
-        for section in utils.configStrToList(generalConfigSection):
+        for section in self.pluginSequence:
             if not section.startswith('!'):
                 pdto = PluginDTO()
                 pdto.sectionName = section
@@ -122,8 +130,7 @@ class ProcessManager(object):
             self.log.debug('instantiate Plugin <%s> for Section <%s>', pdto.modulePath, pdto.sectionName)
             sectionConfig = self.configController.getSection(pdto.sectionName)
             pdto.instanceObject = pdto.classObject(sectionConfig=sectionConfig,
-                                                   logicSectionName=pdto.sectionName,
-                                                   ioContainer=self.dataLinkController)
+                                                   logicSectionName=pdto.sectionName)
 
 
     def executePlugins(self, pluginDtoList=None):
@@ -131,10 +138,6 @@ class ProcessManager(object):
             pluginDtoList = self.pluginDtoList
         assert isinstance(pluginDtoList, list)
 
-        leadTime = int(self.ownConfig['leadTime']) / 1000.0
-        waitLeadTime = self.ownConfig['waitLeadTime'] == str(True)
-        runOnce = self.ownConfig['runOnce'] == str(True)
-        exitKey = self.ownConfig['exitKey']
 
         self.log.debug('')
         self.log.debug('=' * 30 + ' REGISTER DEPENDENCY ' + '=' * 30)
@@ -147,13 +150,14 @@ class ProcessManager(object):
 
         isFirstRun = True
         while True:
+            leadTime = self.leadTime.value / 1000.0
             curTime = time.time()
             deltaExec = curTime - self.lastExecTime
 
             if isFirstRun or (deltaExec + self.deltaBypassTime) > leadTime:
                 waitTime = leadTime - deltaExec
 
-                if waitLeadTime and not isFirstRun and waitTime > 0:
+                if self.waitLeadTime.value and not isFirstRun and waitTime > 0:
                     time.sleep(waitTime)
 
                 self.lastExecTime = time.time()
@@ -166,10 +170,10 @@ class ProcessManager(object):
 
             isFirstRun = False
 
-            if runOnce:
+            if self.runOnce.value:
                 break
 
-            if (cv2.waitKey(1) & 255) == ord(exitKey):
+            if (cv2.waitKey(10) & 255) == ord(self.exitKey.value):
                 break
 
 

@@ -37,5 +37,8 @@ class DataToStdout(BasePlugin):
         self.log.debug('logging started')
 
     def externalCall(self):
+        if self.inputData.data is None:
+            return
+
         for data in self.inputData.value:
             print data, self.inputData.data[data]

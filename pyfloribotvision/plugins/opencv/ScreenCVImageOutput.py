@@ -24,6 +24,10 @@ class ScreenCVImageOutput(BasePlugin):
 
     def externalCall(self):
         for imagename, image in self.inputImageList.data.items():
+            if image is None:
+                self.log.error('image with name <%s> contains no data!', imagename)
+                continue
+
             cv2.imshow(imagename, image)
 
 

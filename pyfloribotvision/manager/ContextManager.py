@@ -13,7 +13,6 @@ import logging
 import logging.config
 from pyfloribotvision.controller.PluginController import PluginController
 from pyfloribotvision.controller.ConfigController import ConfigController
-from pyfloribotvision.controller.DataLinkController import DataLinkController
 from pyfloribotvision.manager.ProcessManager import ProcessManager
 
 
@@ -66,12 +65,8 @@ class ContextManager(object):
         if self.configController is None:
             self.configController = ConfigController(configFileName)
 
-        if self.dataLinkController is None:
-            self.dataLinkController = DataLinkController()
-
         if self.processManager is None:
-            self.processManager = ProcessManager(self.pluginController, self.configController,
-                                                 self.dataLinkController)
+            self.processManager = ProcessManager(self.pluginController, self.configController)
 
     def executeContext(self):
         """Triggers the executePlugins Method from the ProcessManager"""

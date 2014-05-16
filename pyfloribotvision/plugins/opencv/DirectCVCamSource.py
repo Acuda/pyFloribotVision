@@ -29,10 +29,8 @@ class DirectCVCamSource(BasePlugin):
         self.log = logging.getLogger(__name__)
         self.log.debug('logging started')
 
-        self.initCam()
-
     def preCyclicCall(self):
-        pass
+        self.initCam()
 
     def initCam(self):
         self.cam = cv2.VideoCapture(self.camId.value)

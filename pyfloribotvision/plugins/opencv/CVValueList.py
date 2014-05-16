@@ -19,7 +19,7 @@ class CVValueList(BasePlugin):
 
     configParameter = [
         IntNestedListType('inputValues'),
-        NameListType('outputNames', output=True), StringType('runCycle'),
+        NameListType('outputNames', output=True),
     ]
 
     def __init__(self, **kwargs):
@@ -32,9 +32,11 @@ class CVValueList(BasePlugin):
         self.outputNames.data = dict()
         converted = self.inputValues.getConvertedValue(np.array, np.uint8)
 
-        self.log.debug('Value converted from <%s> to <%s>', self.inputValues.value, converted)
+        self.log.debug('Value converted from <%s> to <%s>',
+                       self.inputValues.value, converted)
         self.log.debug('output values are: <%s>', self.outputNames.value)
 
         for key, value in enumerate(self.outputNames.value):
-            self.log.debug('setting data dict with key <%s> to value <%s>', value, converted[key])
+            self.log.debug('setting data dict with key <%s> to value <%s>',
+                           value, converted[key])
             self.outputNames.setDataValue(value, converted[key])

@@ -113,12 +113,14 @@ class MainWindow(QtGui.QMainWindow, UiBase):
 
         itg.label.setText(parameter.name)
         itg.lineEdit.setText(str(parameter.value))
-        itg.horizontalSlider.setValue(parameter.value)
 
         itg.horizontalSlider.setMinimum(0)
         itg.horizontalSlider.setMaximum(1000)
         itg.horizontalSlider.setSingleStep(1)
         itg.horizontalSlider.setPageStep(10)
+
+        itg.horizontalSlider.setValue(parameter.value)
+
 
         itg.registerNotify(self.widgetValueChanged)
         self.parameterBase.verticalLayout.addWidget(itg)

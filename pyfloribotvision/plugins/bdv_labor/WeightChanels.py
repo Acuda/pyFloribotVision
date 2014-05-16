@@ -22,7 +22,8 @@ class WeightChanels(BasePlugin):
 
     configParameter = [
         ImageType('inputImageName', input=True),
-        ImageType('outputImageName', output=True)
+        ImageType('outputImageName', output=True),
+        IntType('ofs'),
     ]
 
     def __init__(self, **kwargs):
@@ -30,10 +31,14 @@ class WeightChanels(BasePlugin):
 
 
     def preCyclicCall(self):
+        pass
+
+    def externalCall(self):
+
         hlut = np.sin(np.linspace(0, np.pi, 31))
         hblk = np.zeros(180-hlut.size, np.float32)
         hlut = np.concatenate((hlut, hblk))
-        self.hlut = np.roll(hlut, 24)
+        self.hlut = np.roll(hlut, self.ofs.value)
 
         flut = np.sin(np.linspace(0, np.pi*0.5, 256))*255
         fblk = np.zeros(256-flut.size, np.float32)
@@ -43,8 +48,6 @@ class WeightChanels(BasePlugin):
         tfblk = np.zeros(256-tflut.size, np.float32)
         self.tflut = np.concatenate((tflut, tfblk))
 
-
-    def externalCall(self):
         image = self.inputImageName.data
 
 

@@ -22,6 +22,14 @@ class BaseType(object):
         if 'constraint' in kwargs:
             self.constraint = kwargs['constraint']
 
+        self.minValue = None
+        if 'minValue' in kwargs:
+            self.minValue = kwargs['minValue']
+
+        self.maxValue = None
+        if 'maxValue' in kwargs:
+            self.maxValue = kwargs['maxValue']
+
 
         self.output = False
         if 'output' in kwargs:
@@ -93,7 +101,18 @@ class BaseType(object):
         self.data = data
 
     def getConvertedValue(self, converter, *args):
-        return converter(self.value, *args)
+        return self._convert(self.value, converter, *args)
+
+    def getConvertedData(self, converter, *args):
+        data = self.data
+        if isinstance(data, dict):
+            data = data.values()
+
+        return self._convert(data, converter, *args)
+
+
+    def _convert(self, data, converter, *args):
+        return converter(data, *args)
 
     def _debugout(self, value, *args):
         self.log.debug('%s.%s: ' + value, self._logicSectionName, self.name, *args)

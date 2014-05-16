@@ -31,9 +31,6 @@ class CreateContourBinaryImage(BasePlugin):
         self.log.debug('logging started')
 
     def externalCall(self):
-
-
-
         shape = tuple(self.inputImageName.data.shape[0:2])
         image = np.zeros(shape, np.uint8)
 
