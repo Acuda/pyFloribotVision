@@ -17,9 +17,10 @@ from pyfloribotvision.manager.ProcessManager import ProcessManager
 
 
 class ContextManager(object):
-    """Prepare Application-Context and give the ability to access the Context trough normal
-    initialisation for a given Pseudo-Namespace. The ContextManager provides the Plugins-,
-    Configuration- and DataLink-Controller as well as the ProcessManager. """
+    """Prepare Application-Context and give the ability to access the Context trough
+    normal initialisation for a given Pseudo-Namespace. The ContextManager provides
+    the Plugins-, Configuration- and DataLink-Controller as well as the
+    ProcessManager. """
 
     _instance = dict()
 
@@ -33,13 +34,15 @@ class ContextManager(object):
         ctxName = args[0] if args else None
 
         if ctxName not in cls._instance.keys():
-            cls._instance[ctxName] = super(ContextManager, cls).__new__(cls, *args, **kwargs)
+            cls._instance[ctxName] = super(ContextManager, cls).__new__(cls, *args,
+                                                                        **kwargs)
 
         return cls._instance[ctxName]
 
     def __init__(self, contextName=None):
-        """Initialize a new instance per given contextName. Every new init for a known contextName
-        returns previously initialized instance for corresponding context.
+        """Initialize a new instance per given contextName. Every new init for a
+        known contextName returns previously initialized instance for corresponding
+        context.
 
         :param contextName: specifies the context (default ``None``)
         """
@@ -49,7 +52,8 @@ class ContextManager(object):
         self.processManager = None
 
     def initContext(self, configFileName, loggingConfigFileName, pluginprefix):
-        """Initializes the Controller, Manager and Logger for given configuration data.
+        """Initializes the Controller, Manager and Logger for given configuration
+        data.
 
         :param configFileName: Configuration-File for the ConfigController
         :param loggingConfigFileName: Configuration-File for the Logger

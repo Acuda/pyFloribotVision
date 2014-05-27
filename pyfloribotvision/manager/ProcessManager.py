@@ -4,12 +4,12 @@
 #Author: Björn Eistel
 #Contact: <eistel@gmail.com>
 #
-# THIS SOURCE-CODE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED. IN NO 
-# EVENT WILL THE AUTHOR BE HELD LIABLE FOR ANY DAMAGES ARISING FROM THE USE OF THIS SOURCE-CODE. 
-# USE AT YOUR OWN RISK.
+# THIS SOURCE-CODE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED. IN NO  EVENT WILL THE AUTHOR BE HELD LIABLE FOR ANY DAMAGES ARISING FROM
+# THE USE OF THIS SOURCE-CODE. USE AT YOUR OWN RISK.
+
 
 import logging
-import utils
 from pyfloribotvision.controller.PluginController import PluginController
 from pyfloribotvision.controller.ConfigController import ConfigController
 from pyfloribotvision.plugins.BasePlugin import BasePlugin
@@ -39,8 +39,9 @@ class ProcessManager(object):
     ]
 
     def __init__(self, pluginController, configController):
-        """Gets the 'GENERAL' section from the ConfigController and acquires and instantiate the
-        Plugins specified by the 'pluginSequence' Option in the Configuration
+        """Gets the 'GENERAL' section from the ConfigController and acquires and
+        instantiate the Plugins specified by the 'pluginSequence' Option in the
+        Configuration
 
         :param pluginController: Instance of the ``PluginController``
         :param configController: Instance of the ``ConfigController``
@@ -66,7 +67,8 @@ class ProcessManager(object):
         ###################################
 
         self.sectionConfig = self.configController.getSection(self.logicSectionName)
-        bp = BasePlugin(sectionConfig=self.sectionConfig, logicSectionName=self.logicSectionName)
+        bp = BasePlugin(sectionConfig=self.sectionConfig,
+                        logicSectionName=self.logicSectionName)
         bp.loadOptions(self)
 
         self.pluginDtoList = self.acquirePlugins()
@@ -84,10 +86,11 @@ class ProcessManager(object):
         self.deltaBypassTime = 0
 
     def acquirePlugins(self):
-        """Acquire the Plugins specified by the 'pluginSequence' Option in the Configuration given
-        by the dict generalConfigSection or internal config if generalConfigSection is None.
-        Furthermore returns a list of PluginDto for each loaded Plugin whose Name in the
-        pluginSequence Option don't start with an exclamation mark
+        """Acquire the Plugins specified by the 'pluginSequence' Option in the
+        Configuration given by the dict generalConfigSection or internal config if
+        generalConfigSection is None.
+        Furthermore returns a list of PluginDto for each loaded Plugin whose Name in
+        the pluginSequence Option don't start with an exclamation mark
 
         :param generalConfigSection: Config for 'GENERAL' section (default ``None``)
         """
@@ -98,13 +101,16 @@ class ProcessManager(object):
             if not section.startswith('!'):
                 pdto = PluginDTO()
                 pdto.sectionName = section
-                #FIXME: AssertionError seems to take no effect, useless?
+                self.log.debug('try loading for sectionName <%s>', pdto.sectionName)
+                #FIXME: Figure out when it fails!
                 try:
-                    pdto.modulePath = self.configController.getOption(section, 'pluginPath')
+                    pdto.modulePath = self.configController.getOption(section,
+                                                                      'pluginPath')
                 except AssertionError as e:
                     self.log.critical('asd %s', e.message)
 
-                pdto.classObject = self.pluginController.loadPluginClass(pdto.modulePath)
+                pdto.classObject = self.pluginController.loadPluginClass(
+                    pdto.modulePath)
                 if pdto.classObject is None:
                     continue
                 pluginDtoList.append(pdto)
@@ -127,7 +133,8 @@ class ProcessManager(object):
         self.log.debug('instantiate Plugins')
         for pdto in pluginDtoList:
             assert isinstance(pdto, PluginDTO)
-            self.log.debug('instantiate Plugin <%s> for Section <%s>', pdto.modulePath, pdto.sectionName)
+            self.log.debug('instantiate Plugin <%s> for Section <%s>',
+                           pdto.modulePath, pdto.sectionName)
             sectionConfig = self.configController.getSection(pdto.sectionName)
             pdto.instanceObject = pdto.classObject(sectionConfig=sectionConfig,
                                                    logicSectionName=pdto.sectionName)
@@ -180,7 +187,8 @@ class ProcessManager(object):
         self.triggerPluginMethods('postCyclicCall')
 
     def triggerPluginMethods(self, methodName, pluginDtoList=None):
-        """Triggers the corresponding methods of the active Plugins in the pluginDtoList
+        """Triggers the corresponding methods of the active Plugins in the
+        pluginDtoList
 
         :param methodName: Name of the Plugin-Method to trigger
         :param pluginDtoList: List of PluginDto's (default None)

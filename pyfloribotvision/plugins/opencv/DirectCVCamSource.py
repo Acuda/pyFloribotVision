@@ -4,8 +4,9 @@
 #Author: Björn Eistel
 #Contact: <eistel@gmail.com>
 #
-# THIS SOURCE-CODE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED. IN NO EVENT WILL 
-# THE AUTHOR BE HELD LIABLE FOR ANY DAMAGES ARISING FROM THE USE OF THIS SOURCE-CODE. USE AT YOUR OWN RISK.
+# THIS SOURCE-CODE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED. IN NO  EVENT WILL THE AUTHOR BE HELD LIABLE FOR ANY DAMAGES ARISING FROM
+# THE USE OF THIS SOURCE-CODE. USE AT YOUR OWN RISK.
 
 
 from pyfloribotvision.types.ImageType import ImageType
@@ -39,10 +40,13 @@ class DirectCVCamSource(BasePlugin):
         if self.frameHeight > 0:
             self.cam.set(cv.CV_CAP_PROP_FRAME_HEIGHT, self.frameHeight.value)
 
+
+
     def timeBypassActions(self):
-        self.cam.read()
+        self.cam.grab()
 
     def externalCall(self):
+        self.cam.grab()
         i, image = self.cam.read()
         self.outputImageName.data = image.copy()
 

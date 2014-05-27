@@ -12,31 +12,36 @@
 from pyfloribotvision.types.ImageType import ImageType
 from pyfloribotvision.types.StringType import StringType
 from .. BasePlugin import BasePlugin
-import cv2
 import logging
+import cv2
+from cv2 import cv
 
-class CVTransformColor(BasePlugin):
+class DirectVideoSource(BasePlugin):
 
     configParameter = [
-        ImageType('inputImageName', input=True),
+        StringType('inputVideoFile'),
         ImageType('outputImageName', output=True),
-        StringType('colorCode'),
     ]
 
     def __init__(self, **kwargs):
-        super(CVTransformColor, self).__init__(**kwargs)
+        super(DirectVideoSource, self).__init__(**kwargs)
         self.log = logging.getLogger(__name__)
         self.log.debug('logging started')
 
     def preCyclicCall(self):
-        self.colorCode.value = self.colorCode.value.upper()
+        self.initVideo()
 
-        if not hasattr(cv2, self.colorCode.value):
-            self.log.error('unknown colorCode <%s>, detaching module <%s>',
-                           self.colorCode.value, self.logicSectionName)
-            self.activeModule = False
+    def initVideo(self):
+        self.inputVideoFile.data = cv2.VideoCapture(self.inputVideoFile.value)
 
     def externalCall(self):
-        image = self.inputImageName.data
-        image = cv2.cvtColor(image, getattr(cv2, self.colorCode.value))
-        self.outputImageName.data = image
+        if self.inputVideoFile.data.isOpened():
+            ret, image = self.inputVideoFile.data.read()
+            if ret:
+                self.outputImageName.data = image.copy()
+            else:
+                self.initVideo()
+
+
+
+

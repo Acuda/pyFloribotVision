@@ -4,9 +4,9 @@
 #Author: Björn Eistel
 #Contact: <eistel@gmail.com>
 #
-# THIS SOURCE-CODE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED. IN NO 
-# EVENT WILL THE AUTHOR BE HELD LIABLE FOR ANY DAMAGES ARISING FROM THE USE OF THIS SOURCE-CODE. 
-# USE AT YOUR OWN RISK.
+# THIS SOURCE-CODE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED. IN NO  EVENT WILL THE AUTHOR BE HELD LIABLE FOR ANY DAMAGES ARISING FROM
+# THE USE OF THIS SOURCE-CODE. USE AT YOUR OWN RISK.
 
 
 from pyfloribotvision.types.NameType import NameType
@@ -23,7 +23,6 @@ class Watershed(BasePlugin):
         NameType('inputImageBackground', input=True),
         NameType('inputImageForeground', input=True),
         NameType('outputImage', output=True),
-        NameType('inputDistanceElementName', input=True),
     ]
 
     def __init__(self, **kwargs):
@@ -35,13 +34,18 @@ class Watershed(BasePlugin):
     def externalCall(self):
         image = self.inputImage.data
         foreground = self.inputImageForeground.data
-        element = self.inputDistanceElementName.data
+        background = self.inputImageBackground.data
 
-        fg = cv2.erode(foreground, None, iterations=10)
-        background = cv2.dilate(foreground, None, iterations=30)
+        foreground = foreground.copy()
+
 
         ret, bg = cv2.threshold(background, 1, 128, 1)
-        marker = cv2.add(fg, bg)
+
+        cv2.imshow('bg', bg)
+
+        marker = cv2.add(foreground, bg)
+
+        cv2.imshow('marker ', marker )
 
         marker32 = np.int32(marker)
 
@@ -49,4 +53,4 @@ class Watershed(BasePlugin):
         m = cv2.convertScaleAbs(marker32)
 
         cv2.imshow('m', m)
-        self.outputImage.data = marker
+        self.outputImage.data = m

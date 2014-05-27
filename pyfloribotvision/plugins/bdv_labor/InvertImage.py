@@ -10,31 +10,30 @@
 
 
 
+#
+# THIS SOURCE-CODE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED. IN NO  EVENT WILL THE AUTHOR BE HELD LIABLE FOR ANY DAMAGES ARISING FROM
+# THE USE OF THIS SOURCE-CODE. USE AT YOUR OWN RISK.
+
+
 from pyfloribotvision.types.ImageType import ImageType
-from pyfloribotvision.types.NameType import NameType
-from pyfloribotvision.types.IntType import IntType
 
 from .. BasePlugin import BasePlugin
 import cv2
-import numpy as np
 
-class CircleMarker(BasePlugin):
+class InvertImage(BasePlugin):
 
     configParameter = [
-        ImageType('inputSureForeground', input=True),
+        ImageType('inputImageName', input=True),
         ImageType('outputImageName', output=True),
-        NameType('circleData'),
     ]
 
     def __init__(self, **kwargs):
-        super(CircleMarker, self).__init__(**kwargs)
-
-
-    def preCyclicCall(self):
-        pass
+        super(InvertImage, self).__init__(**kwargs)
 
     def externalCall(self):
-        pass
+        image = self.inputImageName.data
 
+        image = cv2.subtract(255, image)
 
-
+        self.outputImageName.data = image

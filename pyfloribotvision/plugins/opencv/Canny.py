@@ -4,9 +4,9 @@
 #Author: Björn Eistel
 #Contact: <eistel@gmail.com>
 #
-# THIS SOURCE-CODE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED. IN NO 
-# EVENT WILL THE AUTHOR BE HELD LIABLE FOR ANY DAMAGES ARISING FROM THE USE OF THIS SOURCE-CODE. 
-# USE AT YOUR OWN RISK.
+# THIS SOURCE-CODE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED. IN NO  EVENT WILL THE AUTHOR BE HELD LIABLE FOR ANY DAMAGES ARISING FROM
+# THE USE OF THIS SOURCE-CODE. USE AT YOUR OWN RISK.
 
 
 
@@ -32,5 +32,7 @@ class Canny(BasePlugin):
 
     def externalCall(self):
         image = self.inputImageName.data
-        image = cv2.Canny(image, self.threshold1.data, self.threshold2.data)
+        image = cv2.GaussianBlur(image, (3,3), 1)
+        #image = cv2.Laplacian(image,cv2.CV_64F, delta=self.threshold1.value, scale=2)
+        image = cv2.Canny(image, self.threshold1.value, self.threshold2.value, L2gradient=False)#, apertureSize=3)
         self.outputImageName.data = image

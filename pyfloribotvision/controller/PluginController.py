@@ -49,7 +49,7 @@ class PluginController(object):
         """
 
         pkgd = '.'  # delimiter for packages
-
+        print self._plugindir , pkgd , item
         pkgpath = self._plugindir + pkgd + item  # package-path
         cname = item.split(pkgd)[-1:][0]  # class-name
 
