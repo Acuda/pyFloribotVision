@@ -27,6 +27,15 @@ class ImageParameter(QtGui.QWidget, UiBase):
 
         self._showImage = False
         self.btnToggleImage.clicked.connect(self.toggleShowImage)
+        self.btnCloseImage.clicked.connect(self.closeImage)
+
+
+    def closeImage(self):
+        self._timer.stop()
+        self.videoFrame.clear()
+        self.btnCloseImage.setEnabled(False)
+        self.btnToggleImage.setText('PLAY')
+        self._showImage = False
 
     def toggleShowImage(self):
         self._showImage = not self._showImage
