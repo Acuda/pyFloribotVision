@@ -19,12 +19,20 @@ from PyQt4 import QtCore
 from pyfloribotvision.manager.ContextManager import ContextManager
 from pyfloribotvision.types.BaseType import BaseType
 from pyfloribotvision.types.StringType import StringType
+from StringParameter import StringParameter
 from pyfloribotvision.types.FloatType import FloatType
 from FloatParameter import FloatParameter
 from pyfloribotvision.types.ImageType import ImageType
 from ImageParameter import ImageParameter
 from pyfloribotvision.types.IntType import IntType
 from pyfloribotvision.types.NameType import NameType
+from pyfloribotvision.types.BoolType import BoolType
+from BoolParameter import BoolParameter
+from pyfloribotvision.types.IntListType import IntListType
+from IntListParameter import IntListParameter
+from pyfloribotvision.types.IntNestedListType import IntNestedListType
+from IntNestedListParameter import IntNestedListParameter
+
 
 class MainWindow(QtGui.QMainWindow, UiBase):
 
@@ -42,9 +50,6 @@ class MainWindow(QtGui.QMainWindow, UiBase):
         self.cc = ConfigControl()
         self.tab1Content.addWidget(self.cc)
 
-        self.cc.verticalLayout.addChildWidget(QtGui.QPushButton())
-        self.cc.verticalLayout.addChildWidget(QtGui.QPushButton())
-
         self.parameterBase = ParameterBase()
         self.tab1Content.addWidget(self.parameterBase)
         self.pluginList = PluginList()
@@ -60,7 +65,6 @@ class MainWindow(QtGui.QMainWindow, UiBase):
         self.connect(self.pluginList.listWidget, QtCore.SIGNAL('itemClicked(QListWidgetItem*)'), self.itemClicked)
 
         self.cm = ContextManager()
-
 
 
     def loadList(self):
@@ -94,16 +98,18 @@ class MainWindow(QtGui.QMainWindow, UiBase):
     def initTypeHandleDict(self):
         thl = dict()
 
-        #thl[StringType] = self.handleString
+        thl[StringType] = self.handleStringType
         thl[IntType] = self.handleIntType
         thl[FloatType] = self.handleFloatType
-        #thl[NameType] = self.handleName
+        thl[NameType] = self.handleStringType
         thl[ImageType] = self.handleImageType
+        thl[BoolType] = self.handleBoolType
+        thl[IntListType] = self.handleIntListType
+        thl[IntNestedListType] = self.handleIntNestedListType
 
         return thl
 
-
-    def handleString(self, parameter):
+    def handleStringType(self, parameter):
         print 'handle invoked STRING-TYPE for name <%s> and parameter-value <%s>' % (parameter.name, str(parameter.value))
 
     def handleIntType(self, parameter):
@@ -113,14 +119,12 @@ class MainWindow(QtGui.QMainWindow, UiBase):
 
         itg.label.setText(parameter.name)
         itg.lineEdit.setText(str(parameter.value))
+        itg.horizontalSlider.setValue(parameter.value)
 
         itg.horizontalSlider.setMinimum(0)
         itg.horizontalSlider.setMaximum(1000)
         itg.horizontalSlider.setSingleStep(1)
         itg.horizontalSlider.setPageStep(10)
-
-        itg.horizontalSlider.setValue(parameter.value)
-
 
         itg.registerNotify(self.widgetValueChanged)
         self.parameterBase.verticalLayout.addWidget(itg)
@@ -146,7 +150,6 @@ class MainWindow(QtGui.QMainWindow, UiBase):
     def handleFloatType(self, parameter):
         print 'handle invoked FLOAT-TYPE for name <%s> and parameter-value <%s>' % (parameter.name, str(parameter.value))
 
-
         ftg = FloatParameter()
 
         ftg.label.setText(parameter.name)
@@ -162,5 +165,39 @@ class MainWindow(QtGui.QMainWindow, UiBase):
         ftg.registerNotify(self.widgetValueChanged)
         self.parameterBase.verticalLayout.addWidget(ftg)
         self.activeParameters[ftg] = parameter
+
+    def handleBoolType(self, parameter):
+
+        btg = BoolParameter()
+
+        btg.label.setText(parameter.name)
+        btg.checkBox.setCheckState(QtCore.Qt.Checked) if parameter.value \
+            else btg.checkBox.setCheckState(QtCore.Qt.Unchecked)
+
+        self.parameterBase.verticalLayout.addWidget(btg)
+        self.activeParameters[btg] = parameter
+        btg.registerNotify(self.widgetValueChanged)
+
+    def handleIntListType(self, parameter):
+
+        ilp = IntListParameter()
+        ilp.setContent(parameter.value)
+        ilp.groupBox.setTitle(parameter.name)
+
+        self.parameterBase.verticalLayout.addWidget(ilp)
+        self.activeParameters[ilp] = parameter
+        ilp.registerNotify(self.widgetValueChanged)
+
+    def handleIntNestedListType(self, parameter):
+
+        inlp = IntNestedListParameter()
+
+        inlp.setBaseContent(parameter.value)
+        inlp.groupBox.setTitle(parameter.name)
+
+        self.parameterBase.verticalLayout.addWidget(inlp)
+        self.activeParameters[inlp] = parameter
+        inlp.registerNotify(self.widgetValueChanged)
+
 
 
