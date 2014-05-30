@@ -17,14 +17,6 @@ controller Package
     :undoc-members:
     :show-inheritance:
 
-:mod:`DataLinkController` Module
---------------------------------
-
-.. automodule:: pyfloribotvision.controller.DataLinkController
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
 :mod:`PluginController` Module
 ------------------------------
 

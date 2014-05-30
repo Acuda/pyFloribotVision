@@ -27,7 +27,7 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="top" title="pyFloribotVision 0.1 documentation" href="index.html" />
     <link rel="up" title="pyfloribotvision Package" href="pyfloribotvision.html" />
-    <link rel="next" title="floribot Package" href="pyfloribotvision.plugins.floribot.html" />
+    <link rel="next" title="bdv_labor Package" href="pyfloribotvision.plugins.bdv_labor.html" />
     <link rel="prev" title="manager Package" href="pyfloribotvision.manager.html" /> 
   </head>
   <body>
@@ -38,7 +38,7 @@
         <div class="rel">
           <a href="pyfloribotvision.manager.html" title="manager Package"
              accesskey="P">previous</a> |
-          <a href="pyfloribotvision.plugins.floribot.html" title="floribot Package"
+          <a href="pyfloribotvision.plugins.bdv_labor.html" title="bdv_labor Package"
              accesskey="N">next</a> |
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |
@@ -61,45 +61,45 @@
 <div class="section" id="id1">
 <h2><tt class="xref py py-mod docutils literal"><span class="pre">plugins</span></tt> Package<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <span class="target" id="module-pyfloribotvision.plugins"></span></div>
-<div class="section" id="module-pyfloribotvision.plugins.BaseModule">
-<span id="basemodule-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">BaseModule</span></tt> Module<a class="headerlink" href="#module-pyfloribotvision.plugins.BaseModule" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-pyfloribotvision.plugins.BasePlugin">
+<span id="baseplugin-module"></span><h2><tt class="xref py py-mod docutils literal"><span class="pre">BasePlugin</span></tt> Module<a class="headerlink" href="#module-pyfloribotvision.plugins.BasePlugin" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
-<dt id="pyfloribotvision.plugins.BaseModule.BaseModule">
-<em class="property">class </em><tt class="descclassname">pyfloribotvision.plugins.BaseModule.</tt><tt class="descname">BaseModule</tt><big>(</big><em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/plugins/BaseModule.html#BaseModule"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.plugins.BaseModule.BaseModule" title="Permalink to this definition">¶</a></dt>
+<dt id="pyfloribotvision.plugins.BasePlugin.BasePlugin">
+<em class="property">class </em><tt class="descclassname">pyfloribotvision.plugins.BasePlugin.</tt><tt class="descname">BasePlugin</tt><big>(</big><em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/plugins/BasePlugin.html#BasePlugin"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.plugins.BasePlugin.BasePlugin" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
 <dl class="method">
-<dt id="pyfloribotvision.plugins.BaseModule.BaseModule.__init__">
-<tt class="descname">__init__</tt><big>(</big><em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/plugins/BaseModule.html#BaseModule.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.plugins.BaseModule.BaseModule.__init__" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="pyfloribotvision.plugins.BaseModule.BaseModule.externalCall">
-<tt class="descname">externalCall</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/plugins/BaseModule.html#BaseModule.externalCall"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.plugins.BaseModule.BaseModule.externalCall" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="pyfloribotvision.plugins.BaseModule.BaseModule.loadOptions">
-<tt class="descname">loadOptions</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/plugins/BaseModule.html#BaseModule.loadOptions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.plugins.BaseModule.BaseModule.loadOptions" title="Permalink to this definition">¶</a></dt>
+<dt id="pyfloribotvision.plugins.BasePlugin.BasePlugin.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/plugins/BasePlugin.html#BasePlugin.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.plugins.BasePlugin.BasePlugin.__init__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
-<dt id="pyfloribotvision.plugins.BaseModule.BaseModule.obligatoryConfigOptions">
-<tt class="descname">obligatoryConfigOptions</tt><em class="property"> = {}</em><a class="headerlink" href="#pyfloribotvision.plugins.BaseModule.BaseModule.obligatoryConfigOptions" title="Permalink to this definition">¶</a></dt>
+<dt id="pyfloribotvision.plugins.BasePlugin.BasePlugin.configParameter">
+<tt class="descname">configParameter</tt><em class="property"> = []</em><a class="headerlink" href="#pyfloribotvision.plugins.BasePlugin.BasePlugin.configParameter" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
-<dt id="pyfloribotvision.plugins.BaseModule.BaseModule.postOptActions">
-<tt class="descname">postOptActions</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/plugins/BaseModule.html#BaseModule.postOptActions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.plugins.BaseModule.BaseModule.postOptActions" title="Permalink to this definition">¶</a></dt>
+<dt id="pyfloribotvision.plugins.BasePlugin.BasePlugin.externalCall">
+<tt class="descname">externalCall</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/plugins/BasePlugin.html#BasePlugin.externalCall"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.plugins.BasePlugin.BasePlugin.externalCall" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
-<dt id="pyfloribotvision.plugins.BaseModule.BaseModule.preOptActions">
-<tt class="descname">preOptActions</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/plugins/BaseModule.html#BaseModule.preOptActions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.plugins.BaseModule.BaseModule.preOptActions" title="Permalink to this definition">¶</a></dt>
+<dt id="pyfloribotvision.plugins.BasePlugin.BasePlugin.loadOptions">
+<tt class="descname">loadOptions</tt><big>(</big><em>obj=None</em><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/plugins/BasePlugin.html#BasePlugin.loadOptions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.plugins.BasePlugin.BasePlugin.loadOptions" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
-<dt id="pyfloribotvision.plugins.BaseModule.BaseModule.timeBypassActions">
-<tt class="descname">timeBypassActions</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/plugins/BaseModule.html#BaseModule.timeBypassActions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.plugins.BaseModule.BaseModule.timeBypassActions" title="Permalink to this definition">¶</a></dt>
+<dt id="pyfloribotvision.plugins.BasePlugin.BasePlugin.postCyclicCall">
+<tt class="descname">postCyclicCall</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/plugins/BasePlugin.html#BasePlugin.postCyclicCall"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.plugins.BasePlugin.BasePlugin.postCyclicCall" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pyfloribotvision.plugins.BasePlugin.BasePlugin.preCyclicCall">
+<tt class="descname">preCyclicCall</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/plugins/BasePlugin.html#BasePlugin.preCyclicCall"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.plugins.BasePlugin.BasePlugin.preCyclicCall" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pyfloribotvision.plugins.BasePlugin.BasePlugin.timeBypassActions">
+<tt class="descname">timeBypassActions</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/pyfloribotvision/plugins/BasePlugin.html#BasePlugin.timeBypassActions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyfloribotvision.plugins.BasePlugin.BasePlugin.timeBypassActions" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -109,6 +109,15 @@
 <h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
 <div class="toctree-wrapper compound">
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="pyfloribotvision.plugins.bdv_labor.html">bdv_labor Package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pyfloribotvision.plugins.bdv_labor.html#id1"><tt class="docutils literal"><span class="pre">bdv_labor</span></tt> Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyfloribotvision.plugins.bdv_labor.html#module-pyfloribotvision.plugins.bdv_labor.CircleMarker"><tt class="docutils literal"><span class="pre">CircleMarker</span></tt> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyfloribotvision.plugins.bdv_labor.html#module-pyfloribotvision.plugins.bdv_labor.Deconvolution"><tt class="docutils literal"><span class="pre">Deconvolution</span></tt> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyfloribotvision.plugins.bdv_labor.html#module-pyfloribotvision.plugins.bdv_labor.InvertImage"><tt class="docutils literal"><span class="pre">InvertImage</span></tt> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyfloribotvision.plugins.bdv_labor.html#module-pyfloribotvision.plugins.bdv_labor.MSER"><tt class="docutils literal"><span class="pre">MSER</span></tt> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyfloribotvision.plugins.bdv_labor.html#module-pyfloribotvision.plugins.bdv_labor.WeightChanels"><tt class="docutils literal"><span class="pre">WeightChanels</span></tt> Module</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="pyfloribotvision.plugins.floribot.html">floribot Package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="pyfloribotvision.plugins.floribot.html#id1"><tt class="docutils literal"><span class="pre">floribot</span></tt> Package</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pyfloribotvision.plugins.floribot.html#module-pyfloribotvision.plugins.floribot.FilePickleSegmentOutput"><tt class="docutils literal"><span class="pre">FilePickleSegmentOutput</span></tt> Module</a></li>
@@ -122,8 +131,10 @@
 <li class="toctree-l1"><a class="reference internal" href="pyfloribotvision.plugins.opencv.html">opencv Package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="pyfloribotvision.plugins.opencv.html#id1"><tt class="docutils literal"><span class="pre">opencv</span></tt> Package</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pyfloribotvision.plugins.opencv.html#module-pyfloribotvision.plugins.opencv.ApplyColorMap"><tt class="docutils literal"><span class="pre">ApplyColorMap</span></tt> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyfloribotvision.plugins.opencv.html#module-pyfloribotvision.plugins.opencv.CVBitwiseAnd"><tt class="docutils literal"><span class="pre">CVBitwiseAnd</span></tt> Module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pyfloribotvision.plugins.opencv.html#module-pyfloribotvision.plugins.opencv.CVBitwiseOr"><tt class="docutils literal"><span class="pre">CVBitwiseOr</span></tt> Module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pyfloribotvision.plugins.opencv.html#module-pyfloribotvision.plugins.opencv.CVContourConstraint"><tt class="docutils literal"><span class="pre">CVContourConstraint</span></tt> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyfloribotvision.plugins.opencv.html#module-pyfloribotvision.plugins.opencv.CVDrawCicles"><tt class="docutils literal"><span class="pre">CVDrawCicles</span></tt> Module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pyfloribotvision.plugins.opencv.html#module-pyfloribotvision.plugins.opencv.CVDrawContours"><tt class="docutils literal"><span class="pre">CVDrawContours</span></tt> Module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pyfloribotvision.plugins.opencv.html#module-pyfloribotvision.plugins.opencv.CVFindContours"><tt class="docutils literal"><span class="pre">CVFindContours</span></tt> Module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pyfloribotvision.plugins.opencv.html#module-pyfloribotvision.plugins.opencv.CVGaussBlur"><tt class="docutils literal"><span class="pre">CVGaussBlur</span></tt> Module</a></li>
@@ -132,13 +143,19 @@
 <li class="toctree-l2"><a class="reference internal" href="pyfloribotvision.plugins.opencv.html#module-pyfloribotvision.plugins.opencv.CVStructuringElement"><tt class="docutils literal"><span class="pre">CVStructuringElement</span></tt> Module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pyfloribotvision.plugins.opencv.html#module-pyfloribotvision.plugins.opencv.CVTransformColor"><tt class="docutils literal"><span class="pre">CVTransformColor</span></tt> Module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pyfloribotvision.plugins.opencv.html#module-pyfloribotvision.plugins.opencv.CVValueList"><tt class="docutils literal"><span class="pre">CVValueList</span></tt> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyfloribotvision.plugins.opencv.html#module-pyfloribotvision.plugins.opencv.Canny"><tt class="docutils literal"><span class="pre">Canny</span></tt> Module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pyfloribotvision.plugins.opencv.html#module-pyfloribotvision.plugins.opencv.CreateContourBinaryImage"><tt class="docutils literal"><span class="pre">CreateContourBinaryImage</span></tt> Module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pyfloribotvision.plugins.opencv.html#module-pyfloribotvision.plugins.opencv.DirectCVCamSource"><tt class="docutils literal"><span class="pre">DirectCVCamSource</span></tt> Module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pyfloribotvision.plugins.opencv.html#module-pyfloribotvision.plugins.opencv.DirectCVImageSource"><tt class="docutils literal"><span class="pre">DirectCVImageSource</span></tt> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyfloribotvision.plugins.opencv.html#module-pyfloribotvision.plugins.opencv.DirectVideoSource"><tt class="docutils literal"><span class="pre">DirectVideoSource</span></tt> Module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pyfloribotvision.plugins.opencv.html#module-pyfloribotvision.plugins.opencv.FileCVImageOutput"><tt class="docutils literal"><span class="pre">FileCVImageOutput</span></tt> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyfloribotvision.plugins.opencv.html#module-pyfloribotvision.plugins.opencv.FileVideoOutput"><tt class="docutils literal"><span class="pre">FileVideoOutput</span></tt> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyfloribotvision.plugins.opencv.html#module-pyfloribotvision.plugins.opencv.HoughCircles"><tt class="docutils literal"><span class="pre">HoughCircles</span></tt> Module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pyfloribotvision.plugins.opencv.html#module-pyfloribotvision.plugins.opencv.HuMoments"><tt class="docutils literal"><span class="pre">HuMoments</span></tt> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyfloribotvision.plugins.opencv.html#module-pyfloribotvision.plugins.opencv.Merge"><tt class="docutils literal"><span class="pre">Merge</span></tt> Module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pyfloribotvision.plugins.opencv.html#module-pyfloribotvision.plugins.opencv.Moments"><tt class="docutils literal"><span class="pre">Moments</span></tt> Module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pyfloribotvision.plugins.opencv.html#module-pyfloribotvision.plugins.opencv.ScreenCVImageOutput"><tt class="docutils literal"><span class="pre">ScreenCVImageOutput</span></tt> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyfloribotvision.plugins.opencv.html#module-pyfloribotvision.plugins.opencv.Threshold"><tt class="docutils literal"><span class="pre">Threshold</span></tt> Module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pyfloribotvision.plugins.opencv.html#module-pyfloribotvision.plugins.opencv.Watershed"><tt class="docutils literal"><span class="pre">Watershed</span></tt> Module</a></li>
 </ul>
 </li>
@@ -146,6 +163,8 @@
 <li class="toctree-l2"><a class="reference internal" href="pyfloribotvision.plugins.python.html#id1"><tt class="docutils literal"><span class="pre">python</span></tt> Package</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pyfloribotvision.plugins.python.html#module-pyfloribotvision.plugins.python.DataToStdout"><tt class="docutils literal"><span class="pre">DataToStdout</span></tt> Module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pyfloribotvision.plugins.python.html#module-pyfloribotvision.plugins.python.DeltaTimePerFrame"><tt class="docutils literal"><span class="pre">DeltaTimePerFrame</span></tt> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyfloribotvision.plugins.python.html#module-pyfloribotvision.plugins.python.Histogram"><tt class="docutils literal"><span class="pre">Histogram</span></tt> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyfloribotvision.plugins.python.html#module-pyfloribotvision.plugins.python.NewImage"><tt class="docutils literal"><span class="pre">NewImage</span></tt> Module</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="pyfloribotvision.plugins.ros.html">ros Package</a><ul>
@@ -175,7 +194,7 @@
 <li class="toctree-l3"><a class="reference internal" href="pyfloribotvision.manager.html">manager Package</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="">plugins Package</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#id1"><tt class="docutils literal"><span class="pre">plugins</span></tt> Package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-pyfloribotvision.plugins.BaseModule"><tt class="docutils literal"><span class="pre">BaseModule</span></tt> Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-pyfloribotvision.plugins.BasePlugin"><tt class="docutils literal"><span class="pre">BasePlugin</span></tt> Module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#subpackages">Subpackages</a></li>
 </ul>
 </li>
@@ -206,7 +225,7 @@
         <div class="left">
           <a href="pyfloribotvision.manager.html" title="manager Package"
              >previous</a> |
-          <a href="pyfloribotvision.plugins.floribot.html" title="floribot Package"
+          <a href="pyfloribotvision.plugins.bdv_labor.html" title="bdv_labor Package"
              >next</a> |
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |

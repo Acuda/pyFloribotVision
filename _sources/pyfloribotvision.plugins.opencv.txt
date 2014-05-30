@@ -17,6 +17,14 @@ opencv Package
     :undoc-members:
     :show-inheritance:
 
+:mod:`CVBitwiseAnd` Module
+--------------------------
+
+.. automodule:: pyfloribotvision.plugins.opencv.CVBitwiseAnd
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 :mod:`CVBitwiseOr` Module
 -------------------------
 
@@ -29,6 +37,14 @@ opencv Package
 ---------------------------------
 
 .. automodule:: pyfloribotvision.plugins.opencv.CVContourConstraint
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+:mod:`CVDrawCicles` Module
+--------------------------
+
+.. automodule:: pyfloribotvision.plugins.opencv.CVDrawCicles
     :members:
     :undoc-members:
     :show-inheritance:
@@ -97,6 +113,14 @@ opencv Package
     :undoc-members:
     :show-inheritance:
 
+:mod:`Canny` Module
+-------------------
+
+.. automodule:: pyfloribotvision.plugins.opencv.Canny
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 :mod:`CreateContourBinaryImage` Module
 --------------------------------------
 
@@ -121,6 +145,14 @@ opencv Package
     :undoc-members:
     :show-inheritance:
 
+:mod:`DirectVideoSource` Module
+-------------------------------
+
+.. automodule:: pyfloribotvision.plugins.opencv.DirectVideoSource
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 :mod:`FileCVImageOutput` Module
 -------------------------------
 
@@ -129,10 +161,34 @@ opencv Package
     :undoc-members:
     :show-inheritance:
 
+:mod:`FileVideoOutput` Module
+-----------------------------
+
+.. automodule:: pyfloribotvision.plugins.opencv.FileVideoOutput
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+:mod:`HoughCircles` Module
+--------------------------
+
+.. automodule:: pyfloribotvision.plugins.opencv.HoughCircles
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 :mod:`HuMoments` Module
 -----------------------
 
 .. automodule:: pyfloribotvision.plugins.opencv.HuMoments
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+:mod:`Merge` Module
+-------------------
+
+.. automodule:: pyfloribotvision.plugins.opencv.Merge
     :members:
     :undoc-members:
     :show-inheritance:
@@ -149,6 +205,14 @@ opencv Package
 ---------------------------------
 
 .. automodule:: pyfloribotvision.plugins.opencv.ScreenCVImageOutput
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+:mod:`Threshold` Module
+-----------------------
+
+.. automodule:: pyfloribotvision.plugins.opencv.Threshold
     :members:
     :undoc-members:
     :show-inheritance:
