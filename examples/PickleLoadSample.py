@@ -24,10 +24,14 @@ def viewPoints(singleImageDump, image):
 
 
     for segment in singleImageDump:
+
+        print segment[1]
         for i in xrange(len(segment[1][0])):
             sample.itemset((segment[1][0][i], segment[1][1][i], 0), image.item(segment[1][0][i], segment[1][1][i], 0))
             sample.itemset((segment[1][0][i], segment[1][1][i], 1), image.item(segment[1][0][i], segment[1][1][i], 1))
             sample.itemset((segment[1][0][i], segment[1][1][i], 2), image.item(segment[1][0][i], segment[1][1][i], 2))
+
+        cv2.imshow('sss', sample)
 
     rnd = random.Random()
     sampleCont = sample.copy()
@@ -38,8 +42,6 @@ def viewPoints(singleImageDump, image):
 
         segm = np.array(segment[0])  # segment[0] -> shapePointList
         cv2.drawContours(sampleCont, [segm], -1, color)
-
-    #show image
 
     return sample, sampleCont
 
@@ -80,6 +82,8 @@ if __name__ == "__main__":
     while dorun:
         for frame in framelist:
             for k, v in frame.items():
+                if k == 'sample':
+                    cv2.imwrite('/tmp/sample.jpg', v)
                 cv2.imshow(k, v)
 
             if (cv2.waitKey(150) & 255) == ord('q'):

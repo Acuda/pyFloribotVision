@@ -47,5 +47,8 @@ class CVInRange(BasePlugin):
             self.log.debug('checking lower border <%s> with <%s> up to upper border <%s> with <%s>',
                            minkey, minvalue, maxkey, maxvalue)
 
-            imagebin = cv2.inRange(self.inputImageName.data, minvalue, maxvalue)
+            imagebin = cv2.inRange(self.inputImageName.data, minvalue, maxvalue).copy()
             self.outputMaskListNames.setDataValue(self.outputMaskListNames.value[i], imagebin)
+
+
+

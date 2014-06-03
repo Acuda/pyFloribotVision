@@ -25,3 +25,19 @@ python Package
     :undoc-members:
     :show-inheritance:
 
+:mod:`Histogram` Module
+-----------------------
+
+.. automodule:: pyfloribotvision.plugins.python.Histogram
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+:mod:`NewImage` Module
+----------------------
+
+.. automodule:: pyfloribotvision.plugins.python.NewImage
+    :members:
+    :undoc-members:
+    :show-inheritance:
+

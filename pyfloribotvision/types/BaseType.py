@@ -89,7 +89,8 @@ class BaseType(object):
 
     def invokeCallbacks(self, data):
         for cb in self._DataCallbackList:
-            self._debugout('invokeCallbacks for <%s> with value <%s>', cb, self.value)
+            self._debugout('invokeCallbacks for <%s> with value <%s>', cb,
+                           self.value)
             cb(self.value, data)
 
     def registerDataUpdate(self, callback):
@@ -97,7 +98,14 @@ class BaseType(object):
         self._DataCallbackList.append(callback)
 
     def dataUpdateCallback(self, name, data):
-        self._debugout('dataUpdateCallback for name <%s> and data', name)
+        self._debugout('dataUpdateCallback for name <%s> and and section <%s>', name,
+                       self._logicSectionName)
+
+        #Todo: there should be a better way to do this... (quick fix)
+        # skipping wrong data update...
+        if name != self.value:
+            return
+
         self.data = data
 
     def getConvertedValue(self, converter, *args):

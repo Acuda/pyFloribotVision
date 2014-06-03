@@ -51,7 +51,7 @@ class CVFindContours(BasePlugin):
             self.cvMethod.data = getattr(cv2, self.cvMethod.value)
 
     def externalCall(self):
-        cont, h = cv2.findContours(self.inputImageName.data, mode=self.cvMode.data,
+        cont, h = cv2.findContours(self.inputImageName.data.copy(), mode=self.cvMode.data,
                                    method=self.cvMethod.data)
         self.outputContourName.data = cont
         self.outputHierarchyName.data = h

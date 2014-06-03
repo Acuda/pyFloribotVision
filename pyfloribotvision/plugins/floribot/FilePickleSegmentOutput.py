@@ -89,6 +89,7 @@ class FilePickleSegmentOutput(BasePlugin):
             cv2.drawContours(ccimage[k], cont, v, (255, 255, 255), -1)
 
         singleImageDump = list()
+
         #each found segment in image
         for segmentid, segmentcnt in enumerate(ccimage):
 

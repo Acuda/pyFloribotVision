@@ -40,23 +40,37 @@ class BaseListType(BaseType):
         return iter(self.value)
 
     def invokeCallbacks(self, data):
+        self._debugout('invokeCallbacks')
         if isinstance(data, dict):
+            self._debugout('data isinstance of dict')
             for k, v in self._data.items():
+                self._debugout('for key <%s> and value...', k)
+
                 for cb in self._DataCallbackList:
+                    self._debugout('invoke callback to method <%s>', cb)
                     cb(k, v)
         else:
             super(BaseListType, self).invokeCallbacks(data)
 
 
     def dataUpdateCallback(self, name, data):
+        self._debugout('dataUpdateCallback for name <%s> and section <%s>', name, self._logicSectionName)
+        self._debugout('is name <%s> in self.value <%s>?', name, self.value)
         if name in self.value:
+            self._debugout('YES!')
             if self.data is None:
                 self._data = dict()
+            self._debugout('setting data[name] for name <%s>', name)
             self.data[name] = data
+            self._debugout('results in keylist <%s>', self.data.keys())
+        else:
+            self._debugout('NO!')
 
     def setDataValue(self, key, value):
-            if self.data is None:
-                self._data = dict()
-            self.data[key] = value
-            self.invokeCallbacks(self._data)
+        self._debugout('Key <%s>', key)
+        if self.data is None:
+            self._data = dict()
+        self.data[key] = value
+        self._debugout('Datalist (Keys) <%s>', self.data.keys())
+        self.invokeCallbacks(self._data)
 
