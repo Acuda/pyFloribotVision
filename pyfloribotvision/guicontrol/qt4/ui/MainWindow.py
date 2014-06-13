@@ -117,14 +117,15 @@ class MainWindow(QtGui.QMainWindow, UiBase):
 
         itg = IntParameter()
 
-        itg.label.setText(parameter.name)
-        itg.lineEdit.setText(str(parameter.value))
-        itg.horizontalSlider.setValue(parameter.value)
-
         itg.horizontalSlider.setMinimum(0)
         itg.horizontalSlider.setMaximum(1000)
         itg.horizontalSlider.setSingleStep(1)
         itg.horizontalSlider.setPageStep(10)
+
+        itg.label.setText(parameter.name)
+        itg.lineEdit.setText(str(parameter.value))
+        itg.horizontalSlider.setValue(parameter.value)
+
 
         itg.registerNotify(self.widgetValueChanged)
         self.parameterBase.verticalLayout.addWidget(itg)
@@ -152,15 +153,14 @@ class MainWindow(QtGui.QMainWindow, UiBase):
 
         ftg = FloatParameter()
 
-        ftg.label.setText(parameter.name)
-        ftg.lineEdit.setText(str(parameter.value))
-        ftg.horizontalSlider.setValue(parameter.value)
-        print parameter.name, parameter.value
-
         ftg.horizontalSlider.setMinimum(0)
         ftg.horizontalSlider.setMaximum(500)
         ftg.horizontalSlider.setSingleStep(1)
         ftg.horizontalSlider.setPageStep(10)
+
+        ftg.label.setText(parameter.name)
+        ftg.lineEdit.setText(str(parameter.value))
+        ftg.horizontalSlider.setValue(parameter.value)
 
         ftg.registerNotify(self.widgetValueChanged)
         self.parameterBase.verticalLayout.addWidget(ftg)

@@ -95,6 +95,7 @@ class FilePickleSegmentOutput(BasePlugin):
 
             pixlist = np.nonzero(segmentcnt)
             singleImageDump.append([cont[contidx[segmentid]], pixlist])
+            print [cont[contidx[segmentid]], pixlist]
 
         #if len(singleImageDump) > 0:
         self.pickleCache.append(image)
