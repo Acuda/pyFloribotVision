@@ -54,7 +54,8 @@ class BaseListType(BaseType):
 
 
     def dataUpdateCallback(self, name, data):
-        self._debugout('dataUpdateCallback for name <%s> and section <%s>', name, self._logicSectionName)
+        self._debugout('dataUpdateCallback for name <%s> and section <%s>', name,
+                       self._logicSectionName)
         self._debugout('is name <%s> in self.value <%s>?', name, self.value)
         if name in self.value:
             self._debugout('YES!')

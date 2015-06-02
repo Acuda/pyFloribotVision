@@ -41,7 +41,6 @@ class Watershed(BasePlugin):
 
         ret, bg = cv2.threshold(background, 1, 128, 1)
 
-        cv2.imshow('bg', bg)
 
         marker = cv2.add(foreground, bg)
 

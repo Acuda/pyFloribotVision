@@ -4,9 +4,9 @@
 #Author: Björn Eistel
 #Contact: <eistel@gmail.com>
 #
-# THIS SOURCE-CODE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED. IN NO 
-# EVENT WILL THE AUTHOR BE HELD LIABLE FOR ANY DAMAGES ARISING FROM THE USE OF THIS SOURCE-CODE. 
-# USE AT YOUR OWN RISK.
+# THIS SOURCE-CODE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED. IN NO  EVENT WILL THE AUTHOR BE HELD LIABLE FOR ANY DAMAGES ARISING FROM
+# THE USE OF THIS SOURCE-CODE. USE AT YOUR OWN RISK.
 
 
 import getopt
@@ -52,9 +52,9 @@ class PyFloribotVision(object):
     def initApplicationContext(self, pluginprefix):
         """initializes the application context
 
-        :param pluginprefix: plugins should be relative under ./plugins if class invoked trough a
-            startup-script or another application, the prefix have to point into the package where
-            the plugin-package could be find
+        :param pluginprefix: plugins should be relative under ./plugins if class
+            invoked trough a startup-script or another application, the prefix have
+            to point into the package where the plugin-package could be found
         """
         self._context = ContextManager()
         self._context.initContext(self.configFile, self.loggingConfig, pluginprefix)
@@ -82,7 +82,7 @@ def main(name, argv):
     profileExec = False
 
     # ToDo: real helptext..
-    helptext = """%s
+    helptext = """%s [-c configuration-file [-l logging-configuration [-flags]]]
     """ % name
 
     helptext = '\n'.join([x.strip() for x in helptext.splitlines()])

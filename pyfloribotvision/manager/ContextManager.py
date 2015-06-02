@@ -4,11 +4,10 @@
 #Author: Björn Eistel
 #Contact: <eistel@gmail.com>
 #
-# THIS SOURCE-CODE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED. IN NO 
-# EVENT WILL THE AUTHOR BE HELD LIABLE FOR ANY DAMAGES ARISING FROM THE USE OF THIS SOURCE-CODE. 
-# USE AT YOUR OWN RISK.
+# THIS SOURCE-CODE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED. IN NO EVENT WILL THE AUTHOR BE HELD LIABLE FOR ANY DAMAGES ARISING FROM
+# THE USE OF THIS SOURCE-CODE. USE AT YOUR OWN RISK.
 
-from __future__ import print_function
 import logging
 import logging.config
 from pyfloribotvision.controller.PluginController import PluginController
@@ -70,7 +69,8 @@ class ContextManager(object):
             self.configController = ConfigController(configFileName)
 
         if self.processManager is None:
-            self.processManager = ProcessManager(self.pluginController, self.configController)
+            self.processManager = ProcessManager(self.pluginController,
+                                                 self.configController)
 
     def executeContext(self):
         """Triggers the executePlugins Method from the ProcessManager"""

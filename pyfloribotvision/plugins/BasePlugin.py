@@ -16,7 +16,7 @@ import copy
 class BasePlugin(object):
 
     # provided as list(), items must be a subclass of types.BaseType
-    # the name of the parameter in the config-file is needet for the constructor
+    # the name of the parameter in the config-file is needed for the constructor
     # of the used type. if needed, the parameter can be set as in- or output by a
     #  optional second parameter (input=True / output=True)
     #  e.g.: configParameter = [SomeType('inputParameter', input=True)]
@@ -31,6 +31,7 @@ class BasePlugin(object):
         self.log.debug('logging started')
 
         self.sectionConfig = kwargs['sectionConfig']
+        self.fullConfig = kwargs['fullConfig']
         #self.ioContainer = kwargs['ioContainer']
         self.logicSectionName = kwargs['logicSectionName']
 
@@ -48,15 +49,15 @@ class BasePlugin(object):
 
 
     def loadOptions(self, obj=None):
-        # keep at the following line in mind, that self.configParameter is static
-        # and refers to the same memory on all instances of the same plugin class.
-        # therefore we have to duplicate the static-data to a new _un_static memory
 
         if obj is None:
             obj = self
 
         self.log.debug('try to load and inject configuration')
 
+        # keep at the following line in mind, that self.configParameter is static
+        # and refers to the same memory on all instances of the same plugin class.
+        # therefore we have to duplicate the static-data to a new _un_static memory
         obj.configParameter = copy.deepcopy(obj.configParameter)
         for parameter in obj.configParameter:
             parameter._logicSectionName = obj.logicSectionName

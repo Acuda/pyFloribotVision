@@ -42,7 +42,6 @@ class HoughCircles(BasePlugin):
 
     def externalCall(self):
 
-        cv2.imshow('TEST', self.inputImageName.data)
 
         reslist = cv2.HoughCircles(self.inputImageName.data,
                                    cv2.cv.CV_HOUGH_GRADIENT,
@@ -61,16 +60,57 @@ class HoughCircles(BasePlugin):
             self.outputCannyImageName.data = canny
 
 
+
         if self.doDrawCircles.value:
             resvisimage = self.inputOrgImageName.data.copy()
 
 
+
             if reslist is not None and len(reslist):
                 for x in reslist[0]:
+                    corr = 5
+                    mask = np.zeros(tuple(self.inputImageName.data.shape[:2]), np.uint8)
+                    cv2.circle(mask, (x[0], x[1]), int(x[2]-corr), 255, -1)
+
+                    mean_val = cv2.mean(self.inputOrgImageName.data, mask=mask)
+                    mv = np.zeros((1, 1, 3), np.uint8)
+
+                    mv[..., 0] = mean_val[0]
+                    mv[..., 1] = mean_val[1]
+                    mv[..., 2] = mean_val[2]
+
+                    mv2 = cv2.cvtColor(mv, cv2.COLOR_BGR2HSV)
+
+                    #cv2.circle(resvisimage, (x[0], x[1]), int(x[2]-corr), (mean_val[0],mean_val[1],mean_val[2]), -1)
+                    self.drawText(resvisimage, str(mv2[0,0]), x[0]-40, x[1] - self.maxRad.value-4, 1)
+
+
+                    if 28 > mv2[0,0,0] or mv2[0,0,0] > 32 or mv2[0,0,1] < 70 or mv2[0,0,2] < 150:
+                        #continue
+                        pass
+
+
+
+
                     cv2.circle(resvisimage, (x[0], x[1]), self.minRad.value, (100, 255, 100), 1)
                     cv2.circle(resvisimage, (x[0], x[1]), self.maxRad.value, (100, 100, 255), 1)
                     cv2.circle(resvisimage, (x[0], x[1]), self.minDist.value, (100, 100, 100), 1)
                     cv2.circle(resvisimage, (x[0], x[1]), x[2], (255, 100, 100), 2)
                     cv2.circle(resvisimage, (x[0], x[1]), 4, (50, 50, 50), -1)
 
+
             self.outputOrgCircleImageName.data = resvisimage
+
+
+
+    def drawText(self, image, text, xpos, ypos, scale=1, color=(225, 225, 225)):
+        xpos = int(xpos)
+        ypos = int(ypos)
+        for i in range(3, 0, -1):
+            if i < 2:
+                cv2.putText(image, text, (xpos+i, ypos+i),
+                            cv2.FONT_HERSHEY_PLAIN, scale, color)
+            else:
+                cv2.putText(image, text, (xpos+i, ypos+i),
+                            cv2.FONT_HERSHEY_PLAIN, scale, (50, 50, 50))
+

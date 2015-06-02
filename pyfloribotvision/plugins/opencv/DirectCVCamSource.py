@@ -8,13 +8,12 @@
 # IMPLIED. IN NO  EVENT WILL THE AUTHOR BE HELD LIABLE FOR ANY DAMAGES ARISING FROM
 # THE USE OF THIS SOURCE-CODE. USE AT YOUR OWN RISK.
 
-
 from pyfloribotvision.types.ImageType import ImageType
 from pyfloribotvision.types.IntType import IntType
 from .. BasePlugin import BasePlugin
 import logging
 import cv2
-from cv2 import cv
+
 
 class DirectCVCamSource(BasePlugin):
 
@@ -35,12 +34,11 @@ class DirectCVCamSource(BasePlugin):
 
     def initCam(self):
         self.cam = cv2.VideoCapture(self.camId.value)
+
         if self.frameWidth > 0:
-            self.cam.set(cv.CV_CAP_PROP_FRAME_WIDTH, self.frameWidth.value)
+            self.cam.set(cv2.CAP_PROP_FRAME_WIDTH, self.frameWidth.value)
         if self.frameHeight > 0:
-            self.cam.set(cv.CV_CAP_PROP_FRAME_HEIGHT, self.frameHeight.value)
-
-
+            self.cam.set(cv2.CAP_PROP_FRAME_HEIGHT, self.frameHeight.value)
 
     def timeBypassActions(self):
         self.cam.grab()

@@ -1,15 +1,16 @@
 * {
     alternate-background-color: rgba(255, 255, 255, 100);
     /*font: 11pt "Terminus";*/
-    color: rgb(255, 230, 180, 250);
-    background-color: rgb(40, 40, 40);
-    font-size: 18pt;
-    border: 1px solid rgba(255, 170, 100, 70);
+    color: rgb(0, 0, 0);
+    background-color: rgb(193, 193, 193);
+    font-size: 16pt;
+    border: 1px solid rgba(50,50,50, 70);
 }
 
 QPushButton {
     background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0 rgba(255, 255, 255, 100), stop:0.1 rgba(255, 255, 255, 70), stop:0.5 rgba(255, 255, 255, 40), stop:0.8 rgba(255, 255, 255, 40), stop:1 rgba(255, 255, 255, 250));
     border-color: rgba(255, 255, 255, 100);
+    font-size: 14pt;
 }
 
 QLineEdit {
@@ -26,5 +27,5 @@ QPushButton:hover {
 
 QAbstractItemView {
     /*background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0, stop:0.6 rgba(255,255,255,10), stop:1 rgba(255, 255, 255, 20));*/
-    background-color: rgba(255, 170, 100, 20);
+    background-color: rgb(200, 200, 200, 200);
 }

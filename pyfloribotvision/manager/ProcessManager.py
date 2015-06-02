@@ -15,7 +15,6 @@ from pyfloribotvision.controller.ConfigController import ConfigController
 from pyfloribotvision.plugins.BasePlugin import BasePlugin
 from pyfloribotvision.types.BaseType import BaseType
 from pyfloribotvision.dto.PluginDTO import PluginDTO
-#config parameter
 from pyfloribotvision.types.StringListType import StringListType
 from pyfloribotvision.types.StringType import StringType
 from pyfloribotvision.types.IntType import IntType
@@ -62,13 +61,14 @@ class ProcessManager(object):
 
         assert isinstance(configController, ConfigController)
         self.configController = configController
-
         # Init-Specific (Config / Plugins)
         ###################################
 
+        fullConfig = self.configController.getConfig()
         self.sectionConfig = self.configController.getSection(self.logicSectionName)
         bp = BasePlugin(sectionConfig=self.sectionConfig,
-                        logicSectionName=self.logicSectionName)
+                        logicSectionName=self.logicSectionName,
+                        fullConfig=fullConfig)
         bp.loadOptions(self)
 
         self.pluginDtoList = self.acquirePlugins()
@@ -135,9 +135,12 @@ class ProcessManager(object):
             assert isinstance(pdto, PluginDTO)
             self.log.debug('instantiate Plugin <%s> for Section <%s>',
                            pdto.modulePath, pdto.sectionName)
+
+            fullConfig = self.configController.getConfig()
             sectionConfig = self.configController.getSection(pdto.sectionName)
             pdto.instanceObject = pdto.classObject(sectionConfig=sectionConfig,
-                                                   logicSectionName=pdto.sectionName)
+                                                   logicSectionName=pdto.sectionName,
+                                                   fullConfig=fullConfig)
 
 
     def executePlugins(self, pluginDtoList=None):
@@ -225,10 +228,12 @@ class ProcessManager(object):
         self.log.debug('')
         self.log.debug('-' * 30 + ' PreLoad I/O-Parameter ' + '-' * 30)
         for pdto in pluginDtoList:
-            self.log.debug('.' * 20 + ' <%s> ' + '.' * 20, pdto.instanceObject.logicSectionName)
+            self.log.debug('.' * 20 + ' <%s> ' + '.' * 20,
+                           pdto.instanceObject.logicSectionName)
             assert isinstance(pdto, PluginDTO)
             baseTypeParameter = [x for x in pdto.instanceObject.sectionConfig.values()
-                                 if issubclass(type(x), BaseType) and (x.output or x.input)]
+                                 if issubclass(type(x), BaseType) and
+                                    (x.output or x.input)]
 
             for x in baseTypeParameter:
                 if x.input:
@@ -240,7 +245,8 @@ class ProcessManager(object):
                     self.attachToDependencyIOList(x, outputParameter)
 
         self.log.debug('')
-        self.log.debug('-' * 30 + ' Wire I/O-Callbacks for Parameter-Types ' + '-' * 30)
+        self.log.debug('-' * 30 + ' Wire I/O-Callbacks for Parameter-Types '
+                       + '-' * 30)
 
         for oname, opara in outputParameter.items():
             if oname in inputParameter:
@@ -252,8 +258,6 @@ class ProcessManager(object):
 
 
     def attachToDependencyIOList(self, para, dstList):
-
-
         valueList = para.value
         if not isinstance(valueList, list):
             valueList = [valueList]

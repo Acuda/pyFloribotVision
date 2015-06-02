@@ -101,13 +101,6 @@ class ConfigController(object):
         :rtype: str
         """
 
-        # ToDo: Thinkover if its usefull...
         section = self.getSection(sectionname)
         assert isinstance(section, dict)
         return section[optionname] if section and optionname in section else None
-
-        #
-        #def _saveFile(self):
-        #    with open(self.configFileName, 'w') as f:
-        #        self.rawConfig.write(f)
-

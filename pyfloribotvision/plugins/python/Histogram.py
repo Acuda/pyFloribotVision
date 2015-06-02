@@ -51,6 +51,7 @@ class Histogram(BasePlugin):
 
         vis = cv2.pyrUp(vis)
 
+
         colsub = (0.2, 0.6, 0.2)
         colmain = (0.3, 0.9, 0.3)
 
@@ -70,4 +71,31 @@ class Histogram(BasePlugin):
             cv2.line(vis, (i, 0), (i, 15), 0, blacksize)
             cv2.line(vis, (i, 0), (i, 15), colmain, 1)
 
-        self.outputImageName.data = vis
+        nvis = np.zeros((vis.shape[0]+15,vis.shape[1]+30, vis.shape[2]))
+        nvis[15:,30:,...]= vis
+
+        nvis[15:,30,...] = colsub
+        self.drawText(nvis, 'SATURATION', 450, 10, 0.6, colsub) # 32
+        self.drawText(nvis, 'HUE', 4, 367, 0.6, colsub)
+
+        for i in range(50,300,50):
+            self.drawText(nvis, str(i), i*2 + 17, 10, 0.75, colmain)
+
+        for i in range(15,180,15):
+            self.drawText(nvis, str(i),0, i*2 + 18, 0.75, colmain)
+
+        #nvis = cv2.pyrUp(nvis)
+        self.outputImageName.data = nvis
+
+
+    def drawText(self, image, text, xpos, ypos, scale=1, color=(225, 225, 225)):
+        xpos = int(xpos)
+        ypos = int(ypos)
+        for i in range(1, 0, -1):
+            if i < 2:
+                cv2.putText(image, text, (xpos+i, ypos+i),
+                            cv2.FONT_HERSHEY_PLAIN, scale, color)
+            else:
+                cv2.putText(image, text, (xpos+i, ypos+i),
+                            cv2.FONT_HERSHEY_PLAIN, scale, (50, 50, 50))
+

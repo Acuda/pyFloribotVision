@@ -44,7 +44,8 @@ class MainWindow(QtGui.QMainWindow, UiBase):
         self.activeParameters = dict()
 
         css = ''
-        with open('./config/dark.css', 'r') as f:
+        #with open('./config/dark.css', 'r') as f:
+        with open('./config/light.css', 'r') as f:
             css = ' '.join(f.readlines())
         self.setStyleSheet(css)
         self.cc = ConfigControl()
