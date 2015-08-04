@@ -8,7 +8,7 @@
 # IMPLIED. IN NO  EVENT WILL THE AUTHOR BE HELD LIABLE FOR ANY DAMAGES ARISING FROM
 # THE USE OF THIS SOURCE-CODE. USE AT YOUR OWN RISK.
 
-
+import opencv_version_hack  # DO NOT REMOVE THIS LINE!
 import getopt
 import sys
 from pyfloribotvision.manager.ContextManager import ContextManager
